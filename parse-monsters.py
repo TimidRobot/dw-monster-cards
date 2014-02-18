@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
 """Parse monster setting files and output entries"""
+# Ideas:
+# - column output
 import argparse
 import codecs
 import csv
@@ -72,7 +74,9 @@ monster_index = {"aboleth": 297, "abomination": 255, "acolyte": 313,
                  "troglodyte": 241, "troll": 252, "vampire": 262,
                  "werewolf": 272, "wight-wolf": 263, "will-o-wisp": 252,
                  "word demon": 311, "worg": 273, "xorn": 294, "zombie": 263}
-
+monster_tags_org = ["Solitary", "Group", "Horde"]
+monster_tags_size = ["Tiny", "Small", "Large", "Huge"]
+weapon_tags_range = ["Hand", "Close", "Reach", "Near", "Far"]
 
 class UnicodeWriter:
     """
@@ -88,7 +92,12 @@ class UnicodeWriter:
         self.encoder = codecs.getincrementalencoder(encoding)()
 
     def writerow(self, row):
-        self.writer.writerow([s.encode("utf-8") for s in row])
+        new_row = list()
+        for s in row:
+            if s is None:
+                s = ""
+            new_row.append(s)
+        self.writer.writerow([s.encode("utf-8") for s in new_row])
         # Fetch UTF-8 output from the queue ...
         data = self.queue.getvalue()
         data = data.decode("utf-8")
@@ -126,35 +135,58 @@ def parse(xml_file):
             style = element.attrib[
                 "{http://ns.adobe.com/AdobeInDesign/4.0/}pstyle"]
             if style == "MonsterName":
-                # clear previous
-                name = ""
-                monster_tags = ""
-                hp = ""
-                armor = ""
-                weapon = ""
-                weapon_tags = ""
-                qualities = ""
-                primary_instinct = ""
+                # Initialize variables
+                name = None
+                monster_desc = list()
+                monster_org = list()
+                monster_size = list()
+                hp = None
+                armor = None
+                weapon = None
+                weapon_desc = list()
+                weapon_range = list()
+                qualities = None
+                primary_instinct = None
                 instincts = list()
-                description = ""
-                monster_page = ""
+                description = None
+                monster_page = None
 
                 name = element.text.strip()
                 monster_page = monster_index[name.lower()]
                 # Not all monsters have tags (many of the Folk do not)
                 if len(element) > 0:
-                    monster_tags = element[0].text
+                    # Monster tags
+                    for tag in element[0].text.split(","):
+                        tag = tag.strip()
+                        if tag in monster_tags_org:
+                            ti = monster_tags_org.index(tag)
+                            monster_org.insert(ti, tag)
+                        elif tag in monster_tags_size:
+                            ti = monster_tags_size.index(tag)
+                            monster_size.insert(ti, tag)
+                        else:
+                            monster_desc.append(tag)
             elif style == "MonsterStats":
                 if second:
-                    weapon_tags = element[0].text
+                    # Weapon tags
+                    for tag in element[0].text.split(","):
+                        tag = tag.strip()
+                        if tag in weapon_tags_range:
+                            ti = weapon_tags_range.index(tag)
+                            weapon_range.insert(ti, tag)
+                        else:
+                            weapon_desc.append(tag)
                     second = False
                 else:
                     for stat in element.text.split("\t"):
                         if stat.endswith(")"):
+                            # Weapon damage
                             weapon = stat
                         elif stat.endswith("HP"):
+                            # HP
                             hp = stat.split(" ")[0]
                         elif stat.endswith("Armor"):
+                            # Armor
                             armor = stat.split(" ")[0]
                     second = True
             elif style == "MonsterQualities":
@@ -184,9 +216,38 @@ def parse(xml_file):
                 instincts.append(item.text)
 
             # Process Record
+            # Create monster tags string
+            monster_tags = None
+            if monster_desc:
+                monster_desc.sort()
+                monster_tags = ", ".join(monster_desc)
+            if monster_org:
+                monster_org = ", ".join(monster_org)
+                if monster_tags:
+                    monster_tags = "%s ~ %s" % (monster_tags, monster_org)
+                else:
+                    monster_tags = monster_org
+            if monster_size:
+                monster_size = ", ".join(monster_size)
+                if monster_tags:
+                    monster_tags = "%s ~ %s" % (monster_tags, monster_size)
+                else:
+                    monster_tags = monster_size
+            # Create monster tags string
+            weapon_tags = None
+            if weapon_range:
+                weapon_tags = ", ".join(weapon_range)
+            if weapon_desc:
+                weapon_desc = ", ".join(weapon_desc)
+                if weapon_tags:
+                    weapon_tags = "%s ~ %s" % (weapon_tags, weapon_desc)
+                else:
+                    weapon_tags = weapon_desc
+            # Create instincts string
             instincts.insert(0, primary_instinct)
             instincts = ", ".join(instincts)
             instincts = "INSTINCTS: %s" % instincts
+            # Create qualities string
             if qualities:
                 qualities = "QUALITIES: %s" % qualities
             monsters.append((name, monster_tags, hp, armor, weapon,
@@ -206,6 +267,7 @@ if args.format == "csv":
                         "setting_page"))
 
 monsters = list()
+
 # parse logs (into data dict)
 xml_files = set()
 for file_glob in args.file:
@@ -223,6 +285,6 @@ for m in monsters:
         csvwriter.writerow(m)
     else:
         for i in m:
-            if i != "":
+            if i != None:
                 print i
         print
