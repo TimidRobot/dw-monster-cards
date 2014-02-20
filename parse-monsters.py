@@ -3,15 +3,19 @@
 """Parse monster setting files and output entries"""
 # Ideas:
 # - column output
+# - yaml import/export
+# Standard library
 import argparse
 import codecs
 import csv
 import cStringIO
 import glob
 import os
+from pprint import pprint
 import sys
 import xml.etree.ElementTree as ET
-
+# Third-party
+#import reportlab
 
 setting_index = {"Dark Woods": 228, "Folk of the Realm": 227,
                  "Lower Depths": 229, "Planar Powers": 230,
@@ -116,7 +120,9 @@ class UnicodeWriter:
 def parser_setup():
     """Instantiate, configure and return an ArgumentParser instance."""
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("-f", "--format", choices=["csv", "plain"],
+    ap.add_argument("-d", "--debug", action="store_true",
+                    help="debug")
+    ap.add_argument("-f", "--format", choices=["csv", "pdf", "plain"],
                     help="output format")
     ap.add_argument("file", nargs="*",
                     help="File(s) to parse.")
@@ -127,132 +133,156 @@ def parser_setup():
 def parse(xml_file):
     tree = ET.parse(xml_file)
     body = tree.find("Body")
-    setting = tree.find("h1").text
-    setting_page = setting_index[setting]
     second = False
+    setting = tree.find("h1").text
+    setting_reference = setting_index[setting]
     for element in body:
         if element.tag == "p":
             style = element.attrib[
                 "{http://ns.adobe.com/AdobeInDesign/4.0/}pstyle"]
+            # MonsterName - name, tags
             if style == "MonsterName":
+                # START - MonsterName is first p element attrib/style in
+                #         monster_setting XML files
                 # Initialize variables
-                name = None
-                monster_desc = list()
-                monster_org = list()
-                monster_size = list()
-                hp = None
-                armor = None
-                weapon = None
-                weapon_desc = list()
-                weapon_range = list()
-                qualities = None
-                primary_instinct = None
-                instincts = list()
-                description = None
-                monster_page = None
+                m = dict()
+                m["name"] = None
+                m["tags_desc"] = list()
+                m["tags_org"] = list()
+                m["tags_size"] = list()
+                m["hp"] = None
+                m["armor"] = None
+                m["weapon"] = {"name": None, "damage": None,
+                               "tags_desc": list(), "tags_range": list()}
+                m["qualities"] = list()
+                m["instincts"] = list()
+                m["description"] = None
+                m["reference"] = None
+                m["setting"] = setting
+                m["setting_reference"] = setting_reference
 
-                name = element.text.strip()
-                monster_page = monster_index[name.lower()]
-                # Not all monsters have tags (many of the Folk do not)
+                m["name"] = element.text.strip()
+                m["reference"] = monster_index[m["name"].lower()]
+                # Tags
                 if len(element) > 0:
-                    # Monster tags
                     for tag in element[0].text.split(","):
                         tag = tag.strip()
                         if tag in monster_tags_org:
                             ti = monster_tags_org.index(tag)
-                            monster_org.insert(ti, tag)
+                            m["tags_org"].insert(ti, tag)
                         elif tag in monster_tags_size:
                             ti = monster_tags_size.index(tag)
-                            monster_size.insert(ti, tag)
+                            m["tags_size"].insert(ti, tag)
                         else:
-                            monster_desc.append(tag)
+                            m["tags_desc"].append(tag)
+            # MonsterStats - Armor, HP, Weapon
             elif style == "MonsterStats":
+                # Second occurance is weapon tags
                 if second:
                     # Weapon tags
                     for tag in element[0].text.split(","):
                         tag = tag.strip()
                         if tag in weapon_tags_range:
                             ti = weapon_tags_range.index(tag)
-                            weapon_range.insert(ti, tag)
+                            m["weapon"]["tags_range"].insert(ti, tag)
                         else:
-                            weapon_desc.append(tag)
+                            m["weapon"]["tags_desc"].append(tag)
                     second = False
+                # First occurance is armor, hp, weapon name, or weapon damage
                 else:
                     for stat in element.text.split("\t"):
+                        # Weapon name and damage
+                        name, damage = None, None
                         if stat.endswith(")"):
-                            # Weapon damage
-                            weapon = stat
+                            name, damage = stat.split("(")
+                            m["weapon"]["name"] = name.strip()
+                            damage = damage.strip(")")
+                            m["weapon"]["damage"] = damage.strip()
+                        # HP
                         elif stat.endswith("HP"):
-                            # HP
-                            hp = stat.split(" ")[0]
+                            m["hp"] = stat.split(" ")[0]
+                        # Armor
                         elif stat.endswith("Armor"):
-                            # Armor
-                            armor = stat.split(" ")[0]
+                            m["armor"] = stat.split(" ")[0]
                     second = True
             elif style == "MonsterQualities":
-                qualities = element[0].tail
-                qualities = qualities.strip()
+                for quality in element[0].tail.split(","):
+                    m["qualities"].append(quality.strip())
             elif style == "MonsterDescription":
-                description = element.text
+                m["description"] = element.text
                 if len(element) > 0:
                     for e in element:
                         if e.text != "Instinct":
-                            description = "%s %s" % (description, e.text)
-                            description = "%s %s" % (description, e.tail)
+                            m["description"] = "%s %s" % (m["description"],
+                                                          e.text)
+                            m["description"] = "%s %s" % (m["description"],
+                                                          e.tail)
                         else:
-                            primary_instinct = e.tail
-                            primary_instinct = primary_instinct.lstrip(":")
-                            primary_instinct = primary_instinct.strip()
+                            instinct = e.tail
+                            instinct = instinct.lstrip(":")
+                            m["instincts"].insert(0, instinct.strip())
             elif style == "NoIndent":
                 # Treant has non-standard description
-                description = "%s, %s" % (description, element.text)
+                m["description"] = "%s, %s" % (m["description"], element.text)
                 if len(element) > 0:
-                    primary_instinct = element[0].tail
-                    primary_instinct = primary_instinct.lstrip(":")
-                    primary_instinct = primary_instinct.strip()
+                    instinct = e.tail
+                    instinct = instinct.lstrip(":")
+                    m["instincts"].insert(0, instinct.strip())
 
         elif element.tag == "ul":
             for item in element:
-                instincts.append(item.text)
+                m["instincts"].append(item.text)
 
-            # Process Record
-            # Create monster tags string
-            monster_tags = None
-            if monster_desc:
-                monster_desc.sort()
-                monster_tags = ", ".join(monster_desc)
-            if monster_org:
-                monster_org = ", ".join(monster_org)
-                if monster_tags:
-                    monster_tags = "%s ~ %s" % (monster_tags, monster_org)
-                else:
-                    monster_tags = monster_org
-            if monster_size:
-                monster_size = ", ".join(monster_size)
-                if monster_tags:
-                    monster_tags = "%s ~ %s" % (monster_tags, monster_size)
-                else:
-                    monster_tags = monster_size
-            # Create monster tags string
-            weapon_tags = None
-            if weapon_range:
-                weapon_tags = ", ".join(weapon_range)
-            if weapon_desc:
-                weapon_desc = ", ".join(weapon_desc)
-                if weapon_tags:
-                    weapon_tags = "%s ~ %s" % (weapon_tags, weapon_desc)
-                else:
-                    weapon_tags = weapon_desc
-            # Create instincts string
-            instincts.insert(0, primary_instinct)
-            instincts = ", ".join(instincts)
-            instincts = "INSTINCTS: %s" % instincts
-            # Create qualities string
-            if qualities:
-                qualities = "QUALITIES: %s" % qualities
-            monsters.append((name, monster_tags, hp, armor, weapon,
-                             weapon_tags, qualities, instincts, description,
-                             str(monster_page), setting, str(setting_page)))
+            # END - ul is last element in monster_setting XML files
+            monsters[m["name"]] = m
+
+
+def combine_monster_tags(monster_dictionary, formatted=False):
+    m = monster_dictionary
+    tags_combined = None
+    if m["tags_desc"]:
+        m["tags_desc"].sort()
+        tags_combined = ", ".join(m["tags_desc"])
+    if m["tags_org"]:
+        m["tags_org"] = ", ".join(m["tags_org"])
+        if tags_combined:
+            tags_combined = "%s ~ %s" % (tags_combined, m["tags_org"])
+        else:
+            tags_combined = m["tags_org"]
+    if m["tags_size"]:
+        m["tags_size"] = ", ".join(m["tags_size"])
+        if tags_combined:
+            tags_combined = "%s ~ %s" % (tags_combined, m["tags_size"])
+        else:
+            tags_combined = m["tags_size"]
+    if formatted:
+        if tags_combined:
+            tags_combined = "<i>%s</i>" % tags_combined
+    return tags_combined
+
+
+def combine_weapon(monster_dictionary, formatted=True):
+    w = monster_dictionary["weapon"]
+    weapon = None
+    tags = None
+    if w["name"] and w["damage"]:
+        weapon = "%s (%s)" % (w["name"], w["damage"])
+    else:
+        return weapon
+    if w["tags_desc"]:
+        tags = ", ".join(w["tags_desc"])
+    if w["tags_range"]:
+        w["tags_range"] = ", ".join(w["tags_range"])
+        if tags:
+            tags = "%s ~ %s" % (tags, w["tags_range"])
+        else:
+            tags = w["tags_range"]
+    if tags:
+        if formatted:
+            weapon = "%s<br /><i>%s</i>" % (weapon, tags)
+        else:
+            weapon = "%s %s" % (weapon, tags)
+    return weapon
 
 
 # setup
@@ -266,7 +296,7 @@ if args.format == "csv":
                         "description", "monster_page", "setting",
                         "setting_page"))
 
-monsters = list()
+monsters = dict()
 
 # parse logs (into data dict)
 xml_files = set()
@@ -278,13 +308,202 @@ for file_glob in args.file:
 for xml_file in xml_files:
     parse(xml_file)
 
-monsters.sort()
+monsters_sorted = sorted(monsters.keys())
 
-for m in monsters:
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+from reportlab.lib import colors
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase import ttfonts
+from reportlab.pdfgen import canvas
+from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak,
+                                ListFlowable, ListItem,
+                                PageTemplate, Paragraph,
+                                SimpleDocTemplate, Spacer)
+from reportlab.platypus.tables import TableStyle, Table
+from reportlab.rl_config import defaultPageSize
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_RIGHT
+
+menlo_path = "/System/Library/Fonts/Menlo.ttc"
+if os.path.exists(menlo_path):
+    pdfmetrics.registerFont(ttfonts.TTFont("Menlo", menlo_path,
+                                           subfontIndex=0))
+    pdfmetrics.registerFont(ttfonts.TTFont("Menlo-Bold", menlo_path,
+                                           subfontIndex=1))
+    pdfmetrics.registerFont(ttfonts.TTFont("Menlo-Italic", menlo_path,
+                                           subfontIndex=2))
+    pdfmetrics.registerFont(ttfonts.TTFont("Menlo-BoldItalic", menlo_path,
+                                           subfontIndex=3))
+    pdfmetrics.registerFontFamily("Menlo", normal="Menlo",
+                                  bold="Menlo-Bold",
+                                  italic="Menlo-Italic",
+                                  boldItalic="Menlo-boldItalic")
+    font_default = "Menlo"
+    bullet = "\xe2\x87\xa8"  # rightwards right arrow
+else:
+    font_default = "Courier"
+    bullet = "\xe2\x80\xa2"  # bullet
+
+# sizes
+width, height = letter
+margin = 0.25 * inch  # 0.25"
+box_width = (width / 2) - (2 * margin)  # 3.75"
+box_height = (height / 2) - (2 * margin)  # 5.00"
+pad = 4  # 0.05"
+
+doc = BaseDocTemplate("temp.pdf", pagesize=letter, showBoundry=True,
+                        leftMargin=margin, rightMargin=margin,
+                        topMargin=margin, bottomMargin=margin,
+                        title="Dungeon World Monster Cards",
+                        allowSplitting=False)
+
+style_default = getSampleStyleSheet()["Normal"].clone("default")
+style_default.fontName = font_default
+style_default.fontSize = 8
+style_default.leading = 10
+
+style_desc = style_default.clone("desc")
+style_desc.alignment = TA_JUSTIFY
+
+style_ref = style_default.clone("ref")
+style_ref.alignment = TA_CENTER
+
+style_list = style_default.clone("list")
+style_list.bulletText = bullet
+style_list.bulletFontName = font_default
+
+style_hang = style_default.clone("hang")
+style_hang.leftIndent = 16
+style_hang.firstLineIndent = -16
+style_hang.spaceBefore = pad
+
+frames = list()
+pages = list()
+elements = list()
+
+# Cards
+x_left = margin
+x_right = (width / 2) + margin
+y_top = (height / 2) + margin
+y_bottom = margin
+cards = ((x_left, y_top), (x_right, y_top), (x_left, y_bottom),
+         (x_right, y_bottom))
+for coords in cards:
+    frames.append(Frame(coords[0], coords[1], box_width, box_height,
+                        leftPadding=pad, bottomPadding=pad, rightPadding=pad,
+                        topPadding=(pad * 0.75), showBoundary=True))
+
+
+def create_page(m):
+    # Name, HP, Armor
+    hp_label = None
+    hp_value = None
+    armor_label = None
+    armor_value = None
+    if m["hp"]:
+        hp_label = "HP:"
+        hp_value = m["hp"]
+    if m["armor"]:
+        armor_label = "Armor:"
+        armor_value = m["armor"]
+    table = [[m["name"], hp_label, hp_value],
+             ["", armor_label, armor_value]]
+    style = [("LINEABOVE", (0,0), (2, 0), 2, colors.black),
+             ("LEFTPADDING", (0, 0), (2, 1), 0),
+             ("RIGHTPADDING", (0, 0), (2, 1), 0),
+             ("BOTTOMPADDING", (0, 0), (2, 1), 0),
+             ("TOPPADDING", (0, 0), (2, 0), (pad / 2)),
+             ("TOPPADDING", (0, 1), (2, 1), 0),
+             ("FONT", (0, 0), (0, 1), "Times-Roman", 16),
+             ("VALIGN", (0, 0), (0, 1), "TOP"),
+             ("SPAN", (0, 0), (0, 1)),
+             ("FONT", (1, 0), (2, 1), font_default, 8),
+             ("ALIGN", (1, 0), (2, 1), "RIGHT"),
+             ]
+    elements.append(Table(table, [(2.55 * inch) - 8, 0.9 * inch, 0.3 * inch],
+                          style=style))
+    # Tags
+    monster_tags = combine_monster_tags(m, formatted=True)
+    if monster_tags:
+        elements.append(Paragraph(monster_tags, style_hang))
+    # Weapon
+    weapon = combine_weapon(m, formatted=True)
+    if weapon:
+        elements.append(Paragraph(weapon, style_hang))
+    # Instincts
+    if m["instincts"]:
+        elements.append(Spacer(box_width, pad))
+        label = Paragraph("<i>Instincts</i>", style_default)
+        items = list()
+        for item in m["instincts"]:
+            items.append(Paragraph(item, style_list))
+        table = [[label, items]]
+        style = [("LEFTPADDING", (0, 0), (1, 0), 0),
+                 ("RIGHTPADDING", (0, 0), (1, 0), 0),
+                 ("BOTTOMPADDING", (0, 0), (1, 0), 0),
+                 ("TOPPADDING", (0, 0), (1, 0), 0),
+                 ("VALIGN", (0, 0), (1, 0), "TOP"),
+                 ]
+        elements.append(Table(table, [0.65 * inch, (3.1 * inch) - 8],
+                              style=style))
+    # Qualities
+    if m["qualities"]:
+        elements.append(Spacer(box_width, pad))
+        label = Paragraph("<i>Qualities</i>", style_default)
+        items = list()
+        for item in m["qualities"]:
+            items.append(Paragraph(item, style_list))
+        table = [[label, items]]
+        style = [("LEFTPADDING", (0, 0), (1, 0), 0),
+                 ("RIGHTPADDING", (0, 0), (1, 0), 0),
+                 ("BOTTOMPADDING", (0, 0), (1, 0), 0),
+                 ("TOPPADDING", (0, 0), (1, 0), 0),
+                 ("VALIGN", (0, 0), (1, 0), "TOP"),
+                 ]
+        elements.append(Table(table, [0.65 * inch, (3.1 * inch) - 8],
+                              style=style))
+    # Description
+    elements.append(Spacer(box_width, pad))
+    table = [[Paragraph(m["description"], style_desc),],]
+    style = [("LINEABOVE", (0,0), (0, 0), 1, colors.black),
+             ("LINEBELOW", (0,0), (0, 0), 1, colors.black),
+             ("LEFTPADDING", (0, 0), (0, 0), 0),
+             ("RIGHTPADDING", (0, 0), (0, 0), 0),
+             ("BOTTOMPADDING", (0, 0), (0, 0), (pad / 2)),
+             ("TOPPADDING", (0, 0), (0, 0), (pad / 2)),
+             ("VALIGN", (0, 0), (0, 0), "TOP"),
+             ]
+    elements.append(Table(table, [box_width - 8],
+                          style=style))
+    # References
+    elements.append(Spacer(box_width, pad))
+    reference = "%s of the %s<br />[DW %d, %d]" % (m["name"], m["setting"],
+                                                   m["reference"],
+                                                   m["setting_reference"])
+    elements.append(Paragraph(reference, style_ref))
+    # Next card
+    elements.append(FrameBreak())
+
+
+for name in monsters_sorted:
+    if args.debug and name not in ("Deep Elf Swordmaster", "Fool",
+                                   "Formian Centurion", "Orc Breaker"):
+        continue
+    monster = monsters[name]
+    # CSV
     if args.format == "csv":
-        csvwriter.writerow(m)
+        csvwriter.writerow(monster)
+    # PDF
+    elif args.format == "pdf":
+        create_page(monster)
+    # Plain
     else:
-        for i in m:
-            if i != None:
-                print i
+        pprint(monster)
         print
+
+pages.append(PageTemplate(frames=frames))
+doc.addPageTemplates(pages)
+if elements:
+    doc.build(elements)
+    os.system('open temp.pdf')
