@@ -14,9 +14,19 @@ import glob
 import os
 from pprint import pprint
 import sys
-import xml.etree.ElementTree as ET
+from xml.etree import ElementTree
 # Third-party
-#import reportlab
+from reportlab.lib import colors
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase import ttfonts
+from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak,
+                                PageTemplate, Paragraph, Spacer)
+from reportlab.platypus.tables import Table
+
 
 setting_index = {"Dark Woods": 228, "Folk of the Realm": 227,
                  "Lower Depths": 229, "Planar Powers": 230,
@@ -83,6 +93,7 @@ monster_tags_org = ["Solitary", "Group", "Horde"]
 monster_tags_size = ["Tiny", "Small", "Large", "Huge"]
 weapon_tags_range = ["Hand", "Close", "Reach", "Near", "Far"]
 
+
 class UnicodeWriter:
     """
     A CSV writer which will write rows to CSV file "f",
@@ -132,7 +143,7 @@ def parser_setup():
 
 
 def parse(xml_file):
-    tree = ET.parse(xml_file)
+    tree = ElementTree.parse(xml_file)
     body = tree.find("Body")
     second = False
     setting = tree.find("h1").text
@@ -286,117 +297,7 @@ def combine_weapon(monster_dictionary, formatted=True):
     return weapon
 
 
-# setup
-args = parser_setup()
-
-if args.format == "csv":
-    csvwriter = UnicodeWriter(sys.stdout, quoting=csv.QUOTE_ALL,
-                              lineterminator="\n")
-    csvwriter.writerow(("name", "monster_tags", "hp", "armor", "weapon",
-                        "weapon_tags", "qualities", "instincts",
-                        "description", "monster_page", "setting",
-                        "setting_page"))
-
-monsters = dict()
-
-# parse logs (into data dict)
-xml_files = set()
-for file_glob in args.file:
-    for path in glob.iglob(file_glob):
-        if os.path.exists(path):
-            path = os.path.abspath(path)
-            xml_files.add(path)
-for xml_file in xml_files:
-    parse(xml_file)
-
-monsters_sorted = sorted(monsters.keys())
-
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.units import inch
-from reportlab.lib import colors
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase import ttfonts
-from reportlab.pdfgen import canvas
-from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak,
-                                ListFlowable, ListItem,
-                                PageTemplate, Paragraph,
-                                SimpleDocTemplate, Spacer)
-from reportlab.platypus.tables import TableStyle, Table
-from reportlab.rl_config import defaultPageSize
-from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_RIGHT
-
-menlo_path = "/System/Library/Fonts/Menlo.ttc"
-if os.path.exists(menlo_path):
-    pdfmetrics.registerFont(ttfonts.TTFont("Menlo", menlo_path,
-                                           subfontIndex=0))
-    pdfmetrics.registerFont(ttfonts.TTFont("Menlo-Bold", menlo_path,
-                                           subfontIndex=1))
-    pdfmetrics.registerFont(ttfonts.TTFont("Menlo-Italic", menlo_path,
-                                           subfontIndex=2))
-    pdfmetrics.registerFont(ttfonts.TTFont("Menlo-BoldItalic", menlo_path,
-                                           subfontIndex=3))
-    pdfmetrics.registerFontFamily("Menlo", normal="Menlo",
-                                  bold="Menlo-Bold",
-                                  italic="Menlo-Italic",
-                                  boldItalic="Menlo-boldItalic")
-    font_default = "Menlo"
-    bullet = "\xe2\x87\xa8"  # rightwards right arrow
-else:
-    font_default = "Courier"
-    bullet = "\xe2\x80\xa2"  # bullet
-
-# sizes
-width, height = letter
-margin = 0.25 * inch  # 0.25"
-box_width = (width / 2) - (2 * margin)  # 3.75"
-box_height = (height / 2) - (2 * margin)  # 5.00"
-pad = 4  # 0.05"
-
-doc = BaseDocTemplate("temp.pdf", pagesize=letter, showBoundry=True,
-                        leftMargin=margin, rightMargin=margin,
-                        topMargin=margin, bottomMargin=margin,
-                        title="Dungeon World Monster Cards",
-                        allowSplitting=False)
-
-style_default = getSampleStyleSheet()["Normal"].clone("default")
-style_default.fontName = font_default
-style_default.fontSize = 8
-style_default.leading = 10
-
-style_desc = style_default.clone("desc")
-style_desc.alignment = TA_JUSTIFY
-
-style_ref = style_default.clone("ref")
-style_ref.alignment = TA_CENTER
-
-style_list = style_default.clone("list")
-style_list.bulletText = bullet
-style_list.bulletFontName = font_default
-
-style_hang = style_default.clone("hang")
-style_hang.leftIndent = 16
-style_hang.firstLineIndent = -16
-style_hang.spaceBefore = pad
-
-frames = list()
-pages = list()
-elements = list()
-
-# Cards
-x_left = margin
-x_right = (width / 2) + margin
-y_top = (height / 2) + margin
-y_bottom = margin
-cards = ((x_left, y_top), (x_right, y_top), (x_left, y_bottom),
-         (x_right, y_bottom))
-for coords in cards:
-    frames.append(Frame(coords[0], coords[1], box_width, box_height,
-                        leftPadding=pad, bottomPadding=pad, rightPadding=pad,
-                        topPadding=(pad * 0.75), showBoundary=True))
-
-
-def create_page(m):
+def pdf_create_page(m):
     # Name, HP, Armor
     hp_label = None
     hp_value = None
@@ -410,11 +311,11 @@ def create_page(m):
         armor_value = m["armor"]
     table = [[m["name"], hp_label, hp_value],
              ["", armor_label, armor_value]]
-    style = [("LINEABOVE", (0,0), (2, 0), 2, colors.black),
+    style = [("LINEABOVE", (0, 0), (2, 0), 1, colors.black),
              ("LEFTPADDING", (0, 0), (2, 1), 0),
              ("RIGHTPADDING", (0, 0), (2, 1), 0),
              ("BOTTOMPADDING", (0, 0), (2, 1), 0),
-             ("TOPPADDING", (0, 0), (2, 0), (pad / 2)),
+             ("TOPPADDING", (0, 0), (2, 0), (space / 2)),
              ("TOPPADDING", (0, 1), (2, 1), 0),
              ("FONT", (0, 0), (0, 1), "Times-Roman", 16),
              ("VALIGN", (0, 0), (0, 1), "TOP"),
@@ -434,7 +335,7 @@ def create_page(m):
         elements.append(Paragraph(weapon, style_hang))
     # Instincts
     if m["instincts"]:
-        elements.append(Spacer(box_width, pad))
+        elements.append(Spacer(box_width, space))
         label = Paragraph("<i>Instincts</i>", style_default)
         items = list()
         for item in m["instincts"]:
@@ -450,7 +351,7 @@ def create_page(m):
                               style=style))
     # Qualities
     if m["qualities"]:
-        elements.append(Spacer(box_width, pad))
+        elements.append(Spacer(box_width, space))
         label = Paragraph("<i>Qualities</i>", style_default)
         items = list()
         for item in m["qualities"]:
@@ -465,20 +366,20 @@ def create_page(m):
         elements.append(Table(table, [0.65 * inch, (3.1 * inch) - 8],
                               style=style))
     # Description
-    elements.append(Spacer(box_width, pad))
-    table = [[Paragraph(m["description"], style_desc),],]
-    style = [("LINEABOVE", (0,0), (0, 0), 1, colors.black),
-             ("LINEBELOW", (0,0), (0, 0), 1, colors.black),
+    elements.append(Spacer(box_width, space))
+    table = [[Paragraph(m["description"], style_desc)]]
+    style = [("LINEABOVE", (0, 0), (0, 0), 0.5, colors.black),
+             ("LINEBELOW", (0, 0), (0, 0), 0.5, colors.black),
              ("LEFTPADDING", (0, 0), (0, 0), 0),
              ("RIGHTPADDING", (0, 0), (0, 0), 0),
-             ("BOTTOMPADDING", (0, 0), (0, 0), (pad / 2)),
-             ("TOPPADDING", (0, 0), (0, 0), (pad / 2)),
+             ("BOTTOMPADDING", (0, 0), (0, 0), (space / 2)),
+             ("TOPPADDING", (0, 0), (0, 0), (space / 2)),
              ("VALIGN", (0, 0), (0, 0), "TOP"),
              ]
     elements.append(Table(table, [box_width - 8],
                           style=style))
     # References
-    elements.append(Spacer(box_width, pad))
+    #elements.append(Spacer(box_width, space))
     reference = "%s of the %s<br />[DW %d, %d]" % (m["name"], m["setting"],
                                                    m["reference"],
                                                    m["setting_reference"])
@@ -487,8 +388,106 @@ def create_page(m):
     elements.append(FrameBreak())
 
 
+# setup
+args = parser_setup()
+monsters = dict()
+xml_files = set()
+# CSV
+if args.format == "csv":
+    csvwriter = UnicodeWriter(sys.stdout, quoting=csv.QUOTE_ALL,
+                              lineterminator="\n")
+    csvwriter.writerow(("name", "monster_tags", "hp", "armor", "weapon",
+                        "weapon_tags", "qualities", "instincts",
+                        "description", "monster_page", "setting",
+                        "setting_page"))
+# PDF
+elif args.format == "pdf":
+    elements = list()
+    frames = list()
+    pages = list()
+    style = dict()
+    # Default font and bullet
+    menlo_path = "/System/Library/Fonts/Menlo.ttc"
+    if os.path.exists(menlo_path):
+        pdfmetrics.registerFont(ttfonts.TTFont("Menlo", menlo_path,
+                                               subfontIndex=0))
+        pdfmetrics.registerFont(ttfonts.TTFont("Menlo-Bold", menlo_path,
+                                               subfontIndex=1))
+        pdfmetrics.registerFont(ttfonts.TTFont("Menlo-Italic", menlo_path,
+                                               subfontIndex=2))
+        pdfmetrics.registerFont(ttfonts.TTFont("Menlo-BoldItalic", menlo_path,
+                                               subfontIndex=3))
+        pdfmetrics.registerFontFamily("Menlo", normal="Menlo",
+                                      bold="Menlo-Bold",
+                                      italic="Menlo-Italic",
+                                      boldItalic="Menlo-boldItalic")
+        font_default = "Menlo"
+        bullet = "\xe2\x87\xa8"  # rightwards right arrow
+    else:
+        font_default = "Courier"
+        bullet = "\xe2\x80\xa2"  # bullet
+
+    # Sizes
+    width, height = letter
+    margin = 0.25 * inch  # 0.25"
+    box_width = (width / 2) - (2 * margin)  # 3.75"
+    box_height = (height / 2) - (2 * margin)  # 5.00"
+    pad = 4  # 0.05"
+    space = 6
+
+    doc = BaseDocTemplate("monster_cards.pdf", pagesize=letter,
+                          showBoundry=True,
+                          leftMargin=margin, rightMargin=margin,
+                          topMargin=margin, bottomMargin=margin,
+                          title="Dungeon World Monster Cards",
+                          allowSplitting=False)
+
+    # Cards
+    x_left = margin
+    x_right = (width / 2) + margin
+    y_top = (height / 2) + margin
+    y_bottom = margin
+    cards = ((x_left, y_top), (x_right, y_top), (x_left, y_bottom),
+             (x_right, y_bottom))
+    for coords in cards:
+        frames.append(Frame(coords[0], coords[1], box_width, box_height,
+                            leftPadding=pad, bottomPadding=pad,
+                            rightPadding=pad,
+                            topPadding=(pad * 0.75), showBoundary=True))
+
+    style_default = getSampleStyleSheet()["Normal"].clone("default")
+    style_default.fontName = font_default
+    style_default.fontSize = 8
+    style_default.leading = 10
+
+    style_desc = style_default.clone("desc")
+    style_desc.alignment = TA_JUSTIFY
+
+    style_hang = style_default.clone("hang")
+    style_hang.leftIndent = 16
+    style_hang.firstLineIndent = -16
+    style_hang.spaceBefore = space
+
+    style_list = style_default.clone("list")
+    style_list.bulletText = bullet
+    style_list.bulletFontName = font_default
+
+    style_ref = style_default.clone("ref")
+    style_ref.alignment = TA_CENTER
+
+# parse logs (into monsters dict)
+for file_glob in args.file:
+    for path in glob.iglob(file_glob):
+        if os.path.exists(path):
+            path = os.path.abspath(path)
+            xml_files.add(path)
+for xml_file in xml_files:
+    parse(xml_file)
+
+monsters_sorted = sorted(monsters.keys())
+
 for name in monsters_sorted:
-    if args.debug and name not in ("Deep Elf Swordmaster", "Fool",
+    if args.debug and name not in ("Deep Elf Swordmaster", "Fire Beetle",
                                    "Formian Centurion", "Orc Breaker"):
         continue
     monster = monsters[name]
@@ -497,14 +496,15 @@ for name in monsters_sorted:
         csvwriter.writerow(monster)
     # PDF
     elif args.format == "pdf":
-        create_page(monster)
+        pdf_create_page(monster)
     # Plain
     else:
         pprint(monster)
         print
 
-pages.append(PageTemplate(frames=frames))
-doc.addPageTemplates(pages)
-if elements:
+if args.format == "pdf":
+    pages.append(PageTemplate(frames=frames))
+    doc.addPageTemplates(pages)
     doc.build(elements)
-    os.system('open temp.pdf')
+    if args.debug:
+        os.system('open monster_cards.pdf')
