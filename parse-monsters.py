@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
-"""Parse monster setting files and output entries"""
 # Ideas:
 # - column output
 # - yaml import/export
+#   - separate data and programming
+"""Parse monster setting files and output entries"""
 # Standard library
 import argparse
 import codecs
@@ -105,7 +106,7 @@ class UnicodeWriter:
         # Fetch UTF-8 output from the queue ...
         data = self.queue.getvalue()
         data = data.decode("utf-8")
-        # ... and reencode it into the target encoding
+        # ... and re-encode it into the target encoding
         data = self.encoder.encode(data)
         # write to the target stream
         self.stream.write(data)
@@ -177,7 +178,7 @@ def parse(xml_file):
                             m["tags_desc"].append(tag)
             # MonsterStats - Armor, HP, Weapon
             elif style == "MonsterStats":
-                # Second occurance is weapon tags
+                # Second occurrence is weapon tags
                 if second:
                     # Weapon tags
                     for tag in element[0].text.split(","):
@@ -188,7 +189,7 @@ def parse(xml_file):
                         else:
                             m["weapon"]["tags_desc"].append(tag)
                     second = False
-                # First occurance is armor, hp, weapon name, or weapon damage
+                # First occurrence is armor, hp, weapon name, or weapon damage
                 else:
                     for stat in element.text.split("\t"):
                         # Weapon name and damage
