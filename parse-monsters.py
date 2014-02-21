@@ -168,7 +168,7 @@ def parse(xml_file):
                                "tags_desc": list(), "tags_range": list()}
                 m["qualities"] = list()
                 m["instincts"] = list()
-                m["description"] = None
+                m["description"] = ""
                 m["reference"] = None
                 m["setting"] = setting
                 m["setting_reference"] = setting_reference
@@ -221,14 +221,21 @@ def parse(xml_file):
                 for quality in element[0].tail.split(","):
                     m["qualities"].append(quality.strip())
             elif style == "MonsterDescription":
-                m["description"] = element.text
+                if element.text:
+                    m["description"] = element.text
                 if len(element) > 0:
                     for e in element:
                         if e.text != "Instinct":
-                            m["description"] = "%s %s" % (m["description"],
-                                                          e.text)
-                            m["description"] = "%s %s" % (m["description"],
-                                                          e.tail)
+                            if e.text:
+                                if e.tag == "em":
+                                    text = "<i>%s</i>" % e.text
+                                else:
+                                    text = e.text
+                                m["description"] = "%s%s" % (m["description"],
+                                                             text)
+                            if e.tail:
+                                m["description"] = "%s%s" % (m["description"],
+                                                             e.tail)
                         else:
                             instinct = e.tail
                             instinct = instinct.lstrip(":")
@@ -469,6 +476,8 @@ elif args.format == "pdf":
     style_hang.spaceBefore = space
 
     style_list = style_default.clone("list")
+    style_list.leftIndent = 12
+    style_list.firstLineIndent = -12
     style_list.bulletText = bullet
     style_list.bulletFontName = font_default
 
