@@ -145,7 +145,7 @@ def parser_setup():
     return args
 
 
-def parse(xml_file):
+def parse_xml(xml_file):
     tree = ElementTree.parse(xml_file)
     body = tree.find("Body")
     second = False
@@ -225,8 +225,10 @@ def parse(xml_file):
                     m["qualities"].append(quality.strip())
             elif style == "MonsterDescription":
                 if element.text:
+                    # Normal description
                     m["description"] = element.text
                 if len(element) > 0:
+                    # Fire Bettle decription
                     for e in element:
                         if e.text != "Instinct":
                             if e.text:
@@ -244,8 +246,10 @@ def parse(xml_file):
                             instinct = instinct.lstrip(":")
                             m["instincts"].insert(0, instinct.strip())
             elif style == "NoIndent":
-                # Treant has non-standard description
-                m["description"] = "%s, %s" % (m["description"], element.text)
+                # Treant description
+                if element.text:
+                    m["description"] = "%s<br />%s" % (m["description"],
+                                                       element.text)
                 if len(element) > 0:
                     instinct = e.tail
                     instinct = instinct.lstrip(":")
@@ -309,7 +313,10 @@ def combine_weapon(monster_dictionary, formatted=False):
 
 def csv_write_row(monster_dict):
     m = monster_dict
+    # Cleanup italics (ex. Fire Beetle)
     description = m["description"].replace("<i>", "").replace("</i>", "")
+    # Clean up line breaks (ex. Treant)
+    description = description.replace("<br />", " \ ")
     csvwriter.writerow([m["name"], str(m["hp"]), str(m["armor"]),
                        combine_monster_tags(m), combine_weapon(m),
                        ", ".join(m["instincts"]), ", ".join(m["qualities"]),
@@ -362,7 +369,7 @@ def pdf_create_page(monster_dict):
     # Instincts
     if m["instincts"]:
         elements.append(Spacer(box_width, spacer))
-        label = Paragraph("<i>Instincts</i>", style_default)
+        label = Paragraph("<b>Instincts</b>", style_default)
         items = list()
         for item in m["instincts"]:
             items.append(Paragraph(item, style_list))
@@ -378,7 +385,7 @@ def pdf_create_page(monster_dict):
     # Qualities
     if m["qualities"]:
         elements.append(Spacer(box_width, spacer))
-        label = Paragraph("<i>Qualities</i>", style_default)
+        label = Paragraph("<b>Qualities</b>", style_default)
         items = list()
         for item in m["qualities"]:
             items.append(Paragraph(item, style_list))
@@ -515,14 +522,15 @@ for file_glob in args.file:
     for path in glob.iglob(file_glob):
         if os.path.exists(path):
             path = os.path.abspath(path)
-            xml_files.add(path)
+            if path.endswith(".xml"):
+                xml_files.add(path)
 for xml_file in xml_files:
-    parse(xml_file)
+    parse_xml(xml_file)
 
 monsters_sorted = sorted(monsters.keys())
 
 for name in monsters_sorted:
-    if args.test and name not in ("Deep Elf Swordmaster", "Fire Beetle",
+    if args.test and name not in ("Deep Elf Swordmaster", "Treant",
                                   "Formian Centurion", "Orc Breaker"):
         continue
     monster = monsters[name]
