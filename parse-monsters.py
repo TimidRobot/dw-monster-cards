@@ -13,7 +13,6 @@ import cStringIO
 import glob
 import os
 from pprint import pprint
-import sys
 from xml.etree import ElementTree
 # Third-party
 from reportlab.lib import colors
@@ -21,7 +20,7 @@ from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
-from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.pdfmetrics import registerFont, registerFontFamily
 from reportlab.pdfbase import ttfonts
 from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak,
                                 PageTemplate, Paragraph, Spacer)
@@ -132,10 +131,14 @@ class UnicodeWriter:
 def parser_setup():
     """Instantiate, configure and return an ArgumentParser instance."""
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("-d", "--debug", action="store_true",
-                    help="debug")
-    ap.add_argument("-f", "--format", choices=["csv", "pdf", "plain"],
-                    help="output format")
+    ap.add_argument("-t", "--test", action="store_true",
+                    help="truncated test execution")
+    ap.add_argument("--pdf", metavar="FILE",
+                    help="Create monster cards PDF")
+    ap.add_argument("--csv", metavar="FILE",
+                    help="Create CSV table of monsters")
+    ap.add_argument("-v", "--verbose", action="store_true",
+                    help="")
     ap.add_argument("file", nargs="*",
                     help="File(s) to parse.")
     args = ap.parse_args()
@@ -280,7 +283,7 @@ def combine_monster_tags(monster_dictionary, formatted=False):
     return tags_combined
 
 
-def combine_weapon(monster_dictionary, formatted=True):
+def combine_weapon(monster_dictionary, formatted=False):
     w = monster_dictionary["weapon"]
     weapon = None
     tags = None
@@ -304,7 +307,18 @@ def combine_weapon(monster_dictionary, formatted=True):
     return weapon
 
 
-def pdf_create_page(m):
+def csv_write_row(monster_dict):
+    m = monster_dict
+    description = m["description"].replace("<i>", "").replace("</i>", "")
+    csvwriter.writerow([m["name"], str(m["hp"]), str(m["armor"]),
+                       combine_monster_tags(m), combine_weapon(m),
+                       ", ".join(m["instincts"]), ", ".join(m["qualities"]),
+                       description, str(m["reference"]), m["setting"],
+                       str(m["setting_reference"])])
+
+
+def pdf_create_page(monster_dict):
+    m = monster_dict
     # Name, HP, Armor
     hp_label = None
     hp_value = None
@@ -399,16 +413,17 @@ def pdf_create_page(m):
 args = parser_setup()
 monsters = dict()
 xml_files = set()
+
 # CSV
-if args.format == "csv":
-    csvwriter = UnicodeWriter(sys.stdout, quoting=csv.QUOTE_ALL,
+if args.csv:
+    csv_file = open(args.csv, 'wb')
+    csvwriter = UnicodeWriter(csv_file, quoting=csv.QUOTE_ALL,
                               lineterminator="\n")
-    csvwriter.writerow(("name", "monster_tags", "hp", "armor", "weapon",
-                        "weapon_tags", "qualities", "instincts",
-                        "description", "monster_page", "setting",
-                        "setting_page"))
+    csvwriter.writerow(("name", "tags", "hp", "armor", "weapon",
+                        "qualities", "instincts", "description", "reference",
+                        "setting", "setting_reference"))
 # PDF
-elif args.format == "pdf":
+elif args.pdf:
     elements = list()
     frames = list()
     pages = list()
@@ -416,18 +431,15 @@ elif args.format == "pdf":
     # Default font and bullet
     menlo_path = "/System/Library/Fonts/Menlo.ttc"
     if os.path.exists(menlo_path):
-        pdfmetrics.registerFont(ttfonts.TTFont("Menlo", menlo_path,
-                                               subfontIndex=0))
-        pdfmetrics.registerFont(ttfonts.TTFont("Menlo-Bold", menlo_path,
-                                               subfontIndex=1))
-        pdfmetrics.registerFont(ttfonts.TTFont("Menlo-Italic", menlo_path,
-                                               subfontIndex=2))
-        pdfmetrics.registerFont(ttfonts.TTFont("Menlo-BoldItalic", menlo_path,
-                                               subfontIndex=3))
-        pdfmetrics.registerFontFamily("Menlo", normal="Menlo",
-                                      bold="Menlo-Bold",
-                                      italic="Menlo-Italic",
-                                      boldItalic="Menlo-boldItalic")
+        registerFont(ttfonts.TTFont("Menlo", menlo_path, subfontIndex=0))
+        registerFont(ttfonts.TTFont("Menlo-Bold", menlo_path, subfontIndex=1))
+        registerFont(ttfonts.TTFont("Menlo-Italic", menlo_path,
+                                    subfontIndex=2))
+        registerFont(ttfonts.TTFont("Menlo-BoldItalic", menlo_path,
+                                    subfontIndex=3))
+        registerFontFamily("Menlo", normal="Menlo", bold="Menlo-Bold",
+                           italic="Menlo-Italic",
+                           boldItalic="Menlo-boldItalic")
         font_default = "Menlo"
         bullet = "\xe2\x87\xa8"  # rightwards right arrow
     else:
@@ -442,8 +454,7 @@ elif args.format == "pdf":
     pad = 4  # 0.05"
     space = 6
 
-    doc = BaseDocTemplate("monster_cards.pdf", pagesize=letter,
-                          showBoundry=True,
+    doc = BaseDocTemplate(args.pdf, pagesize=letter, showBoundry=True,
                           leftMargin=margin, rightMargin=margin,
                           topMargin=margin, bottomMargin=margin,
                           title="Dungeon World Monster Cards",
@@ -496,24 +507,24 @@ for xml_file in xml_files:
 monsters_sorted = sorted(monsters.keys())
 
 for name in monsters_sorted:
-    if args.debug and name not in ("Deep Elf Swordmaster", "Fire Beetle",
-                                   "Formian Centurion", "Orc Breaker"):
+    if args.test and name not in ("Deep Elf Swordmaster", "Fire Beetle",
+                                  "Formian Centurion", "Orc Breaker"):
         continue
     monster = monsters[name]
     # CSV
-    if args.format == "csv":
-        csvwriter.writerow(monster)
+    if args.csv:
+        csv_write_row(monster)
     # PDF
-    elif args.format == "pdf":
+    elif args.pdf:
         pdf_create_page(monster)
     # Plain
     else:
         pprint(monster)
         print
 
-if args.format == "pdf":
+if args.pdf:
     pages.append(PageTemplate(frames=frames))
     doc.addPageTemplates(pages)
     doc.build(elements)
-    if args.debug:
-        os.system('open monster_cards.pdf')
+    if args.test:
+        os.system("open %s" % args.pdf)
