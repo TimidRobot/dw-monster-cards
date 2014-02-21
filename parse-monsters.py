@@ -330,12 +330,11 @@ def pdf_create_page(monster_dict):
     if m["armor"]:
         armor_label = "Armor:"
         armor_value = m["armor"]
-    name = ""
-    for word in m["name"].split(" "):
-        word = word.upper()
-        if name:
-            name = "%s " % name
-        name = "%s%s<font size=14>%s</font>" % (name, word[0:1], word[1:])
+    name = m["name"].upper()
+    words = list()
+    for word in name.split(" "):
+        words.append("%s<font size=14>%s</font>" % (word[0:1], word[1:]))
+    name = " ".join(words)
     name = Paragraph(name, style_title)
     table = [[name, hp_label, hp_value],
              ["", armor_label, armor_value]]
