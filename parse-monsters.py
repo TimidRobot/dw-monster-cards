@@ -330,21 +330,27 @@ def pdf_create_page(monster_dict):
     if m["armor"]:
         armor_label = "Armor:"
         armor_value = m["armor"]
-    table = [[m["name"], hp_label, hp_value],
+    name = ""
+    for word in m["name"].split(" "):
+        word = word.upper()
+        if name:
+            name = "%s " % name
+        name = "%s%s<font size=14>%s</font>" % (name, word[0:1], word[1:])
+    name = Paragraph(name, style_title)
+    table = [[name, hp_label, hp_value],
              ["", armor_label, armor_value]]
     style = [("LINEABOVE", (0, 0), (2, 0), 1, colors.black),
              ("LEFTPADDING", (0, 0), (2, 1), 0),
              ("RIGHTPADDING", (0, 0), (2, 1), 0),
              ("BOTTOMPADDING", (0, 0), (2, 1), 0),
-             ("TOPPADDING", (0, 0), (2, 0), (space / 2)),
-             ("TOPPADDING", (0, 1), (2, 1), 0),
-             ("FONT", (0, 0), (0, 1), "Times-Roman", 16),
-             ("VALIGN", (0, 0), (0, 1), "TOP"),
+             ("TOPPADDING", (0, 0), (2, 1), 0),
+             ("TOPPADDING", (1, 0), (2, 0), (spacer / 2)),
+             ("VALIGN", (0, 0), (2, 1), "TOP"),
              ("SPAN", (0, 0), (0, 1)),
              ("FONT", (1, 0), (2, 1), font_default, 8),
              ("ALIGN", (1, 0), (2, 1), "RIGHT"),
              ]
-    elements.append(Table(table, [(2.55 * inch) - 8, 0.9 * inch, 0.3 * inch],
+    elements.append(Table(table, [(2.85 * inch) - 8, 0.6 * inch, 0.3 * inch],
                           style=style))
     # Tags
     monster_tags = combine_monster_tags(m, formatted=True)
@@ -356,7 +362,7 @@ def pdf_create_page(monster_dict):
         elements.append(Paragraph(weapon, style_hang))
     # Instincts
     if m["instincts"]:
-        elements.append(Spacer(box_width, space))
+        elements.append(Spacer(box_width, spacer))
         label = Paragraph("<i>Instincts</i>", style_default)
         items = list()
         for item in m["instincts"]:
@@ -368,11 +374,11 @@ def pdf_create_page(monster_dict):
                  ("TOPPADDING", (0, 0), (1, 0), 0),
                  ("VALIGN", (0, 0), (1, 0), "TOP"),
                  ]
-        elements.append(Table(table, [0.65 * inch, (3.1 * inch) - 8],
+        elements.append(Table(table, [0.675 * inch, (3.075 * inch) - 8],
                               style=style))
     # Qualities
     if m["qualities"]:
-        elements.append(Spacer(box_width, space))
+        elements.append(Spacer(box_width, spacer))
         label = Paragraph("<i>Qualities</i>", style_default)
         items = list()
         for item in m["qualities"]:
@@ -384,23 +390,23 @@ def pdf_create_page(monster_dict):
                  ("TOPPADDING", (0, 0), (1, 0), 0),
                  ("VALIGN", (0, 0), (1, 0), "TOP"),
                  ]
-        elements.append(Table(table, [0.65 * inch, (3.1 * inch) - 8],
+        elements.append(Table(table, [0.675 * inch, (3.075 * inch) - 8],
                               style=style))
     # Description
-    elements.append(Spacer(box_width, space))
+    elements.append(Spacer(box_width, spacer))
     table = [[Paragraph(m["description"], style_desc)]]
     style = [("LINEABOVE", (0, 0), (0, 0), 0.5, colors.black),
              ("LINEBELOW", (0, 0), (0, 0), 0.5, colors.black),
              ("LEFTPADDING", (0, 0), (0, 0), 0),
              ("RIGHTPADDING", (0, 0), (0, 0), 0),
-             ("BOTTOMPADDING", (0, 0), (0, 0), (space / 2)),
-             ("TOPPADDING", (0, 0), (0, 0), (space / 2)),
+             ("BOTTOMPADDING", (0, 0), (0, 0), (spacer / 2)),
+             ("TOPPADDING", (0, 0), (0, 0), (spacer / 2)),
              ("VALIGN", (0, 0), (0, 0), "TOP"),
              ]
     elements.append(Table(table, [box_width - 8],
                           style=style))
     # References
-    #elements.append(Spacer(box_width, space))
+    elements.append(Spacer(box_width, (spacer / 2)))
     reference = "%s of the %s<br />[DW %d, %d]" % (m["name"], m["setting"],
                                                    m["reference"],
                                                    m["setting_reference"])
@@ -441,10 +447,13 @@ elif args.pdf:
                            italic="Menlo-Italic",
                            boldItalic="Menlo-boldItalic")
         font_default = "Menlo"
-        bullet = "\xe2\x87\xa8"  # rightwards right arrow
+        #bullet = "\xe2\x87\xa8"  # rightwards white arrow
+        bullet = "\xe2\x86\xa3"  # rightwards arrow with tail
     else:
         font_default = "Courier"
         bullet = "\xe2\x80\xa2"  # bullet
+    # Title font
+    font_title = "Times-Roman"
 
     # Sizes
     width, height = letter
@@ -452,7 +461,7 @@ elif args.pdf:
     box_width = (width / 2) - (2 * margin)  # 3.75"
     box_height = (height / 2) - (2 * margin)  # 5.00"
     pad = 4  # 0.05"
-    space = 6
+    spacer = 6
 
     doc = BaseDocTemplate(args.pdf, pagesize=letter, showBoundry=True,
                           leftMargin=margin, rightMargin=margin,
@@ -469,9 +478,9 @@ elif args.pdf:
              (x_right, y_bottom))
     for coords in cards:
         frames.append(Frame(coords[0], coords[1], box_width, box_height,
-                            leftPadding=pad, bottomPadding=pad,
+                            leftPadding=pad, bottomPadding=(pad / 2),
                             rightPadding=pad,
-                            topPadding=(pad * 0.75), showBoundary=True))
+                            topPadding=(pad / 1.5), showBoundary=True))
 
     style_default = getSampleStyleSheet()["Normal"].clone("default")
     style_default.fontName = font_default
@@ -484,7 +493,7 @@ elif args.pdf:
     style_hang = style_default.clone("hang")
     style_hang.leftIndent = 16
     style_hang.firstLineIndent = -16
-    style_hang.spaceBefore = space
+    style_hang.spaceBefore = spacer
 
     style_list = style_default.clone("list")
     style_list.leftIndent = 12
@@ -492,8 +501,15 @@ elif args.pdf:
     style_list.bulletText = bullet
     style_list.bulletFontName = font_default
 
+    style_desc = style_default.clone("desc")
+    style_desc.alignment = TA_JUSTIFY
+
     style_ref = style_default.clone("ref")
     style_ref.alignment = TA_CENTER
+
+    style_title = style_default.clone("title")
+    style_title.fontName = font_title
+    style_title.fontSize = 20
 
 # parse logs (into monsters dict)
 for file_glob in args.file:
