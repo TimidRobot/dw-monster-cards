@@ -1,0 +1,166 @@
+monsters:
+  aboleth: 297
+  abomination: 255
+  acolyte: 313
+  adventurer: 313
+  angel: 305
+  ankheg: 233
+  apocalypse dragon: 297
+  assassin vine: 265
+  bakunawa: 243
+  bandit: 314
+  bandit king: 314
+  banshee: 255
+  barbed devil: 305
+  basilisk: 243
+  black pudding: 244
+  blink dog: 265
+  bulette: 287
+  cave rat: 233
+  centaur: 266
+  chain devil: 306
+  chaos ooze: 266
+  chaos spawn: 298
+  chimera: 287
+  choker: 234
+  chuul: 298
+  cloaker: 234
+  cockatrice: 267
+  concept elemental: 306
+  corrupter: 307
+  coutal: 244
+  crocodilian: 245
+  deep elf assassin: 299
+  deep elf priest: 300
+  deep elf swordmaster: 299
+  derro: 288
+  devourer: 256
+  digester: 288
+  djinn: 307
+  "doppelg\xE4nger": 245
+  dragon: 300
+  dragon turtle: 246
+  dragon whelp: 246
+  dragonbone: 256
+  draugr: 257
+  dryad: 267
+  dwarven warrior: 235
+  eagle lord: 268
+  earth elemental: 235
+  ekek: 247
+  elvish high arcanist: 269
+  elvish warrior: 268
+  ethereal filcher: 289
+  ettin: 289
+  fire beetle: 236
+  fire eels: 247
+  flesh golem: 291
+  fool: 314
+  formian centurion: 276
+  formian drone: 275
+  formian queen: 277
+  formian taskmaster: 275
+  frogman: 248
+  gargoyle: 236
+  gelatinous cube: 237
+  ghost: 257
+  ghoul: 258
+  girallon: 290
+  gnoll alpha: 279
+  gnoll emissary: 278
+  gnoll tracker: 278
+  goblin: 237
+  goblin orkaster: 237
+  goliath: 238
+  gray render: 301
+  griffin: 269
+  guardsman: 315
+  halfling thief: 315
+  hedge wizard: 316
+  hell hound: 308
+  high priest: 316
+  hill giant: 270
+  hunter: 316
+  hydra: 248
+  imp: 308
+  inevitable: 309
+  iron golem: 290
+  knight: 317
+  kobold: 249
+  kraken: 291
+  larvae: 309
+  lich: 258
+  lizardman: 249
+  maggot-squid: 239
+  magmin: 301
+  manticore: 292
+  medusa: 250
+  merchant: 317
+  minotaur: 302
+  mohrg: 259
+  mummy: 259
+  naga: 302
+  nightmare: 310
+  nightwing: 260
+  noble: 317
+  ogre: 270
+  orc berserker: 280
+  orc bloodwarrior: 280
+  orc breaker: 281
+  orc one-eye: 281
+  orc shadowhunter: 283
+  orc shaman: 282
+  orc slaver: 282
+  orc warchief: 283
+  otyugh: 238
+  owlbear: 292
+  peasant: 318
+  pegasus: 293
+  purple worm: 239
+  quasit: 310
+  razor boar: 270
+  rebel: 318
+  roper: 240
+  rot grub: 240
+  rust monster: 293
+  sahuagin: 250
+  salamander: 303
+  satyr: 271
+  sauropod: 251
+  shadow: 260
+  sigben: 261
+  skeleton: 261
+  soldier: 319
+  spectre: 262
+  spiderlord: 241
+  sprite: 271
+  spy: 319
+  swamp shambler: 251
+  the tarrasque: 311
+  tinkerer: 319
+  treant: 272
+  triton noble: 285
+  triton spy: 284
+  triton sub-mariner: 285
+  triton tidecaller: 284
+  troglodyte: 241
+  troll: 252
+  vampire: 262
+  werewolf: 272
+  wight-wolf: 263
+  will-o-wisp: 252
+  word demon: 311
+  worg: 273
+  xorn: 294
+  zombie: 263
+settings:
+  Cavern Dwellers: 227
+  Dark Woods: 228
+  Folk of the Realm: 227
+  Lower Depths: 229
+  Planar Powers: 230
+  Ravenous Hordes: 229
+  Swamp Denizens: 228
+  Twisted Experiments: 229
+  Undead Legions: 228
+

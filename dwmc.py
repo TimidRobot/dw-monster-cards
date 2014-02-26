@@ -8,6 +8,7 @@
 # Standard library
 import argparse
 import codecs
+import collections
 import csv
 import cStringIO
 import glob
@@ -25,72 +26,17 @@ from reportlab.pdfbase import ttfonts
 from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak,
                                 PageTemplate, Paragraph, Spacer)
 from reportlab.platypus.tables import Table
+import yaml
 
 
-setting_index = {"Dark Woods": 228, "Folk of the Realm": 227,
-                 "Lower Depths": 229, "Planar Powers": 230,
-                 "Ravenous Hordes": 229, "Twisted Experiments": 229,
-                 "Undead Legions": 228, "Cavern Dwellers": 227,
-                 "Swamp Denizens": 228}
-monster_index = {"aboleth": 297, "abomination": 255, "acolyte": 313,
-                 "adventurer": 313, "angel": 305, "ankheg": 233,
-                 "apocalypse dragon": 297, "apocalypse dragon": 297,
-                 "assassin vine": 265, "bakunawa": 243, "bandit": 314,
-                 "bandit king": 314, "banshee": 255, "barbed devil": 305,
-                 "basilisk": 243, "black pudding": 244, "black pudding": 244,
-                 "blink dog": 265, "blink dog": 265, "bulette": 287,
-                 "cave rat": 233, "centaur": 266, "chain devil": 306,
-                 "chaos ooze": 266, "chaos spawn": 298, "chimera": 287,
-                 "choker": 234, "chuul": 298, "cloaker": 234,
-                 "cockatrice": 267, "concept elemental": 306,
-                 "corrupter": 307, "coutal": 244, "crocodilian": 245,
-                 "deep elf assassin": 299, "deep elf priest": 300,
-                 "deep elf swordmaster": 299, "derro": 288, "devourer": 256,
-                 "digester": 288, "djinn": 307, u"doppelg\xe4nger": 245,
-                 "dragon": 300, "dragon turtle": 246, "dragon whelp": 246,
-                 "dragonbone": 256, "draugr": 257, "dryad": 267,
-                 "dwarven warrior": 235, "eagle lord": 268,
-                 "earth elemental": 235, "ekek": 247,
-                 "elvish high arcanist": 269, "elvish warrior": 268,
-                 "ethereal filcher": 289, "ettin": 289, "fire beetle": 236,
-                 "fire eels": 247, "flesh golem": 291, "flesh golem": 291,
-                 "fool": 314, "formian centurion": 276, "formian drone": 275,
-                 "formian queen": 277, "formian taskmaster": 275,
-                 "frogman": 248, "gargoyle": 236, "gelatinous cube": 237,
-                 "ghost": 257, "ghoul": 258, "girallon": 290,
-                 "gnoll alpha": 279, "gnoll emissary": 278,
-                 "gnoll tracker": 278, "goblin": 237, "goblin orkaster": 237,
-                 "goliath": 238, "gray render": 301, "griffin": 269,
-                 "guardsman": 315, "halfling thief": 315,
-                 "halfling thief": 315, "hedge wizard": 316,
-                 "hell hound": 308, "high priest": 316, "hill giant": 270,
-                 "hill giant": 270, "hunter": 316, "hydra": 248, "imp": 308,
-                 "inevitable": 309, "iron golem": 290, "knight": 317,
-                 "kobold": 249, "kraken": 291, "larvae": 309, "lich": 258,
-                 "lizardman": 249, "maggot-squid": 239, "magmin": 301,
-                 "manticore": 292, "medusa": 250, "merchant": 317,
-                 "minotaur": 302, "mohrg": 259, "mummy": 259, "naga": 302,
-                 "nightmare": 310, "nightwing": 260, "noble": 317, "ogre": 270,
-                 "orc berserker": 280, "orc bloodwarrior": 280,
-                 "orc breaker": 281, "orc one-eye": 281,
-                 "orc shadowhunter": 283, "orc shaman": 282, "orc slaver": 282,
-                 "orc warchief": 283, "otyugh": 238, "owlbear": 292,
-                 "peasant": 318, "pegasus": 293, "purple worm": 239,
-                 "quasit": 310, "razor boar": 270, "rebel": 318, "roper": 240,
-                 "rot grub": 240, "rot grub": 240, "rust monster": 293,
-                 "sahuagin": 250, "salamander": 303, "satyr": 271,
-                 "sauropod": 251, "shadow": 260, "sigben": 261,
-                 "skeleton": 261, "soldier": 319, "spectre": 262,
-                 "spiderlord": 241, "sprite": 271, "spy": 319,
-                 "swamp shambler": 251, "the tarrasque": 311, "tinkerer": 319,
-                 "treant": 272, "triton noble": 285, "triton spy": 284,
-                 "triton sub-mariner": 285, "triton tidecaller": 284,
-                 "troglodyte": 241, "troll": 252, "vampire": 262,
-                 "werewolf": 272, "wight-wolf": 263, "will-o-wisp": 252,
-                 "word demon": 311, "worg": 273, "xorn": 294, "zombie": 263}
 monster_tags_org = ["Solitary", "Group", "Horde"]
 monster_tags_size = ["Tiny", "Small", "Large", "Huge"]
 weapon_tags_range = ["Hand", "Close", "Reach", "Near", "Far"]
+yaml_tag = u"tag:yaml.org,2002:map"
+monsters = dict()
+xml_files = set()
+yaml_files = set()
+index = None
 
 
 class UnicodeWriter:
@@ -128,20 +74,52 @@ class UnicodeWriter:
             self.writerow(row)
 
 
+# From ... #TODO#
+def represent_odict(dump, tag, mapping, flow_style=None):
+    """Like BaseRepresenter.represent_mapping, but does not issue the sort().
+    """
+    value = list()
+    node = yaml.MappingNode(tag, value, flow_style=flow_style)
+    if dump.alias_key is not None:
+        dump.represented_objects[dump.alias_key] = node
+    best_style = True
+    if hasattr(mapping, "items"):
+        mapping = mapping.items()
+    for item_key, item_value in mapping:
+        node_key = dump.represent_data(item_key)
+        node_value = dump.represent_data(item_value)
+        if not (isinstance(node_key, yaml.ScalarNode) and not node_key.style):
+            best_style = False
+        if (not (isinstance(node_value, yaml.ScalarNode) and
+                 not node_value.style)):
+            best_style = False
+        value.append((node_key, node_value))
+    if flow_style is None:
+        if dump.default_flow_style is not None:
+            node.flow_style = dump.default_flow_style
+        else:
+            node.flow_style = best_style
+    return node
+
+
 def parser_setup():
     """Instantiate, configure and return an ArgumentParser instance."""
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--csv", metavar="DST_FILE",
+                    help="Create CSV table of monsters")
+    ap.add_argument("--pdf", metavar="DST_FILE",
+                    help="Create monster cards PDF")
+    ap.add_argument("--yaml", metavar="DST_DIR",
+                    help="Create YAML files for each monster")
     ap.add_argument("-t", "--test", action="store_true",
                     help="truncated test execution")
-    ap.add_argument("--pdf", metavar="FILE",
-                    help="Create monster cards PDF")
-    ap.add_argument("--csv", metavar="FILE",
-                    help="Create CSV table of monsters")
-    ap.add_argument("-v", "--verbose", action="store_true",
-                    help="")
-    ap.add_argument("file", nargs="*",
+#    ap.add_argument("-v", "--verbose", action="store_true",
+#                    help="")
+    ap.add_argument("file", metavar="SRC_FILE", nargs="*",
                     help="File(s) to parse.")
     args = ap.parse_args()
+    if args.yaml:
+        args.yaml = os.path.abspath(args.yaml)
     return args
 
 
@@ -150,7 +128,7 @@ def parse_xml(xml_file):
     body = tree.find("Body")
     second = False
     setting = tree.find("h1").text
-    setting_reference = setting_index[setting]
+    setting_reference = index["settings"][setting]
     for element in body:
         if element.tag == "p":
             style = element.attrib[
@@ -159,16 +137,19 @@ def parse_xml(xml_file):
             if style == "MonsterName":
                 # START - MonsterName is first p element attrib/style in
                 #         monster_setting XML files
-                # Initialize variables
-                m = dict()
+                # Initialize variables (and set order)
+                m = collections.OrderedDict()
                 m["name"] = None
                 m["tags_desc"] = list()
                 m["tags_org"] = list()
                 m["tags_size"] = list()
                 m["hp"] = None
                 m["armor"] = None
-                m["weapon"] = {"name": None, "damage": None,
-                               "tags_desc": list(), "tags_range": list()}
+                m["weapon"] = collections.OrderedDict()
+                m["weapon"]["name"] = None
+                m["weapon"]["damage"] = None
+                m["weapon"]["tags_desc"] = list()
+                m["weapon"]["tags_range"] = list()
                 m["qualities"] = list()
                 m["instincts"] = list()
                 m["description"] = ""
@@ -177,7 +158,7 @@ def parse_xml(xml_file):
                 m["setting_reference"] = setting_reference
 
                 m["name"] = element.text.strip()
-                m["reference"] = monster_index[m["name"].lower()]
+                m["reference"] = index["monsters"][m["name"].lower()]
                 # Tags
                 if len(element) > 0:
                     for tag in element[0].text.split(","):
@@ -215,10 +196,10 @@ def parse_xml(xml_file):
                             m["weapon"]["damage"] = damage.strip()
                         # HP
                         elif stat.endswith("HP"):
-                            m["hp"] = stat.split(" ")[0]
+                            m["hp"] = int(stat.split(" ")[0])
                         # Armor
                         elif stat.endswith("Armor"):
-                            m["armor"] = stat.split(" ")[0]
+                            m["armor"] = int(stat.split(" ")[0])
                     second = True
             elif style == "MonsterQualities":
                 for quality in element[0].tail.split(","):
@@ -226,7 +207,7 @@ def parse_xml(xml_file):
             elif style == "MonsterDescription":
                 if element.text:
                     # Normal description
-                    m["description"] = element.text
+                    m["description"] = element.text.strip()
                 if len(element) > 0:
                     # Fire Bettle decription
                     for e in element:
@@ -261,6 +242,10 @@ def parse_xml(xml_file):
 
             # END - ul is last element in monster_setting XML files
             monsters[m["name"]] = m
+
+
+def parse_yaml(yaml_file):
+    pass
 
 
 def combine_monster_tags(monster_dictionary, formatted=False):
@@ -421,11 +406,34 @@ def pdf_create_page(monster_dict):
     elements.append(FrameBreak())
 
 
-# setup
-args = parser_setup()
-monsters = dict()
-xml_files = set()
+#TODO: convert utf8 to ascii for filenames
+def yaml_write(monster_dict):
+    m = monster_dict
+    bad_keys = list()
+    for key in m["weapon"]:
+        if not m["weapon"][key]:
+            bad_keys.append(key)
+    for key in bad_keys:
+        del m["weapon"][key]
+    bad_keys = list()
+    for key in m:
+        if not m[key]:
+            bad_keys.append(key)
+    for key in bad_keys:
+        del m[key]
+    file_name = m["name"].replace(" ", "_").lower()
+    file_path = "%s/%s.yaml" % (args.yaml, file_name)
+    with open(file_path, "w") as stream:
+        yaml.safe_dump(m, stream, default_flow_style=False, width=70,
+                       explicit_start=True)
 
+
+# Setup
+args = parser_setup()
+yaml.SafeDumper.add_representer(collections.OrderedDict,
+                                lambda dumper, value: represent_odict(dumper,
+                                                                      yaml_tag,
+                                                                      value))
 # CSV
 if args.csv:
     csv_file = open(args.csv, 'wb')
@@ -517,18 +525,24 @@ elif args.pdf:
     style_title.fontName = font_title
     style_title.fontSize = 20
 
-# parse logs (into monsters dict)
+# Create monsters dict from parse files
 for file_glob in args.file:
     for path in glob.iglob(file_glob):
         if os.path.exists(path):
             path = os.path.abspath(path)
             if path.endswith(".xml"):
                 xml_files.add(path)
-for xml_file in xml_files:
-    parse_xml(xml_file)
-
+            if path.endswith(".yml") or path.endswith(".yaml"):
+                yaml_files.add(path)
+if xml_files:
+    with open("index.yaml", "r") as stream:
+        index = yaml.safe_load(stream)
+    for xml_file in xml_files:
+        parse_xml(xml_file)
+for yaml_file in yaml_files:
+    parse_yaml(yaml_file)
 monsters_sorted = sorted(monsters.keys())
-
+# Process monsters dict
 for name in monsters_sorted:
     if args.test and name not in ("Deep Elf Swordmaster", "Treant",
                                   "Formian Centurion", "Orc Breaker"):
@@ -540,6 +554,9 @@ for name in monsters_sorted:
     # PDF
     elif args.pdf:
         pdf_create_page(monster)
+    # YAML
+    elif args.yaml:
+        yaml_write(monster)
     # Plain
     else:
         pprint(monster)
@@ -549,5 +566,3 @@ if args.pdf:
     pages.append(PageTemplate(frames=frames))
     doc.addPageTemplates(pages)
     doc.build(elements)
-    if args.test:
-        os.system("open %s" % args.pdf)
