@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
-# Ideas:
-# - column output
-# - yaml import/export
-#   - separate data and programming
-"""Parse monster setting files and output entries"""
+"""Create monster cards; read XML and YAML; write CSV, PDF, and YAML"""
 # Standard library
 import argparse
 import codecs
@@ -12,8 +8,9 @@ import collections
 import csv
 import cStringIO
 import glob
-import os
-from pprint import pprint
+import os.path
+import sys
+import textwrap
 from xml.etree import ElementTree
 # Third-party
 from reportlab.lib import colors
@@ -28,10 +25,11 @@ from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak,
 from reportlab.platypus.tables import Table
 import yaml
 
-
+# Tag order lists
 monster_tags_org = ["Solitary", "Group", "Horde"]
 monster_tags_size = ["Tiny", "Small", "Large", "Huge"]
 weapon_tags_range = ["Hand", "Close", "Reach", "Near", "Far"]
+
 yaml_tag = u"tag:yaml.org,2002:map"
 monsters = dict()
 xml_files = set()
@@ -111,15 +109,9 @@ def parser_setup():
                     help="Create monster cards PDF")
     ap.add_argument("--yaml", metavar="DST_DIR",
                     help="Create YAML files for each monster")
-    ap.add_argument("-t", "--test", action="store_true",
-                    help="truncated test execution")
-#    ap.add_argument("-v", "--verbose", action="store_true",
-#                    help="")
     ap.add_argument("file", metavar="SRC_FILE", nargs="*",
-                    help="File(s) to parse.")
+                    help="XML or YAML file(s) to parse.")
     args = ap.parse_args()
-    if args.yaml:
-        args.yaml = os.path.abspath(args.yaml)
     return args
 
 
@@ -245,7 +237,33 @@ def parse_xml(xml_file):
 
 
 def parse_yaml(yaml_file):
-    pass
+    m = collections.OrderedDict()
+    m["name"] = None
+    m["tags_desc"] = list()
+    m["tags_org"] = list()
+    m["tags_size"] = list()
+    m["hp"] = None
+    m["armor"] = None
+    m["weapon"] = collections.OrderedDict()
+    m["weapon"]["name"] = None
+    m["weapon"]["damage"] = None
+    m["weapon"]["tags_desc"] = list()
+    m["weapon"]["tags_range"] = list()
+    m["qualities"] = list()
+    m["instincts"] = list()
+    m["description"] = ""
+    m["reference"] = None
+    m["setting"] = None
+    m["setting_reference"] = None
+    with open(yaml_file, "r") as stream:
+        temp = yaml.safe_load(stream)
+        for key in temp:
+            if key != "weapon":
+                m[key] = temp[key]
+            else:
+                for key in temp["weapon"]:
+                    m["weapon"][key] = temp["weapon"][key]
+    monsters[m["name"]] = m
 
 
 def combine_monster_tags(monster_dictionary, formatted=False):
@@ -398,17 +416,86 @@ def pdf_create_page(monster_dict):
                           style=style))
     # References
     elements.append(Spacer(box_width, (spacer / 2)))
-    reference = "%s of the %s<br />[DW %d, %d]" % (m["name"], m["setting"],
-                                                   m["reference"],
-                                                   m["setting_reference"])
+    reference = "%s of the %s" % (m["name"], m["setting"])
     elements.append(Paragraph(reference, style_ref))
+    reference = None
+    if m["reference"] and m["setting_reference"]:
+        reference = "[DW %d, %d]" % (m["reference"], m["setting_reference"])
+    elif m["setting_reference"]:
+        reference = "[DW %d]" % (m["setting_reference"])
+    if reference:
+        elements.append(Paragraph(reference, style_ref))
     # Next card
     elements.append(FrameBreak())
+
+
+def plain_write(monster_dict):
+    m = monster_dict
+    print "=" * 80
+    # Name, HP, and Armor
+    if m["hp"]:
+        print u"%-70s%6s%4d" % (m["name"].upper(), "HP:", m["hp"])
+    else:
+        print m["name"].upper()
+    if m["armor"]:
+        print u"%76s%4d" % ("Armor:", m["armor"])
+    # Tags
+    tags = combine_monster_tags(m)
+    if tags:
+        print tags
+    # Weapon
+    weapon = combine_weapon(m)
+    if weapon:
+        print weapon
+    # Instincts
+    if m["instincts"]:
+        leader = textwrap.TextWrapper(width=80,
+                                      initial_indent=u"%-10s> " % "Instincts",
+                                      subsequent_indent=u"%12s" % "")
+        print leader.fill(m["instincts"].pop(0))
+        follow = textwrap.TextWrapper(width=80,
+                                      initial_indent=u"%-10s> " % "",
+                                      subsequent_indent=u"%12s" % "")
+        for instinct in m["instincts"]:
+            print follow.fill(instinct)
+    # Qualities
+    if m["qualities"]:
+        leader = textwrap.TextWrapper(width=80,
+                                      initial_indent=u"%-10s> " % "Qualities",
+                                      subsequent_indent=u"%12s" % "")
+        print leader.fill(m["qualities"].pop(0))
+        follow = textwrap.TextWrapper(width=80,
+                                      initial_indent=u"%-10s> " % "",
+                                      subsequent_indent=u"%12s" % "")
+        for quality in m["qualities"]:
+            print follow.fill(quality)
+    # Description
+    if m["description"]:
+        print "-" * 80
+        # Cleanup italics (ex. Fire Beetle)
+        description = m["description"].replace("<i>", "").replace("</i>", "")
+        if "<br />" in description:
+            # Multilined description (ex. Treant)
+            description = description.replace("<br />", "\n")
+            print description
+        else:
+            # Normal description
+            print textwrap.fill(description, width=80)
+        print "-" * 80
+    # References
+    print u"{: ^80}".format(u"%s of the %s" % (m["name"], m["setting"]))
+    if m["reference"] and m["setting_reference"]:
+        print u"{: ^80}".format(u"[DW %d, %d]" % (m["reference"],
+                                                  m["setting_reference"]))
+    elif m["setting_reference"]:
+        print u"{: ^80}".format(u"[DW %d]" % (m["setting_reference"]))
+    print
 
 
 #TODO: convert utf8 to ascii for filenames
 def yaml_write(monster_dict):
     m = monster_dict
+    # Remove empty keys
     bad_keys = list()
     for key in m["weapon"]:
         if not m["weapon"][key]:
@@ -421,11 +508,17 @@ def yaml_write(monster_dict):
             bad_keys.append(key)
     for key in bad_keys:
         del m[key]
-    file_name = m["name"].replace(" ", "_").lower()
-    file_path = "%s/%s.yaml" % (args.yaml, file_name)
-    with open(file_path, "w") as stream:
-        yaml.safe_dump(m, stream, default_flow_style=False, width=70,
-                       explicit_start=True)
+    # Print or Write to file
+    if args.yaml == "-":
+        print yaml.safe_dump(m, default_flow_style=False, width=70,
+                             explicit_start=True)
+    else:
+        file_name = m["name"].replace(" ", "_").lower()
+        args.yaml = os.path.abspath(args.yaml)
+        file_path = "%s/%s.yaml" % (args.yaml, file_name)
+        with open(file_path, "w") as stream:
+            yaml.safe_dump(m, stream, default_flow_style=False, width=70,
+                           explicit_start=True)
 
 
 # Setup
@@ -436,8 +529,12 @@ yaml.SafeDumper.add_representer(collections.OrderedDict,
                                                                       value))
 # CSV
 if args.csv:
-    csv_file = open(args.csv, 'wb')
-    csvwriter = UnicodeWriter(csv_file, quoting=csv.QUOTE_ALL,
+    if args.csv == "-":
+        csv_path = sys.stdout
+    else:
+        csv_path = os.path.abspath(args.csv)
+        csv_path = open(args.csv, 'wb')
+    csvwriter = UnicodeWriter(csv_path, quoting=csv.QUOTE_ALL,
                               lineterminator="\n")
     csvwriter.writerow(("name", "tags", "hp", "armor", "weapon",
                         "qualities", "instincts", "description", "reference",
@@ -544,9 +641,6 @@ for yaml_file in yaml_files:
 monsters_sorted = sorted(monsters.keys())
 # Process monsters dict
 for name in monsters_sorted:
-    if args.test and name not in ("Deep Elf Swordmaster", "Treant",
-                                  "Formian Centurion", "Orc Breaker"):
-        continue
     monster = monsters[name]
     # CSV
     if args.csv:
@@ -559,8 +653,7 @@ for name in monsters_sorted:
         yaml_write(monster)
     # Plain
     else:
-        pprint(monster)
-        print
+        plain_write(monster)
 
 if args.pdf:
     pages.append(PageTemplate(frames=frames))
