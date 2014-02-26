@@ -142,8 +142,8 @@ def parse_xml(xml_file):
                 m["weapon"]["damage"] = None
                 m["weapon"]["tags_desc"] = list()
                 m["weapon"]["tags_range"] = list()
-                m["qualities"] = list()
                 m["instincts"] = list()
+                m["qualities"] = list()
                 m["description"] = ""
                 m["reference"] = None
                 m["setting"] = setting
@@ -249,8 +249,8 @@ def parse_yaml(yaml_file):
     m["weapon"]["damage"] = None
     m["weapon"]["tags_desc"] = list()
     m["weapon"]["tags_range"] = list()
-    m["qualities"] = list()
     m["instincts"] = list()
+    m["qualities"] = list()
     m["description"] = ""
     m["reference"] = None
     m["setting"] = None
@@ -359,7 +359,7 @@ def pdf_create_page(monster_dict):
              ("FONT", (1, 0), (2, 1), font_default, 8),
              ("ALIGN", (1, 0), (2, 1), "RIGHT"),
              ]
-    elements.append(Table(table, [(2.85 * inch) - 8, 0.6 * inch, 0.3 * inch],
+    elements.append(Table(table, [(3.15 * inch) - 8, 0.4 * inch, 0.2 * inch],
                           style=style))
     # Tags
     monster_tags = combine_monster_tags(m, formatted=True)
