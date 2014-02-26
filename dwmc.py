@@ -37,6 +37,7 @@ yaml_files = set()
 index = None
 
 
+# From official Python documetnation for csv module
 class UnicodeWriter:
     """
     A CSV writer which will write rows to CSV file "f",
@@ -72,7 +73,8 @@ class UnicodeWriter:
             self.writerow(row)
 
 
-# From ... #TODO#
+# From:
+# http://blog.elsdoerfer.name/2012/07/26/make-pyyaml-output-an-ordereddict/
 def represent_odict(dump, tag, mapping, flow_style=None):
     """Like BaseRepresenter.represent_mapping, but does not issue the sort().
     """
@@ -116,6 +118,7 @@ def parser_setup():
 
 
 def parse_xml(xml_file):
+    """Parse DungeonWorld's InDesign XML source files"""
     tree = ElementTree.parse(xml_file)
     body = tree.find("Body")
     second = False
@@ -237,6 +240,7 @@ def parse_xml(xml_file):
 
 
 def parse_yaml(yaml_file):
+    """Parse monster YAML file"""
     m = collections.OrderedDict()
     m["name"] = None
     m["tags_desc"] = list()
@@ -267,6 +271,7 @@ def parse_yaml(yaml_file):
 
 
 def combine_monster_tags(monster_dictionary, formatted=False):
+    """Combine monster tags into categorized and sorted string."""
     m = monster_dictionary
     tags_combined = None
     if m["tags_desc"]:
@@ -291,6 +296,8 @@ def combine_monster_tags(monster_dictionary, formatted=False):
 
 
 def combine_weapon(monster_dictionary, formatted=False):
+    """Combine weapon name, damage, and tags into categorized and sorted
+    string."""
     w = monster_dictionary["weapon"]
     weapon = None
     tags = None
@@ -315,6 +322,7 @@ def combine_weapon(monster_dictionary, formatted=False):
 
 
 def csv_write_row(monster_dict):
+    """Write monster data as CSV rows."""
     m = monster_dict
     # Cleanup italics (ex. Fire Beetle)
     description = m["description"].replace("<i>", "").replace("</i>", "")
@@ -328,6 +336,7 @@ def csv_write_row(monster_dict):
 
 
 def pdf_create_page(monster_dict):
+    """Create PDF pages of formatted monster cards."""
     m = monster_dict
     # Name, HP, Armor
     hp_label = None
@@ -430,6 +439,7 @@ def pdf_create_page(monster_dict):
 
 
 def plain_write(monster_dict):
+    """Output plain text monster entries."""
     m = monster_dict
     print "=" * 80
     # Name, HP, and Armor
@@ -494,6 +504,7 @@ def plain_write(monster_dict):
 
 #TODO: convert utf8 to ascii for filenames
 def yaml_write(monster_dict):
+    """Write monster entries to their own YAML file."""
     m = monster_dict
     # Remove empty keys
     bad_keys = list()
@@ -533,7 +544,7 @@ if args.csv:
         csv_path = sys.stdout
     else:
         csv_path = os.path.abspath(args.csv)
-        csv_path = open(args.csv, 'wb')
+        csv_path = open(args.csv, "wb")
     csvwriter = UnicodeWriter(csv_path, quoting=csv.QUOTE_ALL,
                               lineterminator="\n")
     csvwriter.writerow(("name", "tags", "hp", "armor", "weapon",
@@ -654,7 +665,7 @@ for name in monsters_sorted:
     # Plain
     else:
         plain_write(monster)
-
+# Complete PDF document creation
 if args.pdf:
     pages.append(PageTemplate(frames=frames))
     doc.addPageTemplates(pages)
