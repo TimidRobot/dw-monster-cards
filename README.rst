@@ -1,11 +1,10 @@
 Overview
 =========
 
-DW Monster Cards eases the generation of 4 by 5.5 inch `Dungeon World`_ monster
-cards (ex. `monster_cards.pdf`_). In addition to the primary PDF creation
+DW Monster Cards eases the creation of 4" x 5.5" `Dungeon World`_ monster cards
+(ex. `monster_cards.pdf`_). In addition to the primary PDF creation
 functionality, dwmc.py also has has some utility functions.
 
-See  for an example
 
 Inputs
 ------
