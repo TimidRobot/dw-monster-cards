@@ -21,6 +21,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.pdfbase.pdfmetrics import registerFont, registerFontFamily
 from reportlab.pdfbase import ttfonts
+from reportlab.pdfgen import canvas
 from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak,
                                 PageTemplate, Paragraph, Spacer)
 from reportlab.platypus.tables import Table
@@ -107,15 +108,45 @@ def represent_odict(dump, tag, mapping, flow_style=None):
 def parser_setup():
     """Instantiate, configure and return an ArgumentParser instance."""
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--csv", metavar="DST_FILE",
-                    help="Create CSV table of monsters")
-    ap.add_argument("--pdf", metavar="DST_FILE",
-                    help="Create monster cards PDF")
-    ap.add_argument("--yaml", metavar="DST_DIR",
-                    help="Create YAML files for each monster")
-    ap.add_argument("file", metavar="SRC_FILE", nargs="*",
-                    help="XML or YAML file(s) to parse.")
+    ap.add_argument("--back-image", metavar="FILE",
+                    help="Image to use for back of monster cards (requires "
+                    "--back-pdf)")
+    dst = ap.add_argument_group(title="Output Arguments",
+                                description="Mutually exclusive arguments "
+                                "that determine type of output.")
+    dst.add_argument("--back-pdf", metavar="FILE",
+                     help="Create PDF of back of monster cards (requires "
+                     "--back-image)")
+    dst.add_argument("--csv", metavar="FILE",
+                     help="Create CSV of monsters")
+    dst.add_argument("--pdf", metavar="FILE",
+                     help="Create PDF of monster cards")
+    dst.add_argument("--plain", action="store_true",
+                     help="Output plain text monster entries (handy for "
+                     "debugging)")
+    dst.add_argument("--yaml", metavar="DIR",
+                     help="Create YAML files for each monster in DIR")
+    src = ap.add_argument_group(title="Source File(s)")
+    src.add_argument("file", metavar="FILE", nargs="*",
+                     help="XML or YAML source file(s) to parse (required by "
+                     "all output arguments except --back-pdf)")
     args = ap.parse_args()
+    # Ensure a single output argument is provided
+    dst_count = 0
+    for key in vars(args):
+        if vars(args)[key] and key in ("back_pdf", "csv", "pdf", "plain",
+                                       "yaml"):
+            dst_count += 1
+    if dst_count != 1:
+        ap.error("Exactly one Output Argument is required")
+    # Ensure back_pdf and back_image are used together
+    if (args.back_pdf and not args.back_image) or (not args.back_pdf and
+                                                   args.back_image):
+        ap.error("Both --back-pdf and --back-image are required "
+                 "if either are used.")
+    # Ensure source files provided
+    if not args.back_pdf and not args.file:
+        ap.error("Source FILE(s) required")
     return args
 
 
@@ -536,12 +567,106 @@ def yaml_write(monster_dict):
 
 # Setup
 args = parser_setup()
-yaml.SafeDumper.add_representer(collections.OrderedDict,
-                                lambda dumper, value: represent_odict(dumper,
-                                                                      yaml_tag,
-                                                                      value))
+if args.yaml:
+    yaml.SafeDumper.add_representer(collections.OrderedDict, lambda dumper,
+                                    value: represent_odict(dumper, yaml_tag,
+                                                           value))
+
+# back-PDF or PDF
+if args.back_pdf or args.pdf:
+    # Sizes
+    width, height = letter
+    margin = 0.25 * inch  # 0.25"
+    box_width = (width / 2) - (2 * margin)  # 3.75"
+    box_height = (height / 2) - (2 * margin)  # 5.00"
+    pad = 4  # 0.05"
+    spacer = 6
+    # Cards
+    x_left = margin
+    x_right = (width / 2) + margin
+    y_top = (height / 2) + margin
+    y_bottom = margin
+    cards = ((x_left, y_top), (x_right, y_top), (x_left, y_bottom),
+             (x_right, y_bottom))
+    # back-PDF-only
+    if args.back_pdf:
+        back = canvas.Canvas(args.back_pdf, pagesize=letter)
+        back.setTitle("Dungeon World Monster Cards - Back")
+        for coords in cards:
+            back.drawImage(args.back_image, coords[0], coords[1],
+                           width=box_width, height=box_height)
+        back.showPage()
+        back.save()
+    # PDF-only
+    else:
+        elements = list()
+        frames = list()
+        pages = list()
+
+        doc = BaseDocTemplate(args.pdf, pagesize=letter, showBoundry=True,
+                              leftMargin=margin, rightMargin=margin,
+                              topMargin=margin, bottomMargin=margin,
+                              title="Dungeon World Monster Cards",
+                              allowSplitting=False)
+
+        # Default font and bullet
+        menlo_path = "/System/Library/Fonts/Menlo.ttc"
+        if os.path.exists(menlo_path):
+            registerFont(ttfonts.TTFont("Menlo", menlo_path, subfontIndex=0))
+            registerFont(ttfonts.TTFont("Menlo-Bold", menlo_path,
+                                        subfontIndex=1))
+            registerFont(ttfonts.TTFont("Menlo-Italic", menlo_path,
+                                        subfontIndex=2))
+            registerFont(ttfonts.TTFont("Menlo-BoldItalic", menlo_path,
+                                        subfontIndex=3))
+            registerFontFamily("Menlo", normal="Menlo", bold="Menlo-Bold",
+                               italic="Menlo-Italic",
+                               boldItalic="Menlo-boldItalic")
+            font_default = "Menlo"
+            #bullet = "\xe2\x87\xa8"  # rightwards white arrow
+            bullet = "\xe2\x86\xa3"  # rightwards arrow with tail
+        else:
+            font_default = "Courier"
+            bullet = "\xe2\x80\xa2"  # bullet
+        # Title font
+        font_title = "Times-Roman"
+
+        for coords in cards:
+            frames.append(Frame(coords[0], coords[1], box_width, box_height,
+                                leftPadding=pad, bottomPadding=(pad / 2),
+                                rightPadding=pad,
+                                topPadding=(pad / 1.5), showBoundary=True))
+
+        style_default = getSampleStyleSheet()["Normal"].clone("default")
+        style_default.fontName = font_default
+        style_default.fontSize = 8
+        style_default.leading = 10
+
+        style_desc = style_default.clone("desc")
+        style_desc.alignment = TA_JUSTIFY
+
+        style_hang = style_default.clone("hang")
+        style_hang.leftIndent = 16
+        style_hang.firstLineIndent = -16
+        style_hang.spaceBefore = spacer
+
+        style_list = style_default.clone("list")
+        style_list.leftIndent = 12
+        style_list.firstLineIndent = -12
+        style_list.bulletText = bullet
+        style_list.bulletFontName = font_default
+
+        style_desc = style_default.clone("desc")
+        style_desc.alignment = TA_JUSTIFY
+
+        style_ref = style_default.clone("ref")
+        style_ref.alignment = TA_CENTER
+
+        style_title = style_default.clone("title")
+        style_title.fontName = font_title
+        style_title.fontSize = 20
 # CSV
-if args.csv:
+elif args.csv:
     if args.csv == "-":
         csv_path = sys.stdout
     else:
@@ -552,123 +677,42 @@ if args.csv:
     csvwriter.writerow(("name", "tags", "hp", "armor", "weapon",
                         "qualities", "instincts", "description", "reference",
                         "setting", "setting_reference"))
-# PDF
-elif args.pdf:
-    elements = list()
-    frames = list()
-    pages = list()
-    style = dict()
-    # Default font and bullet
-    menlo_path = "/System/Library/Fonts/Menlo.ttc"
-    if os.path.exists(menlo_path):
-        registerFont(ttfonts.TTFont("Menlo", menlo_path, subfontIndex=0))
-        registerFont(ttfonts.TTFont("Menlo-Bold", menlo_path, subfontIndex=1))
-        registerFont(ttfonts.TTFont("Menlo-Italic", menlo_path,
-                                    subfontIndex=2))
-        registerFont(ttfonts.TTFont("Menlo-BoldItalic", menlo_path,
-                                    subfontIndex=3))
-        registerFontFamily("Menlo", normal="Menlo", bold="Menlo-Bold",
-                           italic="Menlo-Italic",
-                           boldItalic="Menlo-boldItalic")
-        font_default = "Menlo"
-        #bullet = "\xe2\x87\xa8"  # rightwards white arrow
-        bullet = "\xe2\x86\xa3"  # rightwards arrow with tail
-    else:
-        font_default = "Courier"
-        bullet = "\xe2\x80\xa2"  # bullet
-    # Title font
-    font_title = "Times-Roman"
 
-    # Sizes
-    width, height = letter
-    margin = 0.25 * inch  # 0.25"
-    box_width = (width / 2) - (2 * margin)  # 3.75"
-    box_height = (height / 2) - (2 * margin)  # 5.00"
-    pad = 4  # 0.05"
-    spacer = 6
-
-    doc = BaseDocTemplate(args.pdf, pagesize=letter, showBoundry=True,
-                          leftMargin=margin, rightMargin=margin,
-                          topMargin=margin, bottomMargin=margin,
-                          title="Dungeon World Monster Cards",
-                          allowSplitting=False)
-
-    # Cards
-    x_left = margin
-    x_right = (width / 2) + margin
-    y_top = (height / 2) + margin
-    y_bottom = margin
-    cards = ((x_left, y_top), (x_right, y_top), (x_left, y_bottom),
-             (x_right, y_bottom))
-    for coords in cards:
-        frames.append(Frame(coords[0], coords[1], box_width, box_height,
-                            leftPadding=pad, bottomPadding=(pad / 2),
-                            rightPadding=pad,
-                            topPadding=(pad / 1.5), showBoundary=True))
-
-    style_default = getSampleStyleSheet()["Normal"].clone("default")
-    style_default.fontName = font_default
-    style_default.fontSize = 8
-    style_default.leading = 10
-
-    style_desc = style_default.clone("desc")
-    style_desc.alignment = TA_JUSTIFY
-
-    style_hang = style_default.clone("hang")
-    style_hang.leftIndent = 16
-    style_hang.firstLineIndent = -16
-    style_hang.spaceBefore = spacer
-
-    style_list = style_default.clone("list")
-    style_list.leftIndent = 12
-    style_list.firstLineIndent = -12
-    style_list.bulletText = bullet
-    style_list.bulletFontName = font_default
-
-    style_desc = style_default.clone("desc")
-    style_desc.alignment = TA_JUSTIFY
-
-    style_ref = style_default.clone("ref")
-    style_ref.alignment = TA_CENTER
-
-    style_title = style_default.clone("title")
-    style_title.fontName = font_title
-    style_title.fontSize = 20
-
-# Create monsters dict from parse files
-for file_glob in args.file:
-    for path in glob.iglob(file_glob):
-        if os.path.exists(path):
-            path = os.path.abspath(path)
-            if path.endswith(".xml"):
-                xml_files.add(path)
-            if path.endswith(".yml") or path.endswith(".yaml"):
-                yaml_files.add(path)
-if xml_files:
-    with open("index.yaml", "r") as stream:
-        index = yaml.safe_load(stream)
-    for xml_file in xml_files:
-        parse_xml(xml_file)
-for yaml_file in yaml_files:
-    parse_yaml(yaml_file)
-monsters_sorted = sorted(monsters.keys())
-# Process monsters dict
-for name in monsters_sorted:
-    monster = monsters[name]
-    # CSV
-    if args.csv:
-        csv_write_row(monster)
-    # PDF
-    elif args.pdf:
-        pdf_create_page(monster)
-    # YAML
-    elif args.yaml:
-        yaml_write(monster)
-    # Plain
-    else:
-        plain_write(monster)
-# Complete PDF document creation
-if args.pdf:
-    pages.append(PageTemplate(frames=frames))
-    doc.addPageTemplates(pages)
-    doc.build(elements)
+# Create monsters dict from parse files and create outputs
+if args.file:
+    for file_glob in args.file:
+        for path in glob.iglob(file_glob):
+            if os.path.exists(path):
+                path = os.path.abspath(path)
+                if path.endswith(".xml"):
+                    xml_files.add(path)
+                if path.endswith(".yml") or path.endswith(".yaml"):
+                    yaml_files.add(path)
+    if xml_files:
+        with open("index.yaml", "r") as stream:
+            index = yaml.safe_load(stream)
+        for xml_file in xml_files:
+            parse_xml(xml_file)
+    for yaml_file in yaml_files:
+        parse_yaml(yaml_file)
+    monsters_sorted = sorted(monsters.keys())
+    # Process monsters dict
+    for name in monsters_sorted:
+        monster = monsters[name]
+        # CSV
+        if args.csv:
+            csv_write_row(monster)
+        # PDF
+        elif args.pdf:
+            pdf_create_page(monster)
+        # YAML
+        elif args.yaml:
+            yaml_write(monster)
+        # Plain
+        else:
+            plain_write(monster)
+    # Complete PDF document creation
+    if args.pdf:
+        pages.append(PageTemplate(frames=frames))
+        doc.addPageTemplates(pages)
+        doc.build(elements)
