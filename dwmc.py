@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
-"""Create monster cards; read XML and YAML; write CSV, PDF, and YAML"""
+"""Create Dungeon World Monster Cards PDF (reads source XML and YAML, also
+writes CSV and YAML)."""
 # Standard library
 import argparse
 import codecs
@@ -37,7 +38,8 @@ yaml_files = set()
 index = None
 
 
-# From official Python documetnation for csv module
+# From official Python documetnation for csv module:
+# http://docs.python.org/2/library/csv.html
 class UnicodeWriter:
     """
     A CSV writer which will write rows to CSV file "f",
