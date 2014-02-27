@@ -67,7 +67,7 @@ dwmc.py
 - `MIT License`_
 
 
-Monster Definitions (``yaml-dw/\*.yaml``)
+Monster Definitions (``yaml-dw/*.yaml``)
 -----------------------------------------
 
 - `Open Gaming License version 1.0a`_ [rtf]
