@@ -1,0 +1,32 @@
+---
+name: Soldier
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Horde
+hp: 3
+armor: 1
+weapon:
+  name: Spear
+  damage: d6 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To fight
+- March into battle
+- Fight as one
+description: "For a commoner with a strong arm, sometimes it\u2019s this\
+  \ or be a bandit. It\u2019s wear the colors and don ill-fitting armor\
+  \ and march into the unknown with a thousand other scared men and women\
+  \ conscripted to fight the wars of our time. They could be hiding out\
+  \ in the woods instead, living off poached elk and dodging the king\u2019\
+  s guard. Better to risk one\u2019s life in service to a cause. To bravely\
+  \ toss one\u2019s lot in with one\u2019s fellows and hope to come out\
+  \ the other side still in one piece. Besides, the nobles need strong men\
+  \ and women. What is it they say? A handful of soldiers beats a mouthful\
+  \ of arguments."
+reference: 319
+setting: Folk of the Realm
+setting_reference: 227

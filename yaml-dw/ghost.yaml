@@ -1,0 +1,32 @@
+---
+name: Ghost
+tags_desc:
+- Devious
+- Terrifying
+tags_org:
+- Solitary
+hp: 16
+weapon:
+  name: Phantom touch
+  damage: d6 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To haunt
+- Reveal the terrifying nature of death
+- 'Haunt a place of importance '
+- Offer information from the other side, at a price
+qualities:
+- Insubstantial
+description: "Every culture tells the story the same way. You live, you\
+  \ love or you hate, you win or you lose, you die somehow you\u2019re not\
+  \ too fond of and here you are, ghostly and full of disappointment and\
+  \ what have you. Some people take it upon themselves, brave and kindly\
+  \ folks, to seek out the dead and help them pass to their rightful rest.\
+  \ You can find them, most times, down at the tavern drinking away the\
+  \ terrors they\u2019ve seen or babbling to themselves in the madhouse.\
+  \ Death takes a toll on the living, no matter how you come by it."
+reference: 257
+setting: Undead Legions
+setting_reference: 228

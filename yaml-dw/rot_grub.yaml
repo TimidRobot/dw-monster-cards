@@ -1,0 +1,25 @@
+---
+name: Rot Grub
+tags_org:
+- Horde
+tags_size:
+- Tiny
+hp: 3
+weapon:
+  name: Burrow
+  damage: d6-2 damage
+  tags_range:
+  - Hand
+instincts:
+- To infect
+- Burrow under flesh
+- Lay eggs
+- Burst forth from an infected creature
+qualities:
+- Burrow into flesh
+description: They live in your skin. Or your organ meat. Or your eyeballs.
+  They grow there and then, in a bloody and horrific display, burrow their
+  way out. Disgusting.
+reference: 240
+setting: Cavern Dwellers
+setting_reference: 227

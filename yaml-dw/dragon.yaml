@@ -1,0 +1,32 @@
+---
+name: Dragon
+tags_desc:
+- Terrifying
+- Cautious
+- Hoarder
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 16
+armor: 5
+weapon:
+  name: Bite
+  damage: b[2d12]+5 damage, 4 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Reach
+instincts:
+- To rule
+- Bend an element to its will
+- Demand tribute
+- Act with disdain
+qualities:
+- Elemental blood
+- Wings
+description: They are the greatest and most terrible things this world will
+  ever have to offer.
+reference: 300
+setting: Lower Depths
+setting_reference: 229

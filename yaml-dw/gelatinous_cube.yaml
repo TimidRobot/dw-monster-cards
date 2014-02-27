@@ -1,0 +1,31 @@
+---
+name: Gelatinous Cube
+tags_desc:
+- Stealthy
+- Amorphous
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 20
+armor: 1
+weapon:
+  name: Engulf
+  damage: d10+1 damage, ignores armor
+  tags_range:
+  - Hand
+instincts:
+- To clean
+- Fill an apparently empty space
+- Dissolve
+qualities:
+- Transparent
+description: "How many adventurers\u2019 last thoughts were \u201Cstrange,\
+  \ this tunnel seems cleaner than most?\u201D Too many, and all because\
+  \ of this transparent menace. A great acidic blob that expands to fill\
+  \ a small chamber or corridor and then slides, ever so slowly along, eating\
+  \ everything in its path. It cannot eat stone or metal and will often\
+  \ have them floating in its jelly mass. Blech."
+reference: 237
+setting: Cavern Dwellers
+setting_reference: 227

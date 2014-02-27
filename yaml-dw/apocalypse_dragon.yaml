@@ -1,0 +1,39 @@
+---
+name: Apocalypse Dragon
+tags_desc:
+- Magical
+- Divine
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 26
+armor: 5
+weapon:
+  name: Bite
+  damage: b[2d12]+9 damage, 4 piercing
+  tags_desc:
+  - Forceful
+  - Messy
+  tags_range:
+  - Reach
+instincts:
+- To end the world
+- Set a disaster in motion
+- Breathe forth the elements
+- Act with perfect foresight
+qualities:
+- Inch-thick metal hide
+- Supernatural knowledge
+- Wings
+description: "The end of all things shall be a burning\u2014of tree and\
+  \ earth and of the air itself. It shall come upon the plains and mountains\
+  \ not from beyond this world but from within it. Birthed from the womb\
+  \ of deepest earth shall come the Dragon that Will End the World. In its\
+  \ passing all will become ash and bile and the Dungeon World a dying thing\
+  \ will drift through planar space devoid of life. They say to worship\
+  \ the Apocalypse Dragon is to invite madness. They say to love it is to\
+  \ know oblivion. The awakening is coming."
+reference: 297
+setting: Lower Depths
+setting_reference: 229

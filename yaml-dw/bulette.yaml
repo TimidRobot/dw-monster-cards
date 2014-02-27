@@ -1,0 +1,34 @@
+---
+name: Bulette
+tags_desc:
+- Construct
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 20
+armor: 3
+weapon:
+  name: Bite
+  damage: d10+5 damage, 3 piercing
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+instincts:
+- To devour
+- Drag prey into rough tunnels
+- Burst from the earth
+- Swallow whole
+qualities:
+- Burrowing
+description: "A seasoned caravan guard learns to listen for the calls of\
+  \ a scout or sentry with a keen ear. A few extra seconds after the alarm\
+  \ is raised can mean life or death. Different cries mean different responses,\
+  \ too\u2014a call of \u201Corcs!\u201D means draw your sword and steady\
+  \ for blood but a call of \u201Cbandits!\u201D says you might be able\
+  \ to bargain. One alarm from the scouts that always, always means it\u2019\
+  s time to pack up, whip your horse and run for the hills? \u201CLAND SHARK!\u201D"
+reference: 287
+setting: Twisted Experiments
+setting_reference: 229

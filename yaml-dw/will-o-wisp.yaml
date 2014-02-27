@@ -1,0 +1,31 @@
+---
+name: Will-o-wisp
+tags_desc:
+- Magical
+tags_org:
+- Solitary
+tags_size:
+- Tiny
+hp: 12
+weapon:
+  name: Ray
+  damage: w[2d8-2] damage
+  tags_range:
+  - Near
+instincts:
+- To misguide
+- Lead someone astray
+- Clear a path to the worst place possible
+qualities:
+- Body of light
+description: "Spot a lantern floating in the darkness, lost traveler in\
+  \ the swamp. Hope\u2014a beacon of shimmering light. You call out to it,\
+  \ but there\u2019s no answer. It begins to fade and so you follow, sloshing\
+  \ through the muck, tiring at the chase, hoping you\u2019re being led\
+  \ to safety. Such a sad tale that always ends in doom. These creatures\
+  \ are a mystery\u2014some say they\u2019re ghosts, others beacons of faerie\
+  \ light. Nobody knows the truth. They are cruel, however. All can agree\
+  \ on that."
+reference: 252
+setting: Swamp Denizens
+setting_reference: 228

@@ -1,0 +1,20 @@
+---
+name: Zombie
+tags_org:
+- Horde
+hp: 11
+armor: 1
+weapon:
+  name: Bite
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- Braaaaaains
+- Attack with overwhelming numbers
+- Corner them
+- Gain strength from the dead, spawn more zombies
+description: "When there\u2019s no more room in Hell\u2026"
+reference: 263
+setting: Undead Legions
+setting_reference: 228

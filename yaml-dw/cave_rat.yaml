@@ -1,0 +1,27 @@
+---
+name: Cave Rat
+tags_org:
+- Horde
+tags_size:
+- Small
+hp: 7
+armor: 1
+weapon:
+  name: Gnaw
+  damage: d6 damage, 1 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Close
+instincts:
+- To devour
+- Swarm
+- Rip something (or someone) apart
+description: "Who hasn\u2019t seen a rat before? It\u2019s like that, but\
+  \ nasty and big and not afraid of you anymore. Maybe this one was a cousin\
+  \ to that one you caught in a trap or the one you killed with a knife\
+  \ in that filthy tavern in Darrow. Maybe he\u2019s looking for a little\
+  \ ratty revenge."
+reference: 233
+setting: Cavern Dwellers
+setting_reference: 227

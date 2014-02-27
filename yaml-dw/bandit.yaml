@@ -1,0 +1,28 @@
+---
+name: Bandit
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Horde
+hp: 3
+armor: 1
+weapon:
+  name: Dirk
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To rob
+- Steal something
+- Demand tribute
+description: "Desperation is the watchword of banditry. When times are tough,\
+  \ what else is there to do but scavenge a weapon and take up with a clan\
+  \ of nasty men and women? Highway robbery, poaching, scams and cons and\
+  \ murder most foul but we\u2019ve all got to eat so who can blame them?\
+  \ Then again, there\u2019s evil in the hearts of some and who\u2019s to\
+  \ say that desperation isn\u2019t a need  to sate one\u2019s baser lusts?\
+  \ Anyway\u2014it\u2019s this or starve, sometimes."
+reference: 314
+setting: Folk of the Realm
+setting_reference: 227

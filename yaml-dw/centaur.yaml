@@ -1,0 +1,37 @@
+---
+name: Centaur
+tags_desc:
+- Organized
+- Intelligent
+tags_org:
+- Horde
+tags_size:
+- Large
+hp: 11
+armor: 1
+weapon:
+  name: Bow
+  damage: d6+2 damage, 1 piercing
+  tags_range:
+  - Close
+  - Reach
+  - Near
+instincts:
+- To rage
+- Overrun them
+- Fire a perfect bullseye
+- Move with unrelenting speed
+qualities:
+- Half-horse
+- Half-man
+description: "\u201CIt will be a gathering of clans unseen in this age.\
+  \ Call Stormhoof and Brightspear. Summon Whitemane and Ironflanks. Sound\
+  \ the horn and we shall begin our meeting\u2014we shall speak the words\
+  \ and bind our people together. Too long have the men cut the ancient\
+  \ trees for their ships. The elves are weak and cowardly, friend to these\
+  \ mannish slime. It will be a cleansing fire from the darkest woods. Raise\
+  \ the red banner of war! Today we strike back against these apes and retake\
+  \ what is ours!\u201D"
+reference: 266
+setting: Dark Woods
+setting_reference: 228

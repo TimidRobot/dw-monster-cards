@@ -1,0 +1,33 @@
+---
+name: Deep Elf Priest
+tags_desc:
+- Divine
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+hp: 14
+weapon:
+  name: Smite
+  damage: d10+2 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To pass on divine vengeance
+- Weave spells of hatred and malice
+- Rally the deep elves
+- Pass on divine knowledge
+qualities:
+- Divine connection
+description: The spirits of the trees and the lady sunlight are far, far
+  from home in the depths where the deep elves dwell. New gods were found
+  there, waiting for their children to come home. Gods of the spiders, the
+  fungal forests, and things that whisper in the forbidden caves. The deep
+  elves, ever attuned to the world around them, listened with hateful intent
+  to their new gods and found a new source of power. Hate calls to hate
+  and grim alliances were made. Even among these spiteful ranks, piety finds
+  a way to express itself.
+reference: 300
+setting: Lower Depths
+setting_reference: 229

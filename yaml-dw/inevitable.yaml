@@ -1,0 +1,38 @@
+---
+name: Inevitable
+tags_desc:
+- Magical
+- Cautious
+- Amorphous
+- Planar
+tags_org:
+- Group
+tags_size:
+- Large
+hp: 21
+armor: 5
+weapon:
+  name: Hammer
+  damage: d10+1 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To preserve order
+- End a spell or effect
+- Enforce a law of nature or man
+- Give a glimpse of destiny
+qualities:
+- Made of Order
+description: "All things come to an end. Reality bleeds from the cut of\
+  \ entropy\u2019s knife. At the edge of time itself stand the inevitable.\
+  \ Massive, powerful and seemingly carved from star-stuff themselves, the\
+  \ inevitable intervene only where magic or calamity have undone the skein\
+  \ of fate. Where the arrogant and powerful boil the substance of destiny\
+  \ away and seek to undermine the very laws of reality, the inevitable\
+  \ arrive to guide things back to the proper order. Unshakable, seemingly\
+  \ immune to mortal harm and utterly enigmatic, it is said that the Inevitable\
+  \ are all that will remain when time\u2019s long thread has run out."
+reference: 309
+setting: Planar Powers
+setting_reference: 230

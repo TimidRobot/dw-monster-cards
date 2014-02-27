@@ -1,0 +1,32 @@
+---
+name: Frogman
+tags_desc:
+- Intelligent
+tags_org:
+- Horde
+tags_size:
+- Small
+hp: 7
+armor: 1
+weapon:
+  name: Spear
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To wage war
+- Launch an amphibious assault
+- Heal at a prodigious rate
+qualities:
+- Amphibious
+description: "Croak croak croak. Little warty munchkins. Some wizard or\
+  \ godling\u2019s idea of a bad joke, these creatures are. They stand as\
+  \ men, dress in scavenged cloth and hold court in their froggy villages.\
+  \ They speak a rumbling pidgin form of the tongue of man and are constantly\
+  \ at war with their neighbors. They\u2019re greedy and stupid but clever\
+  \ enough when they need to defend themselves. Some say, too, their priests\
+  \ have a remarkable skill at healing. Or maybe they\u2019re just really,\
+  \ really hard to kill."
+reference: 248
+setting: Swamp Denizens
+setting_reference: 228

@@ -1,0 +1,30 @@
+---
+name: Chain Devil
+tags_desc:
+- Planar
+tags_org:
+- Solitary
+hp: 12
+armor: 3
+weapon:
+  name: Crush
+  damage: d10 damage, ignores armor
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To capture
+- Take a captive
+- Return to whence it came
+- Torture with glee
+description: "Do you think the phrase \u201Cdrag him to hell\u201D means\
+  \ nothing? It is unfortunately literal, in the case of the chain devil.\
+  \ Appearing differently to each victim, this summoned creature has but\
+  \ a single purpose: to wrap its victim up in binding coils and take it\
+  \ away to a place of torment. Sometimes it will come as a man-shaped mass\
+  \ of rusting iron, hooks and coils of mismatched links. Other times, a\
+  \ roiling tangle of rope or kelp or twisted bloody bedsheets. The results\
+  \ are always the same."
+reference: 306
+setting: Planar Powers
+setting_reference: 230

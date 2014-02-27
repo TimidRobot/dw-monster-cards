@@ -1,0 +1,31 @@
+---
+name: Treant
+tags_desc:
+- Intelligent
+- Amorphous
+tags_org:
+- Group
+tags_size:
+- Huge
+hp: 21
+armor: 4
+weapon:
+  name: Walloping branches
+  damage: d10+5 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Reach
+instincts:
+- To play tricks
+- Move with implacable strength
+- Set down roots
+- Spread old magic
+qualities:
+- Wooden
+description: Old and tall and thick of bark<br />walk amidst the tree-lined
+  dark<br />Strong and slow and forest-born,<br />treants anger quick, we
+  warn<br />if to woods with axe ye go<br />know the treants be thy foe
+reference: 272
+setting: Dark Woods
+setting_reference: 228

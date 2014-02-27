@@ -1,0 +1,28 @@
+---
+name: Minotaur
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 1
+weapon:
+  name: Axe
+  damage: d10+1 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To contain
+- Confuse them
+- Make them lost
+qualities:
+- Unerring sense of direction
+description: "\u201CHead of a man, body of a bull. No, wait, I\u2019ve got\
+  \ that backwards. It\u2019s the bull\u2019s head and the man\u2019s body.\
+  \ Hooves sometimes? Is that right? I remember the old king said something\
+  \ about a maze? Blast! You know I can\u2019t think under this kind of\
+  \ pressure. What was that? Oh gods, I think it\u2019s coming\u2026\u201D"
+reference: 302
+setting: Lower Depths
+setting_reference: 229

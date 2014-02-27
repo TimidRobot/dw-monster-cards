@@ -1,0 +1,33 @@
+---
+name: Troll
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 20
+armor: 1
+weapon:
+  name: Club
+  damage: d10+3 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To smash
+- Undo the effects of an attack (unless caused by a weakness, your call)
+- Hurl something or someone
+qualities:
+- Regeneration
+description: "Tall. Real tall. Eight or nine feet when they\u2019re young\
+  \ or weak. Covered all over in warty, tough skin, too. Big teeth, stringy\
+  \ hair like swamp moss and long, dirty nails. Some are green, some gray,\
+  \ some black. They\u2019re clannish and hateful of each other, not to\
+  \ mention all the rest of us. Near impossible to kill, too, unless you\u2019\
+  ve fire or acid to spare\u2014cut a limb off and watch. In a few days,\
+  \ you\u2019ve got two trolls where you once had one. A real serious problem,\
+  \ as you can imagine."
+reference: 252
+setting: Swamp Denizens
+setting_reference: 228

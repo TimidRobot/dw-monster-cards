@@ -1,0 +1,35 @@
+---
+name: Triton Sub-Mariner
+tags_desc:
+- Organized
+- Intelligent
+tags_org:
+- Group
+hp: 6
+armor: 3
+weapon:
+  name: Harpoon
+  damage: b[2d8] damage
+  tags_range:
+  - Close
+  - Near
+  - Far
+instincts:
+- To wage war
+- Lead tritons to battle
+- Pull them beneath the waves
+qualities:
+- Aquatic
+description: "The triton are not a militant race by nature. They shy away\
+  \ from battle except when the sahuagin attack, and then they only defend\
+  \ themselves and retreat into the depths where their foes can\u2019t follow.\
+  \ This trend begins to change. As the tidecallers come to rally their\
+  \ people, some triton men and women take up arms. They call these generals\
+  \ \u201Csub-mariners\u201D and build for them armor of shells and hardened\
+  \ glass. They swim in formation, wielding pikes and harpoons and attack\
+  \ the crews of ships that wander too far from port. Watch for their pennants\
+  \ of kelp on the horizon and the conch-cry of a call to battle and keep,\
+  \ if you can, your boats near shore."
+reference: 285
+setting: Ravenous Hordes
+setting_reference: 229

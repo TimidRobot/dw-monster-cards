@@ -1,0 +1,29 @@
+---
+name: Orc Bloodwarrior
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Horde
+hp: 3
+weapon:
+  name: Jagged blade
+  damage: d6+2 damage, 1 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Close
+instincts:
+- To fight
+- Fight with abandon
+- Revel in destruction
+description: "The orcish horde is a savage, bloodthirsty, and hateful collection\
+  \ of tribes. There are myths and stories that tell of the origin of their\
+  \ rage\u2014a demon curse, a homeland destroyed, elven magic gone wrong\u2014\
+  but the truth has been lost to time. Every able orc, be it man or woman,\
+  \ child or elder, swears fealty to the warchief and their tribe and bears\
+  \ the jagged blade of a bloodwarrior. Men are trained to fight and kill\u2014\
+  orcs are born to it."
+reference: 280
+setting: Ravenous Hordes
+setting_reference: 229

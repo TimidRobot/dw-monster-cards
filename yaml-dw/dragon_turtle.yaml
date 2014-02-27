@@ -1,0 +1,34 @@
+---
+name: Dragon Turtle
+tags_desc:
+- Cautious
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 20
+armor: 4
+weapon:
+  name: Bite
+  damage: d10+3 damage
+  tags_range:
+  - Reach
+instincts:
+- To resist change
+- Move forward implacably
+- Bring its full bulk to bear
+- Destroy structures and buildings
+qualities:
+- Shell
+- Amphibious
+description: "Bakunawa has a brother. Where she is quick to anger and hungry\
+  \ for gold, he is slow and sturdy. She is a knife and he is a shield.\
+  \ A great turtle that lies in the muck and mire for ages as they pass,\
+  \ mud piled upon his back\u2014sometimes trees and shrubs. Sometimes a\
+  \ whole misguided clan of goblins will build their huts and cook their\
+  \ ratty meals on the shell of the dragon turtle. His snapping jaws may\
+  \ be glacier-slow, but they can rend a castle wall. Careful where you\
+  \ tread."
+reference: 246
+setting: Swamp Denizens
+setting_reference: 228

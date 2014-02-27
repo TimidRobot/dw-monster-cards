@@ -1,0 +1,28 @@
+---
+name: Spiderlord
+tags_desc:
+- Devious
+- Intelligent
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 3
+weapon:
+  name: Mandibles
+  damage: d8+4 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To weave webs (literal and metaphorical)
+- Enmesh in webbing
+- Put a plot into motion
+qualities:
+- Burrowing
+description: Even spiders have their gods, whispered to in webs with little
+  praying arms.
+reference: 241
+setting: Cavern Dwellers
+setting_reference: 227

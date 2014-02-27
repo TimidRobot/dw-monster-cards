@@ -1,0 +1,33 @@
+---
+name: Aboleth
+tags_desc:
+- Intelligent
+tags_org:
+- Group
+tags_size:
+- Huge
+hp: 18
+weapon:
+  name: Tentacle
+  damage: d10+3 damage
+  tags_range:
+  - Reach
+instincts:
+- To command
+- Invade a mind
+- Turn minions on them
+- Put a plan in motion
+qualities:
+- Telepathy
+description: "Deep below the surface of the world, in freshwater seas untouched\
+  \ by the sun, dwell the aboleth. Fish the size of whales, with strange\
+  \ growths of gelatinous feelers used to probe the lightless shores. They\u2019\
+  re served by slaves: blind albino victims of any race unfortunate enough\
+  \ to stumble on them, drained of thought and life by the powers of the\
+  \ aboleth\u2019s alien mind. In the depths they plot against each other,\
+  \ fishy cultists building and digging upward towards the surface until\
+  \ someday, they\u2019ll breach it. For now, they sleep and dream and guide\
+  \ their pallid minions to do their bidding."
+reference: 297
+setting: Lower Depths
+setting_reference: 229

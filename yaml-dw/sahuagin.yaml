@@ -1,0 +1,32 @@
+---
+name: Sahuagin
+tags_desc:
+- Intelligent
+tags_org:
+- Horde
+hp: 3
+armor: 2
+weapon:
+  name: Endless teeth
+  damage: d6+4 damage, 1 piercing
+  tags_desc:
+  - Forceful
+  - Messy
+  tags_range:
+  - Close
+instincts:
+- To spill blood
+- Bite off a limb
+- Hurl a poisoned spear
+- Frenzy at the sight of blood
+qualities:
+- Amphibious
+description: The shape and craft of men wedded to the hunger and the endless
+  teeth of a shark. Voracious and filled only with hate, these creatures
+  will not stop until all life has been consumed. They cannot be reasoned
+  with, they cannot be controlled or sated. They are hunger and bloodlust,
+  driven up from the depths of the sea to ravage coastal towns and swallow
+  island villages.
+reference: 250
+setting: Swamp Denizens
+setting_reference: 228

@@ -1,0 +1,30 @@
+---
+name: Knight
+tags_desc:
+- Intelligent
+- Organized
+- Cautious
+tags_org:
+- Solitary
+hp: 12
+armor: 4
+weapon:
+  name: Sword
+  damage: b[2d10] damage
+  tags_range:
+  - Close
+instincts:
+- To live by a code
+- Make a moral stand
+- Lead soldiers into battle
+description: "What youngster doesn\u2019t cling to the rail at the mighty\
+  \ joust, blinded by the sun on their glittering armor, wishing they could\
+  \ be the one adorned in steel and riding to please the King and Queen?\
+  \ What peasant youth with naught but a loaf of bread and a lame sow doesn\u2019\
+  t wish to trade it all in for the lance and the bright pennant? A knight\
+  \ is many things\u2014a holy warrior, a sworn sword, a villain sometimes,\
+  \ too, but a knight cannot help but be a symbol to all who see her. A\
+  \ knight means something."
+reference: 317
+setting: Folk of the Realm
+setting_reference: 227

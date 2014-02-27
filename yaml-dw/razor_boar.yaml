@@ -1,0 +1,25 @@
+---
+name: Razor Boar
+tags_org:
+- Solitary
+hp: 16
+armor: 1
+weapon:
+  name: Tusks
+  damage: d10 damage, 3 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Close
+instincts:
+- To shred
+- Rip them apart
+- Rend armor and weapons
+description: "The tusks of the razor boar shred metal plate like so much\
+  \ tissue. Voracious, savage and unstoppable, they tower over their mundane\
+  \ kin. To kill one? A greater trophy of bravery and skill is hard to name,\
+  \ though I hear a razor boar killed the Drunkard King in a single thrust.\
+  \ You think you\u2019re a better hunter than he?"
+reference: 270
+setting: Dark Woods
+setting_reference: 228

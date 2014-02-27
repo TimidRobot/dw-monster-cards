@@ -1,0 +1,26 @@
+---
+name: Goblin Orkaster
+tags_desc:
+- Magical
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+tags_size:
+- Small
+hp: 12
+weapon:
+  name: Acid orb
+  damage: d10+1 damage, ignores armor
+  tags_range:
+  - Near
+  - Far
+instincts:
+- To tap power beyond their stature
+- Unleash a poorly understood spell
+- Pour forth magical chaos
+- Use other goblins for shields
+description: Oh lord, who taught them magic?
+reference: 237
+setting: Cavern Dwellers
+setting_reference: 227

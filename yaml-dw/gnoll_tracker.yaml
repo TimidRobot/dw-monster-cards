@@ -1,0 +1,33 @@
+---
+name: Gnoll Tracker
+tags_desc:
+- Organized
+- Intelligent
+tags_org:
+- Group
+hp: 6
+armor: 1
+weapon:
+  name: Bow
+  damage: d8 damage
+  tags_range:
+  - Near
+  - Far
+instincts:
+- To prey on weakness
+- Doggedly track prey
+- Strike at a moment of weakness
+qualities:
+- Scent-tracker
+description: "Once they scent your blood, you can\u2019t escape. Not without\
+  \ intervention from the gods, or the duke\u2019s rangers at least. The\
+  \ desert scrub is a dangerous place to go exploring on your own and if\
+  \ you fall and break your leg or eat the wrong cactus, well, you\u2019\
+  ll be lucky if you die of thirst before the gnolls find you. They prefer\
+  \ their prey alive, see\u2014cracking bones and the screams of the dying\
+  \ lend a sort of succulence to a meal. Sickening creatures, no? They\u2019\
+  ll hunt you, slow and steady, as you die. If you hear laughter in the\
+  \ desert wind, well, best pray Death comes to take you before they do."
+reference: 278
+setting: Ravenous Hordes
+setting_reference: 229

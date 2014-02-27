@@ -1,0 +1,31 @@
+---
+name: Mummy
+tags_desc:
+- Divine
+- Hoarder
+tags_org:
+- Solitary
+hp: 16
+armor: 1
+weapon:
+  name: Smash
+  damage: d10+2 damage
+  tags_range:
+  - Close
+instincts:
+- To enjoy eternal rest
+- Curse them
+- Wrap them up
+- Rise again
+description: "There are cultures who revere the dead. They do not bury them\
+  \ in the cold earth and mourn their passing. These people spend weeks\
+  \ preparing the sacred corpse for its eternal rest. Temples, pyramids,\
+  \ and great vaults of stone are built to house them and are populated\
+  \ with slaves, pets and gold. The better to live in luxury beyond the\
+  \ Black Gates, no? Do not be tempted by these vaults\u2014oh, I know that\
+  \ greedy look! Heed my warnings or risk a terrible fate, for the honored\
+  \ dead do not wish to be disturbed. Thievery will only raise their ire\u2014\
+  don\u2019t say I did not warn you!"
+reference: 259
+setting: Undead Legions
+setting_reference: 228

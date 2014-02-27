@@ -1,0 +1,32 @@
+---
+name: Hydra
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 2
+weapon:
+  name: Bite
+  damage: d10+3 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To grow
+- Attack many enemies at once
+- Regenerate a body part (especially a head)
+qualities:
+- Many heads
+- Only killed by a blow to the heart
+description: "A bit like a dragon, wingless though it may be. Heads, nine\
+  \ in number at birth, spring from a muscled trunk and weave a sinuous\
+  \ pattern in the air. A hydra is to be feared\u2014a scaled terror of\
+  \ the marsh. The older ones, though, they have more heads, for every failed\
+  \ attempt to murder it just makes it stronger. Cut off a head and two\
+  \ more grow in its place. Only a strike, true and strong, to the heart\
+  \ can end a hydra\u2019s life. Not time or tide or any other thing but\
+  \ this."
+reference: 248
+setting: Swamp Denizens
+setting_reference: 228

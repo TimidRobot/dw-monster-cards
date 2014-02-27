@@ -1,0 +1,34 @@
+---
+name: Xorn
+tags_desc:
+- Construct
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 12
+armor: 2
+weapon:
+  name: Maw
+  damage: d10 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To eat
+- Consume stone
+- Give off a burst of light and heat
+qualities:
+- Burrowing
+description: "Dwarf-made elemental garbage muncher. Shaped like a trash\
+  \ bin with a radius of arms to feed excess rock and stone into its gaping\
+  \ maw. They eat stone and excrete light and heat. Perfect for operating\
+  \ a mine or digging out a quarry. Once one gets lost in the sewers below\
+  \ a city, though, or in the foundation of a castle? You\u2019re in deep\
+  \ trouble. They\u2019ll eat and eat until you\u2019ve got nothing left\
+  \ but to collapse the place down on it and move somewhere else. Ask Burrin,\
+  \ Son of Fjornnvald, exile from his clan. I bet he could tell you a story\
+  \ about a xorn."
+reference: 294
+setting: Twisted Experiments
+setting_reference: 229

@@ -1,0 +1,30 @@
+---
+name: Sprite
+tags_desc:
+- Stealthy
+- Magical
+- Devious
+- Intelligent
+tags_org:
+- Horde
+tags_size:
+- Tiny
+hp: 3
+weapon:
+  name: Dagger
+  damage: w[2d4] damage
+  tags_range:
+  - Hand
+instincts:
+- To play tricks
+- "Play a trick to expose someone\u2019s true nature"
+- Confuse their senses
+- Craft an illusion
+qualities:
+- Wings
+- Fey Magic
+description: "I\u2019d classify them elementals, except that \u201Cbeing\
+  \ annoying\u201D isn\u2019t an element."
+reference: 271
+setting: Dark Woods
+setting_reference: 228

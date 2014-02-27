@@ -1,0 +1,35 @@
+---
+name: Nightmare
+tags_desc:
+- Magical
+- Terrifying
+- Planar
+tags_org:
+- Horde
+tags_size:
+- Large
+hp: 7
+armor: 4
+weapon:
+  name: Trample
+  damage: d6+1 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To ride rampant
+- Sheath a rider in hellish flame
+- Drive them away
+qualities:
+- Flame and shadow
+description: "The herd came from a pact made in the days when folk still\
+  \ inhabited the Blasted Steppes. Horselords, they were, who travelled\
+  \ those lands. Born in the saddle, it was said. One of theirs, in a bid\
+  \ to dominate his peers, made a black pact with some fell power and traded\
+  \ away his finest horses. He had some power, sure\u2014but what\u2019\
+  s a thousand year dynasty when a life is so short? Now the fiends of the\
+  \ pit ride on the finest horses ever seen. Coats of shining oil and manes\
+  \ of tormented flame: these are steeds of hell\u2019s cavalry."
+reference: 310
+setting: Planar Powers
+setting_reference: 230

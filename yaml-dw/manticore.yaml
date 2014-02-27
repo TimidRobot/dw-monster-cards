@@ -1,0 +1,37 @@
+---
+name: Manticore
+tags_desc:
+- Construct
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 3
+weapon:
+  name: Stinger
+  damage: d10+1 damage, 1 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To kill
+- Poison them
+- Rip something apart
+qualities:
+- Wings
+description: "If the chimera is the first step down a dark path, the manticore\
+  \ is a door that can\u2019t be closed once it\u2019s been opened. A lion,\
+  \ a scorpion, the wings of a drake. All difficult to obtain but not impossible\
+  \ and just animals, anyway. The last component, the hissing hateful face\
+  \ of the beast, is the ingredient that makes a manticore so cruel. Young\
+  \ or old, man or woman, it matters not but that they are human, living\
+  \ and breathing, married to the creature with twisted magic. All sense\
+  \ of who they are is lost, and maybe that\u2019s a blessing, but the beast\
+  \ is born from human suffering. No wonder, then, that they\u2019re all\
+  \ so eager to kill."
+reference: 292
+setting: Twisted Experiments
+setting_reference: 229

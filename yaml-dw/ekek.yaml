@@ -1,0 +1,27 @@
+---
+name: Ekek
+tags_org:
+- Horde
+hp: 3
+armor: 1
+weapon:
+  name: Talons
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To lash out
+- Attack from the air
+- Carry out the bidding of a more powerful creature
+qualities:
+- Wing-arms
+description: "Ugly, wrinkled bird-folk, these. Once, maybe, in some ancient\
+  \ past, they were a race of angelic men from on high, but now they eat\
+  \ rats that they fish from the murk with talon-feet and devour with needle-teeth.\
+  \ They understand the tongues of men and dwarves but speak in little more\
+  \ than gibbering tongues, mimicking the words they hear with mocking laughter.\
+  \ It\u2019s a chilling thing to see a beast so close to man or bird but\
+  \ not quite either one."
+reference: 247
+setting: Swamp Denizens
+setting_reference: 228

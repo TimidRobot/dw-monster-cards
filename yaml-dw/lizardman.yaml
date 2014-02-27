@@ -1,0 +1,33 @@
+---
+name: Lizardman
+tags_desc:
+- Stealthy
+- Intelligent
+- Organized
+tags_org:
+- Group
+hp: 6
+armor: 2
+weapon:
+  name: Spear
+  damage: d8 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To destroy civilization
+- Ambush the unsuspecting
+- Launch an amphibious assault
+qualities:
+- Amphibious
+description: "A traveling sorcerer once told me that lizardmen came before\
+  \ we did. That before elves and dwarves and men built even the first of\
+  \ their wattle huts, a race of proud lizard kings strode the land. That\
+  \ they lived in palaces of crystal and worshipped their own scaly gods.\
+  \ Maybe that\u2019s true and maybe it ain\u2019t\u2014now they dwell in\
+  \ places men long forgot or abandoned, crafting tools from volcano-glass\
+  \ and lashing against the works of the civilized world. Maybe they just\
+  \ want back what they lost."
+reference: 249
+setting: Swamp Denizens
+setting_reference: 228

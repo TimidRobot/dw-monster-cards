@@ -1,0 +1,37 @@
+---
+name: Vampire
+tags_desc:
+- Stealthy
+- Organized
+- Intelligent
+tags_org:
+- Group
+hp: 10
+armor: 2
+weapon:
+  name: Supernatural force
+  damage: d8+5 damage, 1 piercing
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+instincts:
+- To manipulate
+- Charm someone
+- Feed on their blood
+- Retreat to plan again
+qualities:
+- Changing form
+- ancient mind
+description: "We fear them, because they call to us. So much like us, or\
+  \ how we hope to be: beautiful, passionate, and powerful. They are drawn\
+  \ to us for what they cannot be: warm, kind, and alive. These tormented\
+  \ souls can only hope, at most, to pass their dreadful curse along. Every\
+  \ time they feed they run the risk of passing along their torture to another\
+  \ and in each one lives the twisted seed of its creator. Vampires beget\
+  \ vampires. Suffering begets suffering. Do not be drawn in by their seduction\
+  \ or you may be given their gift\u2014a crown of shadows and the chains\
+  \ of eternal undying grief."
+reference: 262
+setting: Undead Legions
+setting_reference: 228

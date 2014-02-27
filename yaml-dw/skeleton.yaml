@@ -1,0 +1,20 @@
+---
+name: Skeleton
+tags_org:
+- Horde
+hp: 7
+armor: 1
+weapon:
+  name: Slam
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To take the semblance of life
+- Act out what it did in life
+- Snuff out the warmth of life
+- Reconstruct from miscellaneous bones
+description: Dem bones, dem bones, dem dry bones.
+reference: 261
+setting: Undead Legions
+setting_reference: 228

@@ -1,0 +1,32 @@
+---
+name: Gnoll Emissary
+tags_desc:
+- Divine
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+hp: 18
+armor: 1
+weapon:
+  name: Ceremonial dagger
+  damage: d10+2 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To share divine insight
+- Pass on demonic influence
+- Drive the pack into a fervor
+qualities:
+- Scent
+description: "Oh, an emissary! How nice. I suspect you didn\u2019t know\
+  \ the gnolls had ambassadors, did you? Yes, even these mangy hyenas have\
+  \ to make nice sometimes. No, no, not with us. Nor the dwarves, neither.\
+  \ No, the emissary is the one, among his packmates, who trucks directly\
+  \ with their dripping demon lord. Frightening? Too right. Every hound\
+  \ has a master with his hand on the chain. This gnoll hears his master\u2019\
+  s voice. Hears it and obeys."
+reference: 278
+setting: Ravenous Hordes
+setting_reference: 229

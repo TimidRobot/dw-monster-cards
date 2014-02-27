@@ -1,0 +1,26 @@
+---
+name: Crocodilian
+tags_org:
+- Group
+tags_size:
+- Large
+hp: 10
+armor: 2
+weapon:
+  name: Bite
+  damage: d8+3 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To eat
+- Attack an unsuspecting victim
+- Escape into the water
+- Hold something tight in its jaws
+qualities:
+- Amphibious
+- Camouflage
+description: "It\u2019s a really, really big crocodile. Seriously. So big."
+reference: 245
+setting: Swamp Denizens
+setting_reference: 228

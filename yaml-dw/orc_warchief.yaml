@@ -1,0 +1,34 @@
+---
+name: Orc Warchief
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+hp: 16
+weapon:
+  name: Iron Sword of Ages
+  damage: b[2d10]+2 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To lead
+- Start a war
+- Make a show of power
+- Enrage the tribes
+qualities:
+- One-Eye blessings
+- Shaman blessings
+- Divine protection from mortal harm
+description: There are chiefs and there are leaders of the tribes among
+  the orcs. There are those who rise to seize power and fall under the machinations
+  of their foes. There is but one Warchief. One orc in all the horde who
+  stands above the rest, bearing the blessings of the One-Eyes and the Shamans
+  both. But one who walks with the elements under Night. But one who bears
+  the Iron Sword of Ages and carries the ancient grudge against the civil
+  races on his shoulders. The Warchief is to be respected, to be obeyed
+  and above all else, to be feared. All glory to the Warchief.
+reference: 283
+setting: Ravenous Hordes
+setting_reference: 229

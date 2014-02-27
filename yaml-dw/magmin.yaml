@@ -1,0 +1,36 @@
+---
+name: Magmin
+tags_desc:
+- Intelligent
+- Organized
+- Hoarder
+tags_org:
+- Horde
+hp: 7
+armor: 4
+weapon:
+  name: Flaming hammer
+  damage: d6+2 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To craft
+- Offer a trade or deal
+- Strike with fire or magic
+- Provide just the right item, at a price
+qualities:
+- Fiery blood
+description: "Dwarf-shaped and industrious, the magmin are among the deepest-dwellers\
+  \ of Dungeon World. Found in cities of brass and obsidian built nearest\
+  \ the molten core of the planet, the magmin live a life devoted to craft\u2014\
+  especially that of fire and magical items related to it. Surly and strange,\
+  \ they do not often deign to speak to petitioners who appear at their\
+  \ gates, even those who have somehow found a way to survive the hellish\
+  \ heat. Even so, they respect little more than a finely made item and\
+  \ to learn to forge from a magmin craftsman means unlocking secrets unknown\
+  \ to surface blacksmiths. Like so much else, visiting the magmin is a\
+  \ game of risk and reward."
+reference: 301
+setting: Lower Depths
+setting_reference: 229

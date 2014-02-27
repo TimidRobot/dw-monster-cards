@@ -1,0 +1,31 @@
+---
+name: Goliath
+tags_desc:
+- Organized
+- Intelligent
+tags_org:
+- Group
+tags_size:
+- Huge
+hp: 14
+armor: 1
+weapon:
+  name: Mace
+  damage: d8+7 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Reach
+instincts:
+- To retake
+- Shake the earth
+- Retreat, only to come back stronger
+description: "They dwell beneath the earth because they do not belong above\
+  \ it any longer. An undying race of mighty titans fled the plains and\
+  \ mountains in ages past\u2014driven out by men and their heroes. Left\
+  \ to bide their time in the dark, hate and anger warmed by the pools of\
+  \ lava deep below. It\u2019s said that an earthquake is a goliath\u2019\
+  s birthing cry. Someday they\u2019ll take back what\u2019s theirs."
+reference: 238
+setting: Cavern Dwellers
+setting_reference: 227

@@ -1,0 +1,35 @@
+---
+name: Digester
+tags_desc:
+- Construct
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 1
+weapon:
+  name: Acid
+  damage: d10+1 damage, ignores armor
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To digest
+- Eat away at something
+- Draw sustenance
+qualities:
+- Digest acid secretion
+description: "It\u2019s okay, magical experimentation is a messy science.\
+  \ For every beautiful pegasus there\u2019s a half-done creature that wasn\u2019\
+  t quite right. We understand. The goblin-elephant you thought was such\
+  \ a great idea. The Gelatinous Drake. Just examples. No judgement here.\
+  \ Anyway, we\u2019ve got something for that. We call it the Digester.\
+  \ Yes, just like it sounds. Strange looking, I know, and the smell isn\u2019\
+  t the best, but this thing\u2014it\u2019ll eat magic like Svenloff the\
+  \ Stout drinks ale. Next time one of these unfortunate accidents occurs,\
+  \ just point the Digester at it and all your troubles drain away. Just\
+  \ keep an eye on it. Damn thing ate my wand last week."
+reference: 288
+setting: Twisted Experiments
+setting_reference: 229

@@ -1,0 +1,32 @@
+---
+name: Goblin
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Horde
+tags_size:
+- Small
+hp: 3
+armor: 1
+weapon:
+  name: Spear
+  damage: d6 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To multiply
+- Charge!
+- Call more goblins
+- Retreat and return with (many) more
+description: "Nobody seems to know where these things came from. Elves say\
+  \ they\u2019re the dwarves\u2019 fault\u2014dredged up from a hidden place\
+  \ beneath the earth. Dwarves say they\u2019re bad elvish children, taken\
+  \ away at birth and raised in the dark. The truth of the matter is that\
+  \ goblins have always been here and they\u2019ll be here once all the\
+  \ civilized races have fallen and gone away. Goblins never die out. There\u2019\
+  s just too damn many of them."
+reference: 237
+setting: Cavern Dwellers
+setting_reference: 227

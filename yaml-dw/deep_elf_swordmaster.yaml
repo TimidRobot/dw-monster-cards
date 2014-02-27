@@ -1,0 +1,30 @@
+---
+name: Deep Elf Swordmaster
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Group
+hp: 6
+armor: 2
+weapon:
+  name: Barbed blade
+  damage: b[2d8]+2 damage, 1 piercing
+  tags_range:
+  - Close
+instincts:
+- To punish unbelievers
+- Inflict pain beyond measure
+- Use the dark to advantage
+description: "The deep elves lost the sweetness and gentle peace of their\
+  \ bright cousins ages ago, but they did not abandon grace. They move with\
+  \ a swiftness and beauty that would bring a tear to any warrior\u2019\
+  s eye. In the dark, they\u2019ve practiced. A cruelty has infested their\
+  \ swordsmanship\u2014a wickedness comes to the fore. Barbed blades and\
+  \ whips replace the shining pennant-spears of elven battles on the surface.\
+  \ The swordmasters of the deep elf clans do not merely seek to kill, but\
+  \ to punish with every stroke of their blades. Wickedness and pain are\
+  \ their currency."
+reference: 299
+setting: Lower Depths
+setting_reference: 229

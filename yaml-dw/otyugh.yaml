@@ -1,0 +1,34 @@
+---
+name: Otyugh
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 20
+armor: 1
+weapon:
+  name: Tentacles
+  damage: d10+3 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To befoul
+- Infect someone with filth fever
+- Fling someone or something
+qualities:
+- Filth Fever
+description: "The mating call of the otyugh is a horrible, blaring cry that\
+  \ sounds like a cross between an elephant dying and an over-eager vulture.\
+  \ The otyugh spends much of its time partly submerged in filthy water\
+  \ and prefers eating garbage over any other food. As a result, it often\
+  \ grows fat and strong on the offal of orcs, goblins and other cave-dwelling\
+  \ sub-humans. Get too close, however, and you\u2019ll have one of its\
+  \ barbed tentacles dragging you into that soggy, razor-toothed maw. If\
+  \ you get away with your life, best get to a doctor, or your victory may\
+  \ be short lived."
+reference: 238
+setting: Cavern Dwellers
+setting_reference: 227

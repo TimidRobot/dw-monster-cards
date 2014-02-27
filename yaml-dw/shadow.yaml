@@ -1,0 +1,33 @@
+---
+name: Shadow
+tags_desc:
+- Magical
+- Construct
+tags_org:
+- Horde
+tags_size:
+- Large
+hp: 11
+armor: 4
+weapon:
+  name: Shadow touch
+  damage: d6+1 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To darken
+- Snuff out light
+- Spawn another shadow from the dead
+qualities:
+- Shadow Form
+description: "We call to the elements. We call on fire, ever-burning. We\
+  \ summon water, life-giving. We beseech the earth, stable-standing. We\
+  \ cry to the air, forever-changing. These elements we recognize and give\
+  \ our thanks but ask to pass. The elemental we call upon this night knows\
+  \ another name. We call upon the element of Night. Shadow, we name you.\
+  \ Death\u2019s messenger and black assassin, we claim for our own. Accept\
+  \ our sacrifice and do our bidding \u2019til the morning come."
+reference: 260
+setting: Undead Legions
+setting_reference: 228

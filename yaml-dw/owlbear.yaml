@@ -1,0 +1,21 @@
+---
+name: Owlbear
+tags_desc:
+- Construct
+tags_org:
+- Solitary
+hp: 12
+armor: 2
+weapon:
+  name: Claws
+  damage: d10 damage
+  tags_range:
+  - Close
+instincts:
+- To hunt
+- Strike from darkness
+description: "Body of a bear. Feathers of an owl. Beak, claws, and excellent\
+  \ night vision. What\u2019s not to love?"
+reference: 292
+setting: Twisted Experiments
+setting_reference: 229

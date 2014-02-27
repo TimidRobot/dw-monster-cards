@@ -1,0 +1,31 @@
+---
+name: Fire Beetle
+tags_org:
+- Horde
+tags_size:
+- Small
+hp: 3
+armor: 3
+weapon:
+  name: Flames
+  damage: d6 damage, ignores armor
+  tags_range:
+  - Near
+instincts:
+- To enflame
+- Undermine the ground
+- Burst from the earth
+- Spray forth flames
+qualities:
+- Full of flames
+description: "<i>Scarabaeus pyractomena</i>! What a delightful creature\u2014\
+  see how its carapace glitters in the light of our torches? Not too close\
+  \ now, they\u2019re temperamental, you see. The fire in their belly isn\u2019\
+  t just metaphorical, no. Watch as I goad the beast. Aha! A spout of flame!\
+  \ Unexpected, isn\u2019t it? One of these creatures alone, if it comes\
+  \ up from below, can be a hellish nuisance to a farmstead or village.\
+  \ A whole swarm? There\u2019s a reason they call it a conflagration of\
+  \ fire beetles. "
+reference: 236
+setting: Cavern Dwellers
+setting_reference: 227

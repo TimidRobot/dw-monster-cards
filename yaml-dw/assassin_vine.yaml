@@ -1,0 +1,36 @@
+---
+name: Assassin Vine
+tags_desc:
+- Stealthy
+- Amorphous
+tags_org:
+- Solitary
+hp: 15
+armor: 1
+weapon:
+  name: Thorns
+  damage: d10 damage, 1 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To grow
+- Shoot forth new growth
+- Attack the unwary
+qualities:
+- Plant
+description: "Among the animals there exists a clear division \u2018tween\
+  \ hunter and hunted. All it takes is a glance to know\u2014by fangs and\
+  \ glowing eyes or claws or venomous sting\u2014which of the creatures\
+  \ of this world are meant to kill and which stand to be killed. Such a\
+  \ split, if you have the eyes to see it, cuts the world of leaves and\
+  \ flowers in twain, as well. Druids in their forest circles know it. Rangers,\
+  \ too, might spot such a plant before it\u2019s too late. Lay folk, though,\
+  \ they wander where they oughtn\u2019t\u2014paths into the deep woods\
+  \ covered in creeping vines and with a snap, these hungry ropes snap tight,\
+  \ dragging their meaty prey into the underbrush. Mind your feet, traveller."
+reference: 265
+setting: Dark Woods
+setting_reference: 228

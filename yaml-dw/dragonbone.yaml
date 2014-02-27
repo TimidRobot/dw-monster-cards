@@ -1,0 +1,29 @@
+---
+name: Dragonbone
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 20
+armor: 2
+weapon:
+  name: Bite
+  damage: d10+3 damage, 3 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Reach
+instincts:
+- To serve
+- Attack unrelentingly
+description: 'Mystical sorcerers debate: is this creature truly undead or
+  is it a golem made of a particularly rare and blasphemous material? The
+  bones, sinews and scales of a dead dragon make up this bleak automaton.
+  Winged but flightless, dragon-shaped but without the mighty fire of such
+  a noble thing, the dragonbone serves its master with a twisted devotion
+  and is often set to assault the keeps and towers of rival necromancers.
+  It would take a being of some considerable evil to twist the remains of
+  a dragon thus.'
+reference: 256
+setting: Undead Legions
+setting_reference: 228

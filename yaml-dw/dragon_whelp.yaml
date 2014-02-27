@@ -1,0 +1,36 @@
+---
+name: Dragon Whelp
+tags_desc:
+- Intelligent
+- Cautious
+- Hoarder
+tags_org:
+- Solitary
+tags_size:
+- Small
+hp: 16
+armor: 3
+weapon:
+  name: Elemental breath
+  damage: d10+2 damage
+  tags_range:
+  - Close
+  - Near
+instincts:
+- To grow in power
+- Start a lair, form a base of power
+- Call on family ties
+- Demand oaths of servitude
+qualities:
+- Wings
+- Elemental Blood
+description: "What? Did you think they were all a mile long? Did you think\
+  \ they didn\u2019t come smaller than that? Sure, they may be no bigger\
+  \ than a dog and no smarter than an ape, but a dragon whelp can still\
+  \ belch up a hellish ball of fire that\u2019ll melt your armor shut and\
+  \ drop you screaming into the mud. Their scales, too, are softer than\
+  \ those of their bigger kin, but can still turn aside an arrow or sword\
+  \ not perfectly aimed. Size is not the only measure of might."
+reference: 246
+setting: Swamp Denizens
+setting_reference: 228

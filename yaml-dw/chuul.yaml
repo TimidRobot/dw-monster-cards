@@ -1,0 +1,33 @@
+---
+name: Chuul
+tags_desc:
+- Cautious
+tags_org:
+- Group
+tags_size:
+- Large
+hp: 10
+armor: 4
+weapon:
+  name: Claws
+  damage: d8+1 damage, 3 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To split
+- Split something in two with mighty claws
+- Retreat into water
+qualities:
+- Amphibious
+description: Your worst seafood nightmare come to life. A vicious sort of
+  half-man half-crawdad, cursed with primal intelligence and blessed with
+  a pair of razor-sharp claws. Strange things lurk in the stinking pools
+  in caverns best forgotten and the chuul is one of them. If you spot one,
+  your best hope is a heavy mace to crack its shell and maybe a little garlic
+  butter. Mmmm.
+reference: 298
+setting: Lower Depths
+setting_reference: 229

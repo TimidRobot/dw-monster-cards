@@ -1,0 +1,34 @@
+---
+name: Kraken
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 20
+armor: 2
+weapon:
+  name: Giant tentacles
+  damage: d10+5 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Reach
+instincts:
+- To rule the ocean
+- Drag a person or ship to a watery grave
+- Wrap them in tentacles
+qualities:
+- Aquatic
+description: "\u201DA cephalo-what? No, boy. Not \u201Ca kraken\u201D but\
+  \ \u201Cthe kraken.\u201D I don\u2019t know what nonsense they taught\
+  \ you at that school you say you\u2019re from, but here, we know to respect\
+  \ the Hungerer. Right, that\u2019s what we call it, The Hungerer in the\
+  \ Deep to be more proper. Ain\u2019t no god, though we\u2019ve got those,\
+  \ too. It\u2019s a squid! A mighty squid with tentacles thicker \u2018\
+  round than a barrel and eyes the size of the full moon. Smart, too, the\
+  \ Hungerer. Knows just when to strike\u2014when you\u2019re all too drunk\
+  \ or too tired or run out of clean water, that\u2019s when he gets you.\
+  \ No, I ain\u2019t ever seen him. I\u2019m alive, aren\u2019t I?\u201D"
+reference: 291
+setting: Twisted Experiments
+setting_reference: 229

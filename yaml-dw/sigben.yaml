@@ -1,0 +1,32 @@
+---
+name: Sigben
+tags_desc:
+- Construct
+tags_org:
+- Horde
+tags_size:
+- Large
+hp: 11
+armor: 2
+weapon:
+  name: Tail whip
+  damage: d6+1 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To disturb
+- Poison them
+- "Do a vampire\u2019s bidding"
+qualities:
+- Vampire spawn
+description: "\u201CAswang-hound and hopping whip-tail! Sent by vampires\
+  \ on their two, twisted legs, these ugly things look like the head of\
+  \ a rat or a crocodile, maybe, furry though and sharp of tooth. They have\
+  \ withered wings, but cannot use them and long, whipping tails, spurred\
+  \ with poison tips. Stupid, vengeful and mischievous they cause all kinds\
+  \ of chaos when let out of the strange clay jars in which they\u2019re\
+  \ born. Only a vampire could love such a wretched thing.\u201D"
+reference: 261
+setting: Undead Legions
+setting_reference: 228

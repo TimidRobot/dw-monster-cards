@@ -1,0 +1,30 @@
+---
+name: Rebel
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Horde
+hp: 3
+armor: 1
+weapon:
+  name: Axe
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To upset order
+- Die for a cause
+- Inspire others
+description: "In the countryside they\u2019d be called outlaw and driven\
+  \ off or killed. The city, though, is full of places to hide. Damp basements\
+  \ to pore over maps and to plan and plot against a corrupt system. Like\
+  \ rats, they gnaw away at order, either to supplant it anew or just erode\
+  \ the whole thing. The line between change and chaos is a fine one\u2014\
+  some rebels walk that thin line and others just want to see it all torched.\
+  \ Disguise, a knife in the dark or a thrown torch at the right moment\
+  \ are all tools of the rebel. The burning brand of anarchy is a common\
+  \ fear amongst the nobles of Dungeon World. These men and women are why."
+reference: 318
+setting: Folk of the Realm
+setting_reference: 227

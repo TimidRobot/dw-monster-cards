@@ -1,0 +1,35 @@
+---
+name: Cockatrice
+tags_desc:
+- Hoarder
+tags_org:
+- Group
+tags_size:
+- Small
+hp: 6
+armor: 1
+weapon:
+  name: Beak
+  damage: d8 damage
+  tags_range:
+  - Close
+instincts:
+- To defend the nest
+- Start a slow transformation to stone
+qualities:
+- Stone touch
+description: "\u201CI ain\u2019t ever seen such a thing, sir. Rodrick thought\
+  \ it a chicken, maybe. Poor Rodrick. I figured it to be a lizard of a\
+  \ sort, though he was right\u2014it had a beak and gray feathers like\
+  \ a chicken. Right, well, see, we found it in the woods, in a nest at\
+  \ the foot of a tree while we were out with the sow. Looking for mushrooms,\
+  \ sir. I told Rodrick we were\u2014yes, sir, right sir, the bird\u2014\
+  see, it was glaring at Rodrick and he tried to scare it off with a stick\
+  \ to steal the eggs but the thing pecked his hand. Quick it was, too.\
+  \ I tried to get him away but he just got slower and slower and\u2026\
+  yes, as you see him now, sir. All frozen up like when we left the dog\
+  \ out overnight in winter two years back. Poor, stupid Rodrick. Weren\u2019\
+  t no bird nor lizard, were it, sir?\u201D"
+reference: 267
+setting: Dark Woods
+setting_reference: 228

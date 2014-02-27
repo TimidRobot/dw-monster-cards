@@ -1,0 +1,32 @@
+---
+name: Chimera
+tags_desc:
+- Construct
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 1
+weapon:
+  name: Bite
+  damage: d10+1 damage
+  tags_range:
+  - Reach
+instincts:
+- To do as commanded
+- Belch forth flame
+- Run them over
+- Poison them
+description: "Well-known and categorized, the chimera is a perfected creature.\
+  \ From the codices of the Mage\u2019s Guild to the famous pages of Cullaina\u2019\
+  s Creature Compendium, there\u2019s no confusion about what chimera means.\
+  \ Two parts lioness, one part serpent, head of a she-goat, and all the\
+  \ vicious magic one can muster. The actual ritual might vary, as might\
+  \ a detail or two\u2014more creative sorcerers switch the flame breath\
+  \ for acid, perhaps. Used as a guardian, an assassin or merely an instrument\
+  \ of chaos unchained, it matters little. The chimera is the worst sort\
+  \ of abomination: an intentional affront to all natural life."
+reference: 287
+setting: Twisted Experiments
+setting_reference: 229

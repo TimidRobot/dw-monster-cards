@@ -1,0 +1,30 @@
+---
+name: Purple Worm
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 20
+armor: 2
+weapon:
+  name: Bite
+  damage: d10+5 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Reach
+instincts:
+- To consume
+- Swallow whole
+- Tunnel through stone and earth
+qualities:
+- Burrowing
+description: "I\xE4! I\xE4! The Purple Worm! Blessed is its holy slime!\
+  \ We walk, unworthy, in its miles of massive tunnels. We are but shadows\
+  \ under its violet and all-consuming glory. Mere acolytes, we who hope\
+  \ someday to return to the great embrace of its tooth-ringed maw. Let\
+  \ it consume us! Let it eat our homes and villages so that we might be\
+  \ taken! I\xE4! I\xE4! The Purple Worm!"
+reference: 239
+setting: Cavern Dwellers
+setting_reference: 227

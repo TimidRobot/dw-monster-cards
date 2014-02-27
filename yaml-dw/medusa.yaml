@@ -1,0 +1,32 @@
+---
+name: Medusa
+tags_desc:
+- Devious
+- Intelligent
+- Hoarder
+tags_org:
+- Solitary
+hp: 12
+weapon:
+  name: Claws
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To collect
+- Turn a body part to stone with a look
+- "Draw someone\u2019s gaze"
+- Show hidden terrible beauty
+qualities:
+- Look turns you to stone
+description: "The medusa are children of a serpent-haired mother, birthing\
+  \ them in ancient times to bear her name across the ages. They dwell near\
+  \ places of civilization\u2014luring folks to their caves with promises\
+  \ of beauty or riches untold. Fine appreciators of art, the medusa curate\
+  \ strange collections of their victims, terror or ecstasy frozen forever\
+  \ in stone. It satisfies their vanity to know they were the last thing\
+  \ seen in so many lives. Arrogant, proud, and spiteful, in their way,\
+  \ they seek what so many do\u2014endless company."
+reference: 250
+setting: Swamp Denizens
+setting_reference: 228

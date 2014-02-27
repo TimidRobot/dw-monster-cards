@@ -1,0 +1,38 @@
+---
+name: Triton Tidecaller
+tags_desc:
+- Divine
+- Magical
+- Intelligent
+tags_org:
+- Group
+hp: 6
+armor: 2
+weapon:
+  name: Waves
+  damage: d8+2 damage, ignores armor
+  tags_range:
+  - Near
+  - Far
+instincts:
+- To bring on The Flood
+- Cast a spell of water and destruction
+- Command beasts of the sea
+- Reveal divine proclamation
+qualities:
+- Aquatic
+- Mutations
+description: "Part priest, part outcast among their kind, the tidecaller\
+  \ speaks with the voice of the deeps. They can be known by their mutations\u2014\
+  transparent skin, perhaps, or rows of teeth like a shark. Glowing eyes\
+  \ or fingertips, angler-lights in the darkness of their underwater kingdom.\
+  \ They speak in a strange tongue that can call and command creatures of\
+  \ the sea. They ride wild hippocampi and cast strange spells that rot\
+  \ through the wooden decks of ships or encrust them with barnacles heavy\
+  \ enough to sink. It is the tidecallers who come, now, back to the cities\
+  \ of the triton, bearing word that the prophecy is coming to pass. The\
+  \ world of men will drown in icy brine. The tidecallers speak and the\
+  \ lords begin to listen."
+reference: 284
+setting: Ravenous Hordes
+setting_reference: 229

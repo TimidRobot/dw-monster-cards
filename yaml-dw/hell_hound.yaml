@@ -1,0 +1,29 @@
+---
+name: Hell Hound
+tags_desc:
+- Planar
+- Organized
+tags_org:
+- Group
+hp: 10
+armor: 1
+weapon:
+  name: Fiery Bite
+  damage: d8 damage
+  tags_range:
+  - Close
+instincts:
+- To pursue
+- Follow despite all obstacles
+- Spew fire
+- Summon the forces of hell on their target
+qualities:
+- Hide of shadow
+description: When one reneges on a deal, does not the debtor come for payment?
+  Does the owed party not send someone to collect what is due? So too with
+  the Powers Below. They only want what is theirs. A howling pack of shadows,
+  flame and jagged bone, driven by the hunting horn. They will not cease,
+  they cannot be evaded.
+reference: 308
+setting: Planar Powers
+setting_reference: 230

@@ -1,0 +1,30 @@
+---
+name: Hill Giant
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Group
+tags_size:
+- Huge
+hp: 10
+armor: 1
+weapon:
+  name: Thrown rocks
+  damage: d8+3 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Reach
+  - Near
+  - Far
+instincts:
+- Ruin everything.
+- Throw something
+- Do something stupid
+- Shake the earth
+description: Ever seen an ogre before? Bigger than that. Dumber and meaner,
+  too. Hope you like having cows thrown at you.
+reference: 270
+setting: Dark Woods
+setting_reference: 228

@@ -1,0 +1,31 @@
+---
+name: Orc Slaver
+tags_desc:
+- Stealthy
+- Intelligent
+- Organized
+tags_org:
+- Horde
+hp: 3
+weapon:
+  name: Whip
+  damage: d6 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To take
+- Take a captive
+- Pin someone under a net
+- Drug them
+description: "Red sails fly in the southern sea. Red sails and ships of\
+  \ bone, old wood and iron. The warfleet of the horde. Orcs down that way\
+  \ have taken to the sea, harassing island towns and stealing away with\
+  \ fishermen and their kin. It\u2019s said the custom is spreading north\
+  \ and the orcs learn the value of free work. Taken to it like a sacred\
+  \ duty\u2014especially if they can get their hands on elves. Hard to think\
+  \ of a grimmer fate than to live out your life on an orcish galley, back\
+  \ bent under the lash."
+reference: 282
+setting: Ravenous Hordes
+setting_reference: 229

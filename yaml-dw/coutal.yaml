@@ -1,0 +1,33 @@
+---
+name: Coutal
+tags_desc:
+- Intelligent
+- Devious
+tags_org:
+- Solitary
+hp: 12
+armor: 2
+weapon:
+  name: Light ray
+  damage: d8 damage, ignores armor
+  tags_range:
+  - Close
+instincts:
+- To cleanse
+- Pass judgment on a person or place
+- Summon divine forces to cleanse
+- Offer information in exchange for service
+qualities:
+- Wings
+- Halo
+description: "As if in direct defiance of the decay and filth of the world,\
+  \ the gods granted us the coutal. As if to say, \u201Cthere is beauty,\
+  \ even in this grim place.\u201D A serpent in flight on jeweled wings,\
+  \ these beautiful creatures glow with a soft light, as the sun does through\
+  \ stained glass. Bright, wise, and calm, a coutal often knows many things\
+  \ and sees many more. You might be able to make a trade with it in exchange\
+  \ for some favor. They seek to cleanse and to purge and to make of this\
+  \ dark world a better one. Shame we have so few. The gods are cruel."
+reference: 244
+setting: Swamp Denizens
+setting_reference: 228

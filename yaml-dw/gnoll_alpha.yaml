@@ -1,0 +1,30 @@
+---
+name: Gnoll Alpha
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+hp: 12
+armor: 2
+weapon:
+  name: Sword
+  damage: b[2d10] damage, 1 piercing
+  tags_range:
+  - Close
+instincts:
+- To drive the pack
+- Demand obedience
+- Send the pack to hunt
+qualities:
+- Scent
+description: "Every pack has its top dog. Bigger, maybe\u2014that\u2019\
+  d be the simplest way. Often, though, with these lank and filthy mutts,\
+  \ it\u2019s not about size or sharp teeth but about cruelty. About a willingness\
+  \ to kill your brothers and eat them while the pack watches. Willingness\
+  \ to desecrate the pack in a way that cows them to you. If they\u2019\
+  re that awful to each other\u2014to their living kin\u2014think about\
+  \ how they must view us. It\u2019s hard to be mere meat in a land of carnivores."
+reference: 279
+setting: Ravenous Hordes
+setting_reference: 229

@@ -1,0 +1,31 @@
+---
+name: Pegasus
+tags_desc:
+- Construct
+tags_org:
+- Group
+hp: 10
+armor: 1
+weapon:
+  name: Sharp hooves
+  damage: d8 damage
+  tags_range:
+  - Close
+instincts:
+- To carry aloft
+- Carry a rider into the air
+- Give their rider an advantage
+qualities:
+- Wings
+description: "Don\u2019t go thinking that every creature not natural-born\
+  \ is a horrible abomination. Don\u2019t imagine for a second that they\u2019\
+  re all tentacles and screaming and blood or whatever. Take this noble\
+  \ beast, for example. Lovely thing, isn\u2019t it? A fine white horse\
+  \ with the wings of a swan. Don\u2019t look like it ought to be able to\
+  \ fly, but it does. The elves work miracles, in their own way. They breed\
+  \ true\u2014that\u2019s the purity of elf-magic at work. Hatching from\
+  \ little crystal eggs and bonded with their riders for life. There\u2019\
+  s still some beauty in the world, mark my words."
+reference: 293
+setting: Twisted Experiments
+setting_reference: 229

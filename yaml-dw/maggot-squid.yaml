@@ -1,0 +1,27 @@
+---
+name: Maggot-Squid
+tags_org:
+- Horde
+tags_size:
+- Small
+hp: 3
+armor: 1
+weapon:
+  name: Chew
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To eat
+- Paralyze with a touch
+qualities:
+- Amphibious
+- Paralyzing Tentacles
+description: "The gods that made this thing were playing some sick joke\
+  \ on the civilized folk of the world. The maggot-squid wields a face full\
+  \ of horrible squirming tentacles that, if they touch you, feel like being\
+  \ struck by lightning. They\u2019ll paralyze you and chew you up slowly\
+  \ while you\u2019re helpless. Best to not let it get to that."
+reference: 239
+setting: Cavern Dwellers
+setting_reference: 227

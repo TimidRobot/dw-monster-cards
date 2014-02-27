@@ -1,0 +1,33 @@
+---
+name: Orc Berserker
+tags_desc:
+- Divine
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 20
+weapon:
+  name: Cleaver
+  damage: d10+5 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To rage
+- Fly into a frenzy
+- Unleash chaos
+qualities:
+- Mutations
+description: "Stained in the unholy ritual of Anointing By The Night\u2019\
+  s Blood, some warriors of the horde rise to a kind of twisted knighthood.\
+  \ They trade their sanity for this honor, stepping halfway into a world\
+  \ of swirling madness. This makes berserkers the greatest of their tribe,\
+  \ though as time passes, the chaos spreads. The rare berserker that lives\
+  \ more than a few years becomes horrible and twisted, growing horns or\
+  \ an extra arm with which to grasp the iron cleavers they favor in battle."
+reference: 280
+setting: Ravenous Hordes
+setting_reference: 229

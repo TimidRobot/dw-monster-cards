@@ -1,0 +1,28 @@
+---
+name: Dwarven Warrior
+tags_desc:
+- Organized
+tags_org:
+- Horde
+hp: 7
+armor: 2
+weapon:
+  name: Axe
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To defend
+- Drive them back
+- Call up reinforcements
+description: "For ages, men believed all dwarves were male and all were\
+  \ of this ilk: stoic and proud warriors. Axe-wielding and plate-wearing.\
+  \ Stout bearded battle-hungry dwarves who would push them, time and time\
+  \ again, back up out of their mines and tunnels with ferocity. It just\
+  \ goes to show how little men know about the elder races. These folk are\
+  \ merely a vanguard, and they bravely do their duty to protect the riches\
+  \ of the Dwarven realm. Earn their trust and you\u2019ve an ally for life.\
+  \ Earn their ire and you\u2019re not likely to regret it very long."
+reference: 235
+setting: Cavern Dwellers
+setting_reference: 227

@@ -1,0 +1,36 @@
+---
+name: Werewolf
+tags_desc:
+- Intelligent
+tags_org:
+- Solitary
+hp: 12
+armor: 1
+weapon:
+  name: Bite
+  damage: d10+2 damage, 1 piercing
+  tags_desc:
+  - Messy
+  tags_range:
+  - Close
+instincts:
+- To shed the appearance of civilization
+- Transform to pass unnoticed as beast or man
+- Strike from within
+- Hunt like man and beast
+qualities:
+- Weak to silver
+description: "\u201CBeautiful, isn\u2019t it? The moon, I mean. She\u2019\
+  s watching us, you know? Her pretty silver eyes watch us while we sleep.\
+  \ Mad, too\u2014like all the most beautiful ones. If she were a woman,\
+  \ I\u2019d bend my knee and make her my wife on the spot. No, I didn\u2019\
+  t ask you here to speak about her, though. The chains? For your safety,\
+  \ not mine. I\u2019m cursed, you see. You must have suspected. The sorcerer-kings\
+  \ called it \u201Clycanthropy\u201D in their day\u2014passed on by a bite\
+  \ to make more of our kind. No, I could find no cure. Please, don\u2019\
+  t be scared. You have the arrows I gave you? Silver, yes. Ah, you begin\
+  \ to understand. Don\u2019t cry, sister. You must do this for me. I cannot\
+  \ bear more blood on my hands. You must end this. For me.\u201D"
+reference: 272
+setting: Dark Woods
+setting_reference: 228

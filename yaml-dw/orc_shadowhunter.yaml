@@ -1,0 +1,31 @@
+---
+name: Orc Shadowhunter
+tags_desc:
+- Stealthy
+- Magical
+- Intelligent
+tags_org:
+- Solitary
+hp: 10
+weapon:
+  name: Poisoned dagger
+  damage: d10 damage, 1 piercing
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To kill in darkness
+- Poison them
+- Melt into the shadows
+- Cloak them in darkness
+qualities:
+- Shadow cloak
+description: "Not every attack by orcs is torches and screaming and enslavement.\
+  \ Among those who follow He of Riven Sight, poison and murder-in-the-dark\
+  \ are considered sacred arts. Enter the shadowhunter. Orcs cloaked in\
+  \ Night\u2019s magic who slip into camps, towns and temples and end the\
+  \ lives of those within. Do not be so distracted by the howling of the\
+  \ berserkers that you don\u2019t notice the knife at your back."
+reference: 283
+setting: Ravenous Hordes
+setting_reference: 229

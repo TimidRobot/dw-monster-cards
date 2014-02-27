@@ -1,0 +1,30 @@
+---
+name: Corrupter
+tags_desc:
+- Devious
+- Planar
+- Hoarder
+tags_org:
+- Solitary
+hp: 12
+weapon:
+  name: Secret dagger
+  damage: w[2d8] damage
+  tags_range:
+  - Close
+instincts:
+- To bargain
+- Offer a deal with horrible consequences
+- Plumb the vaults of hell for a bargaining chip
+- Make a show of power
+description: "\u201CSurely, my good man, you must know why I am here. Must\
+  \ know who I am. You said the words. You spilled the blood and followed\
+  \ the instructions almost to the letter. Your pronunciation was a bit\
+  \ off but that\u2019s to be expected. I\u2019ve come to give you what\
+  \ you\u2019ve always wanted, friend. Glory, love, money? Paltry things\
+  \ when you\u2019ve the vaults of hell to plumb. Don\u2019t look so shocked,\
+  \ you knew what this was. You have but one thing we desire. Promise it\
+  \ to us, and the world shall be yours for the taking. Trust me.\u201D"
+reference: 307
+setting: Planar Powers
+setting_reference: 230

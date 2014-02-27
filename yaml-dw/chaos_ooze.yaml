@@ -1,0 +1,35 @@
+---
+name: Chaos Ooze
+tags_desc:
+- Planar
+- Terrifying
+- Amorphous
+tags_org:
+- Solitary
+hp: 23
+armor: 1
+weapon:
+  name: Warping touch
+  damage: d10 damage, ignores armor
+  tags_range:
+  - Close
+instincts:
+- To change
+- Cause a change in appearance or substance
+- Briefly bridge the planes
+qualities:
+- Ooze
+- Fragments of other planes embedded in it
+description: "The barrier between Dungeon World and the elemental planes\
+  \ is not, as you might hope, a wall of stone. It\u2019s much more porous.\
+  \ Places where the civil races do not often tread can sometimes, how to\
+  \ put this, spring a leak. Like a dam come just a little loose. Bits and\
+  \ pieces of the chaos spill out. Sometimes, they\u2019ll congeal like\
+  \ an egg on a pan\u2014that\u2019s where we get the material for many\
+  \ of the Guild\u2019s magical trinkets. Useful, right? Sometimes, though,\
+  \ it squirms and squishes around a bit and stays that way, warping all\
+  \ it touches into some other, strange form. Chaos begets chaos, and it\
+  \ grows."
+reference: 266
+setting: Dark Woods
+setting_reference: 228

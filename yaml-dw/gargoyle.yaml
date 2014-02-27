@@ -1,0 +1,32 @@
+---
+name: Gargoyle
+tags_desc:
+- Stealthy
+- Hoarder
+tags_org:
+- Horde
+hp: 3
+armor: 2
+weapon:
+  name: Claw
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To guard
+- Attack with the element of surprise
+- Take to the air
+- Blend into stonework
+qualities:
+- Wings
+description: "It\u2019s a sad thing, really. Guardians bred by magi of the\
+  \ past with no more castles to guard. Their ancestors\u2019 sacred task\
+  \ bred into their blood leads them to find a place\u2014ruins mostly,\
+  \ but sometimes a cave or hill or mountain cliff\u2014and guard it as\
+  \ though their masters yet lived below. They\u2019re notoriously good\
+  \ at finding valuables buried below the earth, though. Find one of these\
+  \ winged reptiles and you\u2019ll find yourself a treasure nearby. Just\
+  \ be careful, they\u2019re hard to spot and tend to move in packs."
+reference: 236
+setting: Cavern Dwellers
+setting_reference: 227

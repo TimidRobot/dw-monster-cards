@@ -1,0 +1,35 @@
+---
+name: Iron Golem
+tags_desc:
+- Construct
+tags_org:
+- Group
+tags_size:
+- Large
+hp: 10
+armor: 3
+weapon:
+  name: Metal fists
+  damage: d8+5 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To serve
+- Follow orders implacably
+- Use a special tool or adaptation, built-in
+qualities:
+- Metal
+description: "A staple of the enchanter\u2019s art. Every golemist and mechano-thaumaturge\
+  \ in the kingdoms knows this. Iron is a misnomer, though. These guardians\
+  \ are crafted of any metal, really: steel, copper, or even gold, in some\
+  \ small cases. As much an art as a science, the crafting of a fine golem\
+  \ is as respected in the Kingdoms as a bridge newly built or a castle\
+  \ erected in the mountains. Unceasing watchdog, stalwart defender, the\
+  \ iron golem lives to serve, following its orders eternally. Any enchanter\
+  \ worth his salt can craft one, if he can afford the materials. If not\u2026"
+reference: 290
+setting: Twisted Experiments
+setting_reference: 229

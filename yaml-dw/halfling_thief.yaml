@@ -1,0 +1,35 @@
+---
+name: Halfling Thief
+tags_desc:
+- Intelligent
+- Stealthy
+- Devious
+tags_org:
+- Solitary
+tags_size:
+- Small
+hp: 12
+armor: 1
+weapon:
+  name: Dagger
+  damage: w[2d8] damage
+  tags_range:
+  - Close
+instincts:
+- To live a life of stolen luxury
+- Steal
+- Put on the appearance of friendship
+description: "It would be foolish, now, to draw conclusions about folks\
+  \ just because they happen to be good at one thing or another. Then again,\
+  \ a spade\u2019s a spade, isn\u2019t it. Or maybe just the goodly, soft-and-sweet\
+  \ type of Halfling have the mind to stay in their grassy-hill homes and\
+  \ aren\u2019t the type you find in the slums and taverns of the mannish\
+  \ world. Perhaps they\u2019re there to cut your purse for calling them\
+  \ \u201Chalfling\u201D in the first place. Not all take so kindly to the\
+  \ title. Or they\u2019re playing a game, pretending to be a child in need\
+  \ of alms\u2014and your arrogant eyes can\u2019t even see the difference\
+  \ until too late. Well, it matters little. They\u2019re gone with your\
+  \ coin before you even realize you deserved it."
+reference: 315
+setting: Folk of the Realm
+setting_reference: 227

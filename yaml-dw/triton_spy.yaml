@@ -1,0 +1,34 @@
+---
+name: Triton Spy
+tags_desc:
+- Stealthy
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+hp: 12
+armor: 2
+weapon:
+  name: Trident
+  damage: w[2d10] damage
+  tags_range:
+  - Close
+  - Near
+instincts:
+- To spy on the surface world
+- Reveal their secrets
+- Strike at weakness
+qualities:
+- Aquatic
+description: "A fishing village caught one in their net, some time ago.\
+  \ Part a man and part some scaly sea creature, it spoke in a broken, spy-learned\
+  \ form of the common tongue before it suffocated in the open air. It told\
+  \ the fishermen of a coming tide, an inescapable swell of the power of\
+  \ some deep-sea god and that the triton empire would rise up and drag\
+  \ the land down into the ocean. The tale spread and now, when fishermen\
+  \ sail the choppy seas, they watch and worry that the dying triton\u2019\
+  s tales were true. That there are powers deep below that watch and wait.\
+  \ They fear the tide is coming in."
+reference: 284
+setting: Ravenous Hordes
+setting_reference: 229

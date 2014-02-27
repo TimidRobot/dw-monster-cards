@@ -1,0 +1,31 @@
+---
+name: Adventurer
+tags_desc:
+- Intelligent
+tags_org:
+- Horde
+hp: 3
+armor: 1
+weapon:
+  name: Sword
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To adventure or die trying
+- "Go on a fool\u2019s errand"
+- Act impulsively
+- Share tales of past exploits
+qualities:
+- Endless enthusiasm
+description: "\u201CScum of the earth, they are. A troupe of armored men\
+  \ and women come sauntering into town, brandishing what, for all intents\
+  \ and purposes, is enough magical and mundane power to level the whole\
+  \ place. Bringing with them bags and bags of loot, still dripping blood\
+  \ from whatever poor sod they had to kill to get it. An economical fiasco\
+  \ waiting to happen, if you ask me. The whole system becomes completely\
+  \ uprooted. Dangerous, unpredictable murder-hobos. Oh, wait, you\u2019\
+  re an adventurer? I take it all back.\u201D"
+reference: 313
+setting: Folk of the Realm
+setting_reference: 227

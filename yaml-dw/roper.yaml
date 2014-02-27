@@ -1,0 +1,35 @@
+---
+name: Roper
+tags_desc:
+- Stealthy
+- Intelligent
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 1
+weapon:
+  name: Bite
+  damage: d10+1 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To ambush
+- Ensnare the unsuspecting
+- Disarm a foe
+- Chew on someone
+qualities:
+- Rock-like Flesh
+description: "Evolutionary happenstance has created a clever underground\
+  \ predator. Disguised as a rocky formation\u2014most often a stalactite\
+  \ or stalagmite\u2014the roper waits for its prey to wander by. When it\
+  \ does, whether it\u2019s a rat, a goblin or a foolhardy adventurer, a\
+  \ mass of thin, whipping tentacles erupts from the thing\u2019s hide.\
+  \ A hundred lashes in the blink of an eye and the stunned prey is being\
+  \ dragged into the roper\u2019s mouth. Surprisingly effective for a thing\
+  \ that looks like a rock."
+reference: 240
+setting: Cavern Dwellers
+setting_reference: 227

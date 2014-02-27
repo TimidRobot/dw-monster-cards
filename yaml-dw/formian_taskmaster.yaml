@@ -1,0 +1,36 @@
+---
+name: Formian Taskmaster
+tags_desc:
+- Organized
+- Intelligent
+tags_org:
+- Group
+hp: 6
+armor: 3
+weapon:
+  name: Spiked whip
+  damage: d8 damage
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To command
+- Order drones into battle
+- Set great numbers in motion
+qualities:
+- Hive connection
+- Insectoid
+description: "It takes two hands to rule an empire: one to wield the scepter\
+  \ and one to crack the whip. These ant-folk are that whip. Lucky for them,\
+  \ with two extra arms, that\u2019s a lot of whip to crack. They oversee\
+  \ the vast swarms of worker drones that set to build the mighty caverns\
+  \ and ziggurats that dot the places that formians can be found. One in\
+  \ a hundred, these brutes stand two or three feet taller than their pale,\
+  \ near-mindless kin and have a sharper, crueler wit to match. They\u2019\
+  ll often ignore the soft races (as we\u2019re known) if we don\u2019t\
+  \ interfere in a project, but get in the way of The Great Work and expect\
+  \ nothing less than their full attention. You don\u2019t want their full\
+  \ attention."
+reference: 275
+setting: Ravenous Hordes
+setting_reference: 229

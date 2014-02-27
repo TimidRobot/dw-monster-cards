@@ -1,0 +1,26 @@
+---
+name: Black Pudding
+tags_desc:
+- Amorphous
+tags_org:
+- Solitary
+hp: 15
+armor: 1
+weapon:
+  name: Corrosive touch
+  damage: d10 damage, ignores armor
+  tags_range:
+  - Close
+instincts:
+- To dissolve
+- Eat away metal, flesh, or wood
+- 'Ooze into a troubling place: food, armor, stomach'
+qualities:
+- Amorphous
+description: How do you kill a pile of goo? A great, squishy pile of goo
+  that also happens to want to dissolve you and slurp you up? That is a
+  good question to which I have no answer. Do let us know when you find
+  out.
+reference: 244
+setting: Swamp Denizens
+setting_reference: 228

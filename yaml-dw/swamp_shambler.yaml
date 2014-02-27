@@ -1,0 +1,35 @@
+---
+name: Swamp Shambler
+tags_desc:
+- Magical
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 23
+armor: 1
+weapon:
+  name: Lash
+  damage: d10+1 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To preserve and create swamps
+- Call on the swamp itself for aid
+- Meld into the swamp
+- Reassemble into a new form
+qualities:
+- Swamp form
+description: "Some elementals are conjured up in sacred circles etched in\
+  \ chalk. Most, in fact. There\u2019s a sort of science to it. Others,\
+  \ though, aren\u2019t so orderly\u2014they don\u2019t fall under the carefully\
+  \ controlled assignments of fire, air, water, or earth. Some are a natural\
+  \ confluence of vine and mire and fungus. They do not think the way a\
+  \ man might think. They cannot be understood as one might understand an\
+  \ elf. They simply are. Spirits of the swamp. Shamblers in the mud."
+reference: 251
+setting: Swamp Denizens
+setting_reference: 228

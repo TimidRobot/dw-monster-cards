@@ -1,0 +1,28 @@
+---
+name: Troglodyte
+tags_desc:
+- Organized
+tags_org:
+- Group
+hp: 10
+armor: 1
+weapon:
+  name: Club
+  damage: d8 damage
+  tags_range:
+  - Close
+instincts:
+- To prey on civilization
+- Raid and retreat
+- Use scavenged weapons or magic
+description: "Long-forgotten, our last remaining ancestors dwell in caves\
+  \ in the wild parts of the world. Driven away by our cities and villages,\
+  \ our iron swords and our fire, these ape-men eat their meat raw with\
+  \ sharp-nailed hands and jagged teeth. They strike out at frontier villages\
+  \ wielding clubs and in overwhelming numbers to seize cattle, tools, and\
+  \ poor prisoners to drag into the hills. Known for their viciousness and\
+  \ their stink, they\u2019re an old and dying race we\u2019d all sooner\
+  \ forget existed."
+reference: 241
+setting: Cavern Dwellers
+setting_reference: 227

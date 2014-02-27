@@ -1,0 +1,30 @@
+---
+name: Earth Elemental
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 27
+armor: 4
+weapon:
+  name: Smash
+  damage: d10+5 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Reach
+instincts:
+- To show the strength of earth
+- Turn the ground into a weapon
+- Meld into stone
+qualities:
+- Made of stone
+description: "Our shaman says that all the things of the world have a spirit.\
+  \ Stones, trees, a stream. Now that I\u2019ve seen the earth roil under\
+  \ my feet and fists of stone beat my friends half to death I\u2019d like\
+  \ to believe that crazy old man. The one I saw was huge\u2014big as a\
+  \ house! It came boiling up from a rockslide out of nowhere and had a\
+  \ voice like an avalanche. I pay my respects, now. Rightly so."
+reference: 235
+setting: Cavern Dwellers
+setting_reference: 227

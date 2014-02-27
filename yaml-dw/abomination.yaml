@@ -1,0 +1,38 @@
+---
+name: Abomination
+tags_desc:
+- Construct
+- Terrifying
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 20
+armor: 1
+weapon:
+  name: Slam
+  damage: d10+3 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To end life
+- Tear flesh apart
+- Spill forth putrid guts
+qualities:
+- Many limbs
+- heads
+- and so on
+description: "Corpses sewn onto corpses make up the bulk of these shambling\
+  \ masses of dark magic. Most undead are crafted to be controlled\u2014\
+  made to serve some purpose like building a tower or serving as guardians.\
+  \ Not so the abomination. The last aspect of the ritual used to grant\
+  \ fire to their hellish limbs invokes a hatred so severe that the abomination\
+  \ knows but one task: to tear and rend at the very thing it cannot have\u2014\
+  life. Many students of the black arts learn to their mortal dismay the\
+  \ most important fact about these hulks; an abomination knows no master."
+reference: 255
+setting: Undead Legions
+setting_reference: 228

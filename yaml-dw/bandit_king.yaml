@@ -1,0 +1,23 @@
+---
+name: Bandit King
+tags_desc:
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+hp: 12
+armor: 1
+weapon:
+  name: Trusty knife
+  damage: b[2d10] damage
+  tags_range:
+  - Close
+instincts:
+- To lead
+- Make a demand
+- Extort
+- Topple power
+description: Better to rule in hell than serve in heaven.
+reference: 314
+setting: Folk of the Realm
+setting_reference: 227

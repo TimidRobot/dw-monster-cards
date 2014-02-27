@@ -1,0 +1,38 @@
+---
+name: Angel
+tags_desc:
+- Terrifying
+- Divine
+- Intelligent
+- Organized
+tags_org:
+- Solitary
+hp: 18
+armor: 4
+weapon:
+  name: Sword of Flames
+  damage: b[2d10]+4 damage, ignores armor
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+instincts:
+- To share divine will
+- Deliver visions and prophecy
+- Stir mortals to action
+- Expose sin and injustice
+qualities:
+- Wings
+description: "\u201CSo was it written that the heavens opened up to Avra\u2019\
+  hal and did an angel from the clouds emerge to speak unto her and so did\
+  \ it appear to her as her firstborn daughter\u2014beautiful, of ebon skin\
+  \ and golden eyes\u2014and did Avra\u2019hal weep to see it. \u2018Be\
+  \ not afraid,\u2019 it commanded her. \u2018Go to the villages I have\
+  \ shown you in your dreams and unto them show the word I have written\
+  \ on your soul.\u2019 Avra\u2019hal wept and wept and did agree to do\
+  \ this and did take up her sword and tome and did into the villages go,\
+  \ a great thirst for blood on her lips for the word the angel wrote upon\
+  \ the soul of Avra\u2019hal was \u2018kill\u2019.\u201D"
+reference: 305
+setting: Planar Powers
+setting_reference: 230

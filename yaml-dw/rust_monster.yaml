@@ -1,0 +1,31 @@
+---
+name: Rust Monster
+tags_desc:
+- Construct
+tags_org:
+- Group
+hp: 6
+armor: 3
+weapon:
+  name: Corrosive touch
+  damage: d8 damage, ignores armor
+  tags_range:
+  - Close
+instincts:
+- To decay
+- Turn metal to rust
+- Gain strength from consuming metal
+qualities:
+- Corrosive touch
+description: "A very distinctive-looking creature. Something like a reddish\
+  \ cricket, I think. Long crickety legs, anyhow. Blind, too, as I understand\
+  \ it\u2014they feel their way around with those long moth-looking tendrils.\
+  \ Feed that way, too. Sift through piles of metal for the choicest bits.\
+  \ That\u2019s what they eat, don\u2019t matter the type, neither. Their\
+  \ merest touch turns it all to rusted flakes. Magic lasts longer but under\
+  \ the scrutiny of a rust monster, it\u2019s a foregone conclusion. Only\
+  \ the gods know where they came from, but they\u2019re a curse if you\
+  \ value your belongings."
+reference: 293
+setting: Twisted Experiments
+setting_reference: 229

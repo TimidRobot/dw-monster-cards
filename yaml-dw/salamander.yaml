@@ -1,0 +1,41 @@
+---
+name: Salamander
+tags_desc:
+- Intelligent
+- Organized
+- Planar
+tags_org:
+- Horde
+tags_size:
+- Large
+hp: 7
+armor: 3
+weapon:
+  name: Flaming spear
+  damage: b[2d6]+3 damage
+  tags_range:
+  - Close
+  - Reach
+  - Near
+instincts:
+- To consume in flame
+- Summon elemental fire
+- Melt away deception
+qualities:
+- Burrowing
+description: "\u201CThe excavation uncovered what the reports called a basalt\
+  \ gate. Black stone carved with molten runes. When they dug it up, the\
+  \ magi declared it inert but further evidence indicates that was an incorrect\
+  \ claim. The entire team went missing. When we arrived, the gate was glowing.\
+  \ Its light filled the whole cavern. We could see from the entrance that\
+  \ the area had become full of these creatures\u2014like men with red and\
+  \ orange skin, tall as an ogre but with a snake\u2019s tail where their\
+  \ legs ought to be. They were clothed, too\u2014some had black glass armor.\
+  \ They spoke to each other in a tongue that sounded like grease in a fire.\
+  \ I wanted to leave but the sergeant wouldn\u2019t listen. You\u2019ve\
+  \ already read what happened next, sir. I know I\u2019m the only one that\
+  \ got back, but what I said is true. The gate is open, now. This is just\
+  \ the beginning!\u201D"
+reference: 303
+setting: Lower Depths
+setting_reference: 229

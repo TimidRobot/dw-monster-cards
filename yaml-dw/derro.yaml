@@ -1,0 +1,34 @@
+---
+name: Derro
+tags_desc:
+- Devious
+- Intelligent
+- Organized
+tags_org:
+- Horde
+hp: 3
+armor: 2
+weapon:
+  name: Pickaxe
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To replace dwarves
+- Fill a mind with foreign thoughts
+- "Take control of a beast\u2019s mind"
+qualities:
+- Telepathy
+description: "It\u2019s typical to think that all the malignant arcane monsters\
+  \ made in this world are birthed by wizards, sorcerers, and their ilk.\
+  \ That the colleges and towers of Dungeon World are womb to every bleak\
+  \ experiment. There are mistakes made in the depths of the earth, too.\
+  \ These ones, the derro, are the mistakes of a long-forgotten dwarven\
+  \ alchemist. The derro don\u2019t forget, though. Twisted and hateful,\
+  \ the derro can be spotted by their swollen skulls, brain-matter grown\
+  \ too large. They do not speak except in thoughts to one another and plot\
+  \ in the silent dark to extract sweetest revenge\u2014that of the created\
+  \ on the creator."
+reference: 288
+setting: Twisted Experiments
+setting_reference: 229

@@ -1,0 +1,34 @@
+---
+name: Orc One-Eye
+tags_desc:
+- Divine
+- Magical
+- Intelligent
+- Organized
+tags_org:
+- Group
+hp: 6
+weapon:
+  name: Inflict Wounds
+  damage: d8+2 damage, ignores armor
+  tags_range:
+  - Close
+  - Reach
+  - Near
+  - Far
+instincts:
+- To hate
+- Rend flesh with divine magic
+- Take an eye
+- Make a sacrifice and grow in power
+qualities:
+- One eye
+description: "In the name of He of Riven Sight and by the First Sacrifice\
+  \ of Elf-Flesh do we invoke the Old Powers. By the Second Sacrifice, I\
+  \ make my claim to what is mine\u2014the dark magic of Night. In His image,\
+  \ I walk the path to Gor-sha-thak, the Iron Gallows! I call to the runes!\
+  \ I call to the clouded sky! Take this mortal organ, eat of the flesh\
+  \ of our enemy and give me what is mine!"
+reference: 281
+setting: Ravenous Hordes
+setting_reference: 229

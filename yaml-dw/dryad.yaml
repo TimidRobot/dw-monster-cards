@@ -1,0 +1,37 @@
+---
+name: Dryad
+tags_desc:
+- Magical
+- Intelligent
+- Devious
+- ''
+tags_org:
+- Solitary
+hp: 12
+armor: 2
+weapon:
+  name: Crushing vines
+  damage: w[2d8]damage
+  tags_range:
+  - Close
+instincts:
+- To love nature passionately
+- Entice a mortal
+- Merge into a tree
+- Turn nature against them
+qualities:
+- Plant
+description: "More beautiful by far than any man or woman born in the civil\
+  \ realms. To gaze upon one is to fall in love. Deep and punishing, too.\
+  \ Thing is, they don\u2019t love\u2014not the fleshy folk who often find\
+  \ them, anyway. Their love is a primal thing, married to the woods\u2014\
+  to a great oak that serves as home and mother and sacred place to them.\
+  \ It\u2019s a curse to see one, too, they\u2019ll never love you back.\
+  \ No matter what you do. No matter how you pledge yourself to them, they\u2019\
+  ll always spurn you. If ever their oak comes to harm, you\u2019ve not\
+  \ only the dryad\u2019s wrath to contend with, but in every nearby village\
+  \ there\u2019s a score of men with a secret longing in their heart, ready\
+  \ to murder you where you sleep for just a smile from such a creature."
+reference: 267
+setting: Dark Woods
+setting_reference: 228

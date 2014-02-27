@@ -1,0 +1,24 @@
+---
+name: Cloaker
+tags_desc:
+- Stealthy
+tags_org:
+- Solitary
+hp: 12
+armor: 1
+weapon:
+  name: Constrict
+  damage: d10 damage, ignores armor
+  tags_range:
+  - Close
+instincts:
+- To engulf
+- Engulf the unsuspecting
+qualities:
+- Looks like a cloak
+description: "Don\u2019t put on that cloak, Gareth. Don\u2019t. You don\u2019\
+  t know where it\u2019s been. I tell you, it\u2019s no good. See! It moved!\
+  \ I\u2019m not mad, Gareth, it moved! Don\u2019t do it! No! GARETH!"
+reference: 234
+setting: Cavern Dwellers
+setting_reference: 227

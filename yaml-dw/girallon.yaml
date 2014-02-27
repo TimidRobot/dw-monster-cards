@@ -1,0 +1,33 @@
+---
+name: Girallon
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 20
+armor: 1
+weapon:
+  name: Rending hands
+  damage: d10+5 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Reach
+instincts:
+- To rule
+- Answer the call of sacrifice
+- Drive them from the jungle
+- Throw someone
+qualities:
+- Many arms
+description: "The pounding of the jungle drums calls to it. The slab of\
+  \ meat on the sacrificial stone to lure in the great ape. Girallon, they\
+  \ call it\u2014a name from the long-forgotten tongue of the kings who\
+  \ bred the beast. Taller than a building, some say. Cloaked in ivory fur\
+  \ with tusks as long as scimitars. Four arms? Six? The rumors are hard\
+  \ to verify. Every year it is the same: some explorer visits the jungle\
+  \ villages seeking the ape and returns, never quite the same, never with\
+  \ a trophy. The pounding of the drums goes on."
+reference: 290
+setting: Twisted Experiments
+setting_reference: 229

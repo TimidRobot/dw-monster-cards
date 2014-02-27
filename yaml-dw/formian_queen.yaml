@@ -1,0 +1,39 @@
+---
+name: Formian Queen
+tags_desc:
+- Organized
+- Intelligent
+- Hoarder
+tags_org:
+- Solitary
+tags_size:
+- Huge
+hp: 24
+armor: 3
+weapon:
+  name: Crushing mandibles
+  damage: d10+5 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Reach
+instincts:
+- To spread formians
+- Call every formian it spawned
+- Release a half-formed larval mutation
+- Organize and issue orders
+qualities:
+- Hive connection
+- Insectoid
+description: 'At the heart of every hive, no matter its size or kind, lives
+  a queen. As large as any giant, she sits protected by her guard, served
+  by every drone and taskmaster with her own, singular purpose: to spread
+  her kind and grow the hive. To birth the eggs. To nurture. We do not understand
+  the minds of these creatures but it is known they can communicate with
+  their children, somehow, over vast distances and that they begin to teach
+  them the ways of earth and stone and war while still pale and wriggling
+  larvae, without a word. To kill one is to set chaos on the hive; without
+  their queen, the rest turn on one another in a mad, blind rage.'
+reference: 277
+setting: Ravenous Hordes
+setting_reference: 229

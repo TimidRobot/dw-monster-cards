@@ -1,0 +1,29 @@
+---
+name: Ettin
+tags_desc:
+- Construct
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 1
+weapon:
+  name: Club
+  damage: d10+3 damage
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To smash
+- Attack two enemies at once
+- Defend its creator
+qualities:
+- Two heads
+description: What could possibly be better than an idiotic angry hill giant?
+  One with two heads. Fantastic idea, really. Grade A stuff.
+reference: 289
+setting: Twisted Experiments
+setting_reference: 229

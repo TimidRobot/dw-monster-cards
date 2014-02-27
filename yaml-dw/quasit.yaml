@@ -1,0 +1,27 @@
+---
+name: Quasit
+tags_desc:
+- Planar
+tags_org:
+- Horde
+hp: 7
+armor: 2
+weapon:
+  name: Hellish weaponry
+  damage: d6 damage
+  tags_range:
+  - Close
+instincts:
+- To serve
+- Attack with abandon
+- Inflict pain
+qualities:
+- Adaptable form
+description: An imp with some ambition. A quasit is a kind of foot soldier
+  in the demon realm. A commoner, armed with fangs or claws or wings or
+  some other thing to give it just a little edge over its hellish peers.
+  Commonly bound by warlocks to carry heavy loads or build bridges or guard
+  their twisted towers, a quasit can take on many forms, none of them pleasant.
+reference: 310
+setting: Planar Powers
+setting_reference: 230

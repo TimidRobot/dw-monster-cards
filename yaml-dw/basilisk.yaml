@@ -1,0 +1,28 @@
+---
+name: Basilisk
+tags_desc:
+- Hoarder
+tags_org:
+- Solitary
+hp: 12
+armor: 2
+weapon:
+  name: Bite
+  damage: d10 damage
+  tags_range:
+  - Close
+instincts:
+- To create new statuary
+- Turn flesh to stone with a gaze
+- Retreat into a maze of stone
+description: "\u201CFew have seen a basilisk and lived to tell the tale.\
+  \ Get it? Seen a basilisk? Little bit of basilisk humor there. Sorry,\
+  \ I know you\u2019re looking for something helpful, sirs. Serious stuff,\
+  \ I understand. The basilisk, even without its ability to turn your flesh\
+  \ to stone with a gaze, is a dangerous creature. A bit like a frog, bulbous\
+  \ eyes and six muscled legs built for leaping. A bit like an alligator,\
+  \ with snapping jaws and sawing teeth. Covered in stony scales and very\
+  \ hard to kill. Best avoided, if possible.\u201D"
+reference: 243
+setting: Swamp Denizens
+setting_reference: 228

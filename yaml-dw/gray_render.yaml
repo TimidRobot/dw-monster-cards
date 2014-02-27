@@ -1,0 +1,31 @@
+---
+name: Gray Render
+tags_org:
+- Solitary
+tags_size:
+- Large
+hp: 16
+armor: 1
+weapon:
+  name: Rending claws
+  damage: d10+3 damage, 3 piercing
+  tags_desc:
+  - Forceful
+  tags_range:
+  - Close
+  - Reach
+instincts:
+- To serve
+- Tear something apart
+description: On its own, the render is a force of utter destruction. Huge
+  and leathery, with a maw of unbreakable teeth and claws to match, the
+  render seems to enjoy little more than tearing things apart. Stone, flesh,
+  or steel, it matters little. However, the gray render is so rarely found
+  alone. They bond with other creatures. Some at birth, others as fully-grown
+  creatures, and a gray render will follow their bonded master wherever
+  they go, bringing them offerings of meat and protecting them while they
+  sleep. Finding an un-bonded render means certain riches, if you survive
+  to sell it.
+reference: 301
+setting: Lower Depths
+setting_reference: 229
