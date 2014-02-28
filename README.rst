@@ -18,8 +18,10 @@ Outputs
 
 - CSV (ex. mail merge your own cards, import into DB)
 - **PDF**
-  - 39 page front document: `monster_cards.pdf`_
-  - 1 page back/reverse document: `back_example.pdf`_
+
+  - front document: `monster_cards.pdf`_ (39 pages)
+  - back/reverse document: `back_example.pdf`_ (1 page)
+
 - plain text
 
 .. _`Dungeon World`: http://www.dungeon-world.com/
