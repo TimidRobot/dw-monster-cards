@@ -26,9 +26,9 @@ Outputs
 
 .. _`Dungeon World`: http://www.dungeon-world.com/
 .. _`monster_cards.pdf`:
-   https://github.com/TimZehta/dw-monster-cards/blob/master/monster_cards.pdf
+   https://raw.github.com/TimZehta/dw-monster-cards/master/monster_cards.pdf
 .. _`back_example.pdf`:
-   https://github.com/TimZehta/dw-monster-cards/blob/master/back_example.pdf
+   https://raw.github.com/TimZehta/dw-monster-cards/master/back_example.pdf
 .. _`Dungeon World Github`: https://github.com/Sagelt/Dungeon-World
 
 
