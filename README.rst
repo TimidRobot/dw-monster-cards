@@ -130,10 +130,10 @@ dwmc.py
 - `MIT License`_
 
 
-Monster Definitions (``yaml-dw/*.yaml``)
------------------------------------------
+Monster Definitions
+-------------------
 
-- `Open Gaming License version 1.0a`_ [rtf]
+- `Open Gaming License version 1.0a`_ [RTF]
 
 
 Dungeon World and Index Data
