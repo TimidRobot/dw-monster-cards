@@ -48,9 +48,8 @@ index = None
 # From official Python documetnation for csv module:
 # http://docs.python.org/2/library/csv.html
 class UnicodeWriter:
-    """
-    A CSV writer which will write rows to CSV file "f",
-    which is encoded in the given encoding.
+    """A CSV writer which will write rows to CSV file "f", which is encoded in
+    the given encoding.
     """
 
     def __init__(self, f, dialect=csv.excel, encoding="utf-8", **kwds):
@@ -83,7 +82,7 @@ class UnicodeWriter:
 
 
 # From:
-# http://blog.elsdoerfer.name/2012/07/26/make-pyyaml-output-an-ordereddict/
+#   http://blog.elsdoerfer.name/2012/07/26/make-pyyaml-output-an-ordereddict/
 def represent_odict(dump, tag, mapping, flow_style=None):
     """Like BaseRepresenter.represent_mapping, but does not issue the sort().
     """
@@ -112,44 +111,38 @@ def represent_odict(dump, tag, mapping, flow_style=None):
 
 
 def parser_setup():
-    """Instantiate, configure and return an ArgumentParser instance."""
+    """Instantiate, configure and return an ArgumentParser instance.
+    """
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--back-image", metavar="FILE",
-                    help="Image to use for back of monster cards (requires "
-                    "--back-pdf)")
-    dst = ap.add_argument_group(title="Output Arguments",
-                                description="Mutually exclusive arguments "
-                                "that determine type of output.")
+                    help="Image to use for back of monster cards (requires"
+                         " --back-pdf)")
+    out = ap.add_argument_group(title="Output Arguments",
+                                description="Mutually exclusive arguments"
+                                            " that determine type of output.")
+    dst = out.add_mutually_exclusive_group(required=True)
     dst.add_argument("--back-pdf", metavar="FILE",
-                     help="Create PDF of back of monster cards (requires "
-                     "--back-image)")
+                     help="Create PDF of back of monster cards (requires"
+                          " --back-image)")
     dst.add_argument("--csv", metavar="FILE",
                      help="Create CSV of monsters")
     dst.add_argument("--pdf", metavar="FILE",
                      help="Create PDF of monster cards")
     dst.add_argument("--plain", action="store_true",
-                     help="Output plain text monster entries (handy for "
-                     "debugging)")
+                     help="Output plain text monster entries (handy for"
+                          " debugging)")
     dst.add_argument("--yaml", metavar="DIR",
                      help="Create YAML files for each monster in DIR")
     src = ap.add_argument_group(title="Source File(s)")
     src.add_argument("file", metavar="FILE", nargs="*",
-                     help="XML or YAML source file(s) to parse (required by "
-                     "all output arguments except --back-pdf)")
+                     help="XML or YAML source file(s) to parse (required by"
+                          " all output arguments except --back-pdf)")
     args = ap.parse_args()
-    # Ensure a single output argument is provided
-    dst_count = 0
-    for key in vars(args):
-        if vars(args)[key] and key in ("back_pdf", "csv", "pdf", "plain",
-                                       "yaml"):
-            dst_count += 1
-    if dst_count != 1:
-        ap.error("Exactly one Output Argument is required")
     # Ensure back_pdf and back_image are used together
     if (args.back_pdf and not args.back_image) or (not args.back_pdf and
                                                    args.back_image):
-        ap.error("Both --back-pdf and --back-image are required "
-                 "if either are used.")
+        ap.error("Both --back-pdf and --back-image are required"
+                 " if either are used.")
     # Ensure source files provided
     if not args.back_pdf and not args.file:
         ap.error("Source FILE(s) required")
@@ -157,7 +150,8 @@ def parser_setup():
 
 
 def parse_xml(xml_file):
-    """Parse DungeonWorld's InDesign XML source files"""
+    """Parse DungeonWorld's InDesign XML source file.
+    """
     tree = ElementTree.parse(xml_file)
     body = tree.find("Body")
     second = False
@@ -279,7 +273,8 @@ def parse_xml(xml_file):
 
 
 def parse_yaml(yaml_file):
-    """Parse monster YAML file"""
+    """Parse monster YAML file.
+    """
     m = collections.OrderedDict()
     m["name"] = None
     m["tags_desc"] = list()
@@ -310,7 +305,8 @@ def parse_yaml(yaml_file):
 
 
 def combine_monster_tags(monster_dictionary, formatted=False):
-    """Combine monster tags into categorized and sorted string."""
+    """Combine monster tags into categorized and sorted string.
+    """
     m = monster_dictionary
     tags_combined = None
     if m["tags_desc"]:
@@ -336,7 +332,8 @@ def combine_monster_tags(monster_dictionary, formatted=False):
 
 def combine_weapon(monster_dictionary, formatted=False):
     """Combine weapon name, damage, and tags into categorized and sorted
-    string."""
+    string.
+    """
     w = monster_dictionary["weapon"]
     weapon = None
     tags = None
@@ -361,7 +358,8 @@ def combine_weapon(monster_dictionary, formatted=False):
 
 
 def csv_write_row(monster_dict):
-    """Write monster data as CSV rows."""
+    """Write monster data as CSV rows.
+    """
     m = monster_dict
     # Cleanup italics (ex. Fire Beetle)
     description = m["description"].replace("<i>", "").replace("</i>", "")
@@ -375,7 +373,8 @@ def csv_write_row(monster_dict):
 
 
 def pdf_create_page(monster_dict):
-    """Create PDF pages of formatted monster cards."""
+    """Create PDF pages of formatted monster cards.
+    """
     m = monster_dict
     # Name, HP, Armor
     hp_label = None
@@ -478,7 +477,8 @@ def pdf_create_page(monster_dict):
 
 
 def plain_write(monster_dict):
-    """Output plain text monster entries."""
+    """Output plain text monster entries.
+    """
     m = monster_dict
     print("=" * 80)
     # Name, HP, and Armor
@@ -543,7 +543,8 @@ def plain_write(monster_dict):
 
 #TODO: convert utf8 to ascii for filenames
 def yaml_write(monster_dict):
-    """Write monster entries to their own YAML file."""
+    """Write monster entries to their own YAML file.
+    """
     m = monster_dict
     # Remove empty keys
     bad_keys = list()
