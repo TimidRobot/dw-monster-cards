@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
+
 """Create Dungeon World Monster Cards PDF (reads source XML and YAML, also
-writes CSV and YAML)."""
+writes CSV and YAML).
+"""
+
 # Standard library
+from __future__ import absolute_import, division, print_function
 import argparse
 import codecs
 import collections
@@ -13,6 +17,7 @@ import os.path
 import sys
 import textwrap
 from xml.etree import ElementTree
+
 # Third-party
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
@@ -26,6 +31,7 @@ from reportlab.platypus import (BaseDocTemplate, Frame, FrameBreak,
                                 PageTemplate, Paragraph, Spacer)
 from reportlab.platypus.tables import Table
 import yaml
+
 
 # Tag order lists
 monster_tags_org = ["Solitary", "Group", "Horde"]
@@ -474,65 +480,65 @@ def pdf_create_page(monster_dict):
 def plain_write(monster_dict):
     """Output plain text monster entries."""
     m = monster_dict
-    print "=" * 80
+    print("=" * 80)
     # Name, HP, and Armor
     if m["hp"]:
-        print u"%-70s%6s%4d" % (m["name"].upper(), "HP:", m["hp"])
+        print(u"%-70s%6s%4d" % (m["name"].upper(), "HP:", m["hp"]))
     else:
-        print m["name"].upper()
+        print(m["name"].upper())
     if m["armor"]:
-        print u"%76s%4d" % ("Armor:", m["armor"])
+        print(u"%76s%4d" % ("Armor:", m["armor"]))
     # Tags
     tags = combine_monster_tags(m)
     if tags:
-        print tags
+        print(tags)
     # Weapon
     weapon = combine_weapon(m)
     if weapon:
-        print weapon
+        print(weapon)
     # Instincts
     if m["instincts"]:
         leader = textwrap.TextWrapper(width=80,
                                       initial_indent=u"%-10s> " % "Instincts",
                                       subsequent_indent=u"%12s" % "")
-        print leader.fill(m["instincts"].pop(0))
+        print(leader.fill(m["instincts"].pop(0)))
         follow = textwrap.TextWrapper(width=80,
                                       initial_indent=u"%-10s> " % "",
                                       subsequent_indent=u"%12s" % "")
         for instinct in m["instincts"]:
-            print follow.fill(instinct)
+            print(follow.fill(instinct))
     # Qualities
     if m["qualities"]:
         leader = textwrap.TextWrapper(width=80,
                                       initial_indent=u"%-10s> " % "Qualities",
                                       subsequent_indent=u"%12s" % "")
-        print leader.fill(m["qualities"].pop(0))
+        print(leader.fill(m["qualities"].pop(0)))
         follow = textwrap.TextWrapper(width=80,
                                       initial_indent=u"%-10s> " % "",
                                       subsequent_indent=u"%12s" % "")
         for quality in m["qualities"]:
-            print follow.fill(quality)
+            print(follow.fill(quality))
     # Description
     if m["description"]:
-        print "-" * 80
+        print("-" * 80)
         # Cleanup italics (ex. Fire Beetle)
         description = m["description"].replace("<i>", "").replace("</i>", "")
         if "<br />" in description:
             # Multilined description (ex. Treant)
             description = description.replace("<br />", "\n")
-            print description
+            print(description)
         else:
             # Normal description
-            print textwrap.fill(description, width=80)
-        print "-" * 80
+            print(textwrap.fill(description, width=80))
+        print("-" * 80)
     # References
-    print u"{: ^80}".format(u"%s of the %s" % (m["name"], m["setting"]))
+    print(u"{: ^80}".format(u"%s of the %s" % (m["name"], m["setting"])))
     if m["reference"] and m["setting_reference"]:
-        print u"{: ^80}".format(u"[DW %d, %d]" % (m["reference"],
-                                                  m["setting_reference"]))
+        print(u"{: ^80}".format(u"[DW %d, %d]" % (m["reference"],
+                                                  m["setting_reference"])))
     elif m["setting_reference"]:
-        print u"{: ^80}".format(u"[DW %d]" % (m["setting_reference"]))
-    print
+        print(u"{: ^80}".format(u"[DW %d]" % (m["setting_reference"])))
+    print()
 
 
 #TODO: convert utf8 to ascii for filenames
@@ -554,8 +560,8 @@ def yaml_write(monster_dict):
         del m[key]
     # Print or Write to file
     if args.yaml == "-":
-        print yaml.safe_dump(m, default_flow_style=False, width=70,
-                             explicit_start=True)
+        print(yaml.safe_dump(m, default_flow_style=False, width=70,
+                             explicit_start=True))
     else:
         file_name = m["name"].replace(" ", "_").lower()
         args.yaml = os.path.abspath(args.yaml)
